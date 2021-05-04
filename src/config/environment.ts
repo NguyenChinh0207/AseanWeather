@@ -1,3 +1,6 @@
 export const environment = {
-    baseURL: 'http://localhost:8000/api'
+    baseURL: 'https://vti-aca-april-team1-api.herokuapp.com/api',
+    headers: {
+        'Content-Type': 'application/json'
+    }
 }

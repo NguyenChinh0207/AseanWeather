@@ -1,6 +1,6 @@
 .navbar {
     background-color: #177b9c; /* Dành cho các trình duyệt không hỗ trợ gradient*/
-    background-image: linear-gradient(to top right, #046f94, #227093); 
+    background-image: linear-gradient(to top right, #046f94, #12CBC4); 
     height: 80px;
     display: flex;
     justify-content: center;
@@ -9,6 +9,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   .navbar-container {

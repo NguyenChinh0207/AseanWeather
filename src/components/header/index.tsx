@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './header.scss';
 import { Link } from 'react-router-dom';
 
-interface IHeader {
-   
-}
-
-const Header: React.FC<IHeader> = () => {
+const Header = () => {
     const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -48,11 +44,20 @@ const Header: React.FC<IHeader> = () => {
             </li>
             <li className='nav-item'>
               <Link
-                to='/services'
+                to='/about'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 About
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/search'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Search
               </Link>
             </li>
         

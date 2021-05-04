@@ -1,9 +1,9 @@
 import React from 'react';
 import '../App.scss';
-
+import Login  from '../components/signIn/index'
 const  SignIn = ()=> {
   return (
-    <h1 className='sign-in'>LIKE & SUBSCRIBE</h1>
+      <Login/>
   );
 }
 export default SignIn;

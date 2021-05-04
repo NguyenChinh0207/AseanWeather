@@ -6,8 +6,9 @@ import Header from '../components/header';
 import HomePage from '../pages/HomePage';
 import Notfound from '../pages/Notfound';
 import SignIn from '../pages/SignIn';
+import SignInAdmin from '../pages/SignInAdmin';
 
-import UserListPage from '../pages/UserListPage';
+
 const MainRoute = () => {
     const [cart, setCart] = useState<any[]>([]);
     return (
@@ -15,11 +16,13 @@ const MainRoute = () => {
             <Header/>
                 <Switch>
                     <Route path="/" exact component={HomePage} />
+                    <Route path='/search' component={HomePage} />
                     <Route path='/sign-in' component={SignIn} />
-                    <Route path="/users" exact component={UserListPage} />           
+                    <Route path='/sign-in-admin' component={SignInAdmin} />
+                         
                     <Route component={Notfound} />
                 </Switch>
-
+            
             <Footer />
 
         </>

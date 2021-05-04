@@ -1,8 +1,8 @@
 import "./footer.scss";
 import { Link } from "react-router-dom";
 import logo from "/assets/images/logo2.png";
-interface IFooter {}
-const Footer: React.FC<IFooter> = () => {
+
+const Footer = () => {
   return (
     <div className="footer-container">
       <div className="footer-links">
@@ -56,7 +56,7 @@ const Footer: React.FC<IFooter> = () => {
               target="_blank"
               aria-label="Facebook"
             >
-              <i className="fab fa-facebook-f facebook" />
+              <i className="fab fa-facebook-f facebook_f" />
             </Link>
             <Link
               className="social-icon-link"

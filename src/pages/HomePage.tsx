@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchComponent from "../components/searchbg";
+import Cards from '../components/card/Cards';
 
-
-
-interface IHomePage {
-}
-
-const HomePage: React.FC<IHomePage> = () => {
-
+const HomePage = () => {
+	
 	return (		
-		<SearchComponent/>			
+		<>
+			<SearchComponent/>	
+			<Cards />	
+		</>	
 	);
 }
 
