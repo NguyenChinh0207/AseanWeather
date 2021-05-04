@@ -5,21 +5,17 @@ import Header from '../components/header';
 
 import HomePage from '../pages/HomePage';
 import Notfound from '../pages/Notfound';
-import SignIn from '../pages/SignIn';
-import SignInAdmin from '../pages/SignInAdmin';
 
+import BoxWeather from '../pages/BoxWeather';
 
 const MainRoute = () => {
-    const [cart, setCart] = useState<any[]>([]);
     return (
         <>
             <Header/>
                 <Switch>
                     <Route path="/" exact component={HomePage} />
                     <Route path='/search' component={HomePage} />
-                    <Route path='/sign-in' component={SignIn} />
-                    <Route path='/sign-in-admin' component={SignInAdmin} />
-                         
+                    <Route path='/now' component={BoxWeather} />   
                     <Route component={Notfound} />
                 </Switch>
             

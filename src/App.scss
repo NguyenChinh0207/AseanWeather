@@ -3,10 +3,14 @@
   margin: 0;
   padding: 100;
   font-family: 'PT Sans', sans-serif;
-
+  text-decoration: none;
+}
+a{
+  text-decoration: none;
 }
 a:hover{
   color: #f9ca24 !important;
+  text-decoration: none;
 }
 h5,h6{
   margin: 0;

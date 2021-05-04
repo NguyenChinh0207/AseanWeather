@@ -2,6 +2,8 @@ import { Component } from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainRoute from "./routes/MainRoute";
+import SignIn from './pages/SignIn';
+import SignInAdmin from './pages/SignInAdmin';
 
 interface IProps { }
 interface IState { }
@@ -16,6 +18,8 @@ class App extends Component<IProps, IState> {
 		return (
 			<BrowserRouter>
 				<Switch>			
+					<Route path='/sign-in' component={SignIn} />
+                    <Route path='/sign-in-admin' component={SignInAdmin} />
 					<Route path="/" render={() => <MainRoute />} />
 				</Switch>
 			</BrowserRouter>
