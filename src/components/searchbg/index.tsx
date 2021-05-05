@@ -51,10 +51,11 @@ const SearchComponent: React.FC<ISearch> = ({
           placeholder="&#xF002; Search Location..."
           onChange={(e) => handleSearch(e.target.value)}
           value={text}
-          // onChange={(e) => searchCities(e.target.value)}
+          
           onBlur={() => {
             setTimeout(() => {
               setCityMatch([]);
+              setShow(false)
             }, 200);
           }}
         />
