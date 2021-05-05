@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getWeatherHourlyFail, getWeatherHourlySuccess, getWeatherNowFail, getWeatherNowSuccess,getWeatherDailySuccess,getWeatherDailyFail } from '../actions/weatherActions';
+import { searchWeatherSuccess,searchWeatherFail, getWeatherHourlyFail, getWeatherHourlySuccess, getWeatherNowFail, getWeatherNowSuccess,getWeatherDailySuccess,getWeatherDailyFail } from '../actions/weatherActions';
 
 
 export const getWeatherNowRequest = () => {
@@ -26,5 +26,16 @@ export const getWeatherDailyRequest = () => {
             console.log("res",res);
             return dispatch(getWeatherDailySuccess(res.data))
         }).catch(err => dispatch(getWeatherDailyFail('Something wrong !')))
+    }
+}
+
+export const getWeatherSearchRequest = (searchKey:string) => {
+    return (dispatch: any) => { 
+      
+        axios(`https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities?search=${searchKey}`).then((res) => {
+            console.log("res",res);
+            return dispatch(searchWeatherSuccess(res.data))
+        }).catch(err => dispatch(searchWeatherFail('Something wrong !')))
+
     }
 }

@@ -6,13 +6,24 @@ interface IAction {
     payload?: any;
 }
 
-const initalState  = {
+interface IState {
+    success: boolean;
+    loading: boolean;
+    loaded: boolean;
+    error: string;
+    data: any;
+    weather: any[],
+    location:[]
+}
+
+const initalState:IState = {
     success: false,
     loading: false,
     loaded: false,
     error: '',
     data: {},
-    weather: [] 
+    weather: [] ,
+    location:[]
 }
 
 export const weatherReducer = (state = initalState, action:IAction) => {
@@ -63,7 +74,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
             return {
                 ...state,
                 success: true,
-                weather: action.payload
+                location: action.payload
             }
         }
         case WeatherActionTypes.SEARCH_WEATHER_FAIL: {

@@ -12,7 +12,7 @@ interface IBoxWeather {
 	propsData: any;
 	getWeatherNowRequest: () => void;
   }
-const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest }) => {
+const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) => {
 
 	useEffect(() => {
 		getWeatherNowRequest();
@@ -31,6 +31,9 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest }) 
         <NavbarWeather />
         <Switch>
           <Route path="/now">
+            <Now propsData={propsData.weather} />
+          </Route>
+		  <Route path="/search/now">
             <Now propsData={propsData.weather} />
           </Route>
           <Route path="/hourly" component={Hourly} />
@@ -52,6 +55,7 @@ const mapStateToProps = (state:any) => {
 	  getWeatherNowRequest,
 	  getWeatherHourlyRequest,
 	  getWeatherDailyRequest,
+	 
 	}
 	, dispatch);
   

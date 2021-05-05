@@ -48,7 +48,7 @@ video {
   .hero-container > h3 {
     color: #fff;
     font-size: 100px;
-    margin-top: -238px;
+    margin-top: -235px;
   }
   .hero-container > h5 {
     color: #fff;
@@ -162,6 +162,28 @@ video {
   .input_search{
    background-color: whitesmoke  ;
    margin-top: 30px;
+   font-family: "FontAwesome", "Source Sans Pro"; 
+    position: relative;
+    
+  }
+  .suggest-wrap{
+    max-height: 32%;
+    width: 30%;
+    overflow-y:scroll;
+    background-color: rgba(243, 242, 242, 0.7);
+    margin-top: -4.5%;
+    position: absolute;
+    z-index: 1;
+  }
+  .suggest{
+    cursor: pointer;
+    padding: 4px 0;
+    padding-left: 20px;
+    border-bottom: grey 2px solid;
+   
+  }
+  .suggest:hover{
+    background-color: grey;
   }
   
   // @media only screen and (max-width: 600px) {

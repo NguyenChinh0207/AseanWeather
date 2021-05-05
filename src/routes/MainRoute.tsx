@@ -15,6 +15,7 @@ const MainRoute = () => {
                 <Switch>
                     <Route path="/" exact component={HomePage} />
                     <Route path='/search' component={HomePage} />
+                  
                     <Route path='/now' component={BoxWeather} />   
                     <Route component={Notfound} />
                 </Switch>
