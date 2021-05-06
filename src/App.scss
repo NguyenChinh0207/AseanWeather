@@ -4,15 +4,25 @@
   padding: 100;
   font-family: 'PT Sans', sans-serif;
   text-decoration: none;
+  
+}
+.main-container{
+  background-color: #ebebeb;
 }
 a{
   text-decoration: none;
+}
+.container{
+  padding:0;
 }
 a:hover{
   color: #f9ca24 !important;
   text-decoration: none;
 }
-h5,h6{
+table{
+  margin-bottom: 0  !important;
+}
+h5,h6,h2{
   margin: 0;
 }
 

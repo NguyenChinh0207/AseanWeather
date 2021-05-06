@@ -1,21 +1,39 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
+import "./navbar.scss";
 
-const NavbarWeather = () => {
-    return (
-        <div >
-            <Link to="/now">
-                <button type="button" className="btn btn-primary">Now</button>
-            </Link>
-            <Link to="/hourly">
-                <button type="button" className="btn btn-secondary">Hourly</button>
-            </Link>
-            <Link to="/daily">
-                <button type="button" className="btn btn-success">Daily</button>
-            </Link>
+const NavbarWeather = ({ propsData }: any) => {
+  return (
+    <div className="container">
+      <div id="btn-wrap">
+        <NavLink to="/now" activeClassName="active">
+          <button type="button" id="btn" className="btn-navbar ">
+            NOW
+          </button>
+        </NavLink>
+        <NavLink to="/hourly" activeClassName="active">
+          <button type="button" id="btn" className="btn-navbar">
+            HOURLY
+          </button>
+        </NavLink>
+        <NavLink to="/daily" activeClassName="active">
+          <button type="button" id="btn" className="btn-navbar">
+            DAILY
+          </button>
+        </NavLink>
+      </div>
+      <div className="location-wrap d-flex">
+        <div className="location-title-wrap">          
+            <span className="location-title">{propsData.location.name}, {propsData.location.country}</span>
         </div>
-    )
-}
+        <div className="favourite-wrap">
+            <button><i className="fas fa-heart heart" title="Thêm vào yêu thích"></i></button>
+            <button><i className="fab fa-facebook facebook" title="Chia sẻ lên Facebook"></i></button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default NavbarWeather;

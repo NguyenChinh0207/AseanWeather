@@ -3,6 +3,8 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import CommonModal from "../modal/CommonModal";
 import { Button, Form } from "react-bootstrap";
+import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -26,8 +28,20 @@ const Header = () => {
   }, []);
 
   window.addEventListener("resize", showButton);
+   
+  
+  const onRedirectLogin=()=>{ 
+    axios.get(`https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`)
+    .then(res => {
+      console.log("resulr: ",res.data)
+     // window.location.href=`${res.data}`;
+      
+        })
+    .catch(error => console.log(error));
+    
+  }
   return (
-    <>
+    < >
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
@@ -66,10 +80,12 @@ const Header = () => {
         setIsShow={() => setIsShow(false)}
       >
         <div className="login-fb-wrap">
-          <Button variant="primary" type="submit" className="mb-2 mt-2">
+          {/* <a href="https://vti-aca-april-team1-api.herokuapp.com/auth/facebook"> */}
+          <Button variant="primary" type="submit" className="mb-2 mt-2" onClick={onRedirectLogin}>
             <i className="fa fa-facebook fa-fw"></i>
             Login with Facebook
           </Button>
+          
           <div className="mt-4 mb-2">
             <span>
               Are you Admin of Asean Weather?

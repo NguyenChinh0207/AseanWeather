@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 interface ISearch {
   propsData: any;
   getWeatherSearchRequest: (searchKey: string) => void;

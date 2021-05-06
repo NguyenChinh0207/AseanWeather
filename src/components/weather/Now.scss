@@ -1,22 +1,14 @@
-.txtretroshadow {
-    position: relative; 
-  	margin: 0 -25px; 
-  	font-size: 40px; 
-  	background: #0088AA; 
-  	color: #FFFFFF; 
-  	text-shadow: 1px 1px 0px #1A5D6E; 
-  	box-shadow: 0 0 10px #AAA;
-    text-align: center;
-  }
-  .Box-cha{
+
+  .weather-container{
     box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
      box-sizing: inherit; 
-     margin-bottom: 10px; 
+     margin-bottom: 18px; 
      padding: 20px; 
      box-sizing: inherit; 
      line-height: 1.6em; 
-     padding: 15px; 
+     padding: 25px; 
      background-color: white;
+     border-radius: 22px;
 }
 
 .Box-span{
@@ -31,7 +23,11 @@
     line-height: 1.5;
     font-size: 16px;
     text-transform: uppercase;
-    text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
+   
+}
+
+.date-title-wrap p{
+    margin:0;
 }
 
 .cur-con-weather-card__subtitle {
@@ -39,20 +35,35 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 1.43;
-    margin-bottom: 16px;
 }
 
 .cur-con-weather-card .forecast-container {
     display: flex;
-    align-items: center;
     justify-content: center;
     margin-right: 24px;
+}
+.cur-con-weather-card .forecast-container:nth-of-type(1){
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.cur-con-weather-card .forecast-container:nth-of-type(2),.cur-con-weather-card .forecast-container:nth-of-type(3){
+    flex-grow: 3;
+}
+.astro-wrap .forecast-container:nth-of-type(1),.astro-wrap .forecast-container:nth-of-type(2){
     flex-grow: 1;
 }
-
+.air-quality .forecast-container:nth-of-type(1),.air-quality .forecast-container:nth-of-type(2){
+    flex-grow: 1;
+}
+.astro-wrap,.air-quality{
+    width: 70%;
+    margin: auto;
+    
+}
 .cur-con-weather-card .forecast-container .weather-icon {
-    width: 88px;
-    height: 88px;
+    width: 80px;
+    height: 80px;
     margin-right: 12px;
 }
 
@@ -71,7 +82,7 @@
 }
 
 .cur-con-weather-card .forecast-container .real-feel {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.43;
 }
@@ -80,8 +91,15 @@
     color: #000;
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
+
 }
 
-.box-con{
-    display: flex;
+table td{
+    text-align: right;
 }
+.air-quality-title{
+    margin:auto;
+    padding-bottom: 18px;
+}
+

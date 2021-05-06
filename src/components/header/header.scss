@@ -1,6 +1,6 @@
 .navbar {
-    background-color: #177b9c; /* Dành cho các trình duyệt không hỗ trợ gradient*/
-    background-image: linear-gradient(to top right, #046f94, #12CBC4); 
+    background-color: #3d3d3d; /* Dành cho các trình duyệt không hỗ trợ gradient*/
+    background-image: linear-gradient(to top right, #3d3d3d, #778ca3); 
     height: 80px;
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   }
    
 .login-fb-wrap{
@@ -18,7 +18,7 @@
 
   .navbar-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 80px;
     max-width: 1500px;
@@ -27,7 +27,7 @@
   .navbar-logo {
     color: #fff;
     justify-self: start;
-    margin-left: 20px;
+    // margin-left: 20px;
     margin-bottom: 20px;
     cursor: pointer;
     text-decoration: none;
@@ -50,7 +50,7 @@
     text-align: center;
     width: 60vw;
     justify-content: end;
-    margin-right: 2rem;
+    // margin-right: 2rem;
   }
   
   .nav-item {

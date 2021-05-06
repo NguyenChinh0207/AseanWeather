@@ -22,25 +22,23 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) =
 	
 	  if (!propsData.success) {
 		return (
-		  <div>Lading ... </div>
+		  <div>Loading ... </div>
 		);
 	  }
   return (
-    <>
+    <div className="main-container">
       <Router>
-        <NavbarWeather />
+        <NavbarWeather propsData={propsData.weather}/>
         <Switch>
           <Route path="/now">
             <Now propsData={propsData.weather} />
           </Route>
-		  <Route path="/search/now">
-            <Now propsData={propsData.weather} />
-          </Route>
+		 
           <Route path="/hourly" component={Hourly} />
           <Route path="/daily" component={Daily} />
         </Switch>
       </Router>
-    </>
+    </div>
   );
 };
 
