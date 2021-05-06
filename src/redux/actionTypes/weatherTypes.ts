@@ -14,4 +14,5 @@ export enum WeatherActionTypes {
     SEARCH_WEATHER = '[Weather] SEARCH_WEATHER',
     SEARCH_WEATHER_SUCCESS = '[Weather] SEARCH_WEATHER_SUCCESS',
     SEARCH_WEATHER_FAIL = '[Weather] SEARCH_WEATHER_FAIL',
+
 }

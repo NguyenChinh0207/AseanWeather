@@ -13,7 +13,9 @@
 .box-con{
     display: flex;
 }
-
+Card.Body{
+    padding: 0 8rem;
+}
 .hourly-card-nfl-header {
     display: flex;
     -webkit-box-align: center;
@@ -28,7 +30,7 @@
 
 .hourly-card-nfl-header .date {
     min-width: 52px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -59,7 +61,7 @@
 }
 
 .hourly-card-nfl-header .real-feel {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     color: #878787;
     margin-right: 8px;
@@ -72,7 +74,7 @@
 }
 
 .hourly-card-nfl-header .precip {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     color: #878787;
     display: flex;
@@ -93,7 +95,7 @@
 }
 
 .precip img {
-    height: 14px;
+    height: 24px;
     margin-right: 6px;
 }
 

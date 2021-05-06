@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./searchbg.scss";
 import "../../App.scss";
-import { getWeatherSearchRequest } from "../../redux/effects/weatherEffects";
+import { getWeatherSearchRequest ,getWeatherNowRequest} from "../../redux/effects/weatherEffects";
 import FavouriteLocation from "../favourite-location";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -12,11 +12,13 @@ import { Link } from "react-router-dom";
 interface ISearch {
   propsData: any;
   getWeatherSearchRequest: (searchKey: string) => void;
+  getWeatherNowRequest:(city?:string) => void;
 }
 
 const SearchComponent: React.FC<ISearch> = ({
   propsData,
   getWeatherSearchRequest,
+  getWeatherNowRequest
 }) => {
   const [cityMatch, setCityMatch] = useState([]);
   const [text, setText] = useState("");
@@ -37,6 +39,7 @@ const SearchComponent: React.FC<ISearch> = ({
   const onCityHandler = (item: any) => {
     setText(item.name);
     console.log("item",item)
+    getWeatherNowRequest(item.lable)
     setCityMatch([]);
   };
 
@@ -68,7 +71,7 @@ const SearchComponent: React.FC<ISearch> = ({
         <div className="suggest-wrap" style={{display: show ? 'block' : 'none'}}>
           {propsData.location.map((item: any, index: any) => {
             return (
-              <Link to="/search/now" key={index}>
+              <Link to="/now" key={index}>
                 <div                
                   className="suggest"
                   onClick={() => onCityHandler(item)}
@@ -93,6 +96,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       getWeatherSearchRequest,
+      getWeatherNowRequest
     },
     dispatch
   );

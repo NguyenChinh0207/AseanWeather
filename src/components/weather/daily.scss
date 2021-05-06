@@ -15,7 +15,7 @@
      line-height: 1.6em; 
      padding: 15px; 
      background-color: white;
-     margin-top: 20px;
+     
 }
 
 .hourly-card-nfl-header {
@@ -32,7 +32,7 @@
 
 .hourly-card-nfl-header .date {
     min-width: 52px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -76,7 +76,7 @@
 }
 
 .hourly-card-nfl-header .precip {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     color: #878787;
     display: flex;
@@ -110,10 +110,13 @@
 }
 
 .precip img {
-    height: 14px;
+    height: 24px;
     margin-right: 6px;
 }
 
 .fa-arrow-right{
     cursor: pointer;
+}
+.modalDaily{
+    width: 80%;
 }

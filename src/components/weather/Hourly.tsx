@@ -3,21 +3,37 @@ import "./hourly.scss";
 import {
   Accordion,
   Card,
+  ButtonGroup,
+  Button,
   useAccordionToggle,
   AccordionContext,
 } from "react-bootstrap";
-
-import { useDispatch, useSelector } from "react-redux";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { getWeatherHourlyRequest } from "../../redux/effects/weatherEffects";
-const ContextAwareToggle = ({ children, eventKey, callback }: any) => {
+
+interface IContextAwareToggle {
+  children?: any;
+  eventKey: any;
+  callback?: any;
+}
+
+const ContextAwareToggle: React.FC<IContextAwareToggle> = ({
+  children,
+  eventKey,
+  callback,
+}) => {
   const currentEventKey = useContext(AccordionContext);
+
   const decoratedOnClick = useAccordionToggle(
     eventKey,
     () => callback && callback(eventKey)
   );
 
   const isCurrentEventKey = currentEventKey === eventKey;
+
   console.log("++++", isCurrentEventKey);
+
   return (
     <span onClick={decoratedOnClick}>
       {isCurrentEventKey ? (
@@ -28,11 +44,16 @@ const ContextAwareToggle = ({ children, eventKey, callback }: any) => {
     </span>
   );
 };
+
 const Hourly = () => {
-  const propsData = useSelector((state: any) => state.weatherReducer);
+  const propsData = useSelector(
+    (state: RootStateOrAny) => state.weatherReducer
+  );
+
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getWeatherHourlyRequest());
+    dispatch(getWeatherHourlyRequest(propsData.weather.location.name));
   }, []);
   console.log("getWeatherHourlyRequest", propsData);
   if (!propsData.loading) {
@@ -42,34 +63,38 @@ const Hourly = () => {
     <Accordion defaultActiveKey="0">
       {propsData.weatherHourly.map((item: any) => {
         return (
-          <div className="Box-cha" key={item.time_epoch}>
+          <div className="container Box-cha" key={item.time_epoch}>
             <div className="hourly-card-nfl-header ">
               <h2 className="date">
                 <span>{item.time.substring(0, 10)}</span>
                 <span className="sub">{item.time.substring(11, 16)}</span>
               </h2>
-              <img
-                alt=""
-                className="weather-icon icon-two"
-                width="128px"
-                height="128px"
-                data-eager=""
-                src={item.condition.icon}
-              />
-              <div className="temp metric">{item.temp_c}°</div>
+              <div className="d-flex align-items-center">
+                <img
+                  alt=""
+                  className="weather-icon icon-two"
+                  width="128px"
+                  height="128px"
+                  data-eager=""
+                  src={item.condition.icon}
+                />
+                <div className="temp metric">{item.temp_c}°</div>
+              </div>
               <span className="real-feel">
                 RealFeel®
-                {item.temp_f}°
+                {item.feelslike_c}°
               </span>
               <div className="precip">
                 <img
                   alt="rain drop"
                   className="precip-icon"
-                  src="https://banner2.cleanpng.com/20180327/uze/kisspng-drop-computer-icons-water-clip-art-water-drop-5aba3136cedcf6.6157995315221517348473.jpg"
+                  src="/assets/icons/water.png"
                 />
-                {item.pressure_in}%
+                {item.precip_mm}mm
               </div>
-              <ContextAwareToggle eventKey={item.time_epoch} />
+              <ContextAwareToggle
+                eventKey={item.time_epoch}
+              ></ContextAwareToggle>
             </div>
             <Accordion.Collapse eventKey={item.time_epoch}>
               <Card.Body>
@@ -79,15 +104,15 @@ const Hourly = () => {
                       <thead>
                         <tr>
                           <th scope="col">Wind</th>
-                          <th scope="col">{item.wind_kph}km/h</th>
+                          <td scope="col">{item.wind_kph} km/h</td>
                         </tr>
                         <tr>
                           <th scope="col">Wind gust</th>
-                          <td scope="col">{item.gust_kph}km/h</td>
+                          <td scope="col">{item.gust_kph} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Humidity</th>
-                          <td scope="col">{item.humidity}%</td>
+                          <th scope="col">Wind degree</th>
+                          <td scope="col">{item.wind_degree} °</td>
                         </tr>
                         <tr>
                           <th scope="col">UV</th>
@@ -101,19 +126,24 @@ const Hourly = () => {
                       <thead>
                         <tr>
                           <th scope="col">Cloud Cover</th>
-                          <th scope="col">{item.cloud}%</th>
+                          <td scope="col">{item.cloud} %</td>
                         </tr>
                         <tr>
                           <th scope="col">Visibility</th>
-                          <td scope="col">{item.vis_km}km/h</td>
+                          <td scope="col">{item.vis_km} km/h</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Humidity</th>
+                          <td scope="col">{item.humidity} %</td>
                         </tr>
                         <tr>
                           <th scope="col">Precipitation</th>
-                          <td scope="col">{item.precip_mm}mm</td>
+                          <td scope="col">{item.precip_mm} mm</td>
                         </tr>
                       </thead>
                     </table>
                   </div>
+                  
                 </div>
               </Card.Body>
             </Accordion.Collapse>
@@ -123,4 +153,5 @@ const Hourly = () => {
     </Accordion>
   );
 };
+
 export default Hourly;

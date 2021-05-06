@@ -1,89 +1,189 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import CommonModal from "../modal/CommonModal";
-// import "./daily.scss";
-// import { getWeatherDailyRequest } from "../../redux/effects/weatherEffects";
+import React, { useEffect, useState } from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import CommonModal from "../modal/CommonModal";
+import "./daily.scss";
+import { getWeatherDailyRequest } from "../../redux/effects/weatherEffects";
 
-// function Daily() {
-//   const [isShow, setIsShow] = useState(false);
-//   const propsData = useSelector((state:any) => state.weatherReducer);
-//   const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(getWeatherDailyRequest());
-//   }, []);
-//   const viewDetail = () => {
-//     // console.log(item)
-//     setIsShow(true);
-//     // setProduct(item)
-//   };
+function Daily() {
+  const [isShow, setIsShow] = useState(false);
+  const item = useSelector((state: RootStateOrAny) => state.weatherReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getWeatherDailyRequest(item.weather.location.name));
+  }, []);
+  const viewDetail = () => {
+    // console.log(item)
+    setIsShow(true);
+    // setProduct(item)
+  };
 
-//   console.log("getWeatherDailyRequest", propsData);
-//   if (!propsData.loaded) {
-//     return <h3>Loading...</h3>;
-//   }
-//   return (
-//     <>
-//       <p className="module-title">
-//         {propsData.weatherDaily[0].date}{" "}
-//         <span style={{ color: "red" }}>to</span>{" "}
-//         {propsData.weatherDaily[2].date}
-//       </p>
-//       {propsData.weatherDaily.map((item:any) => {
-//         return (
-//           <div className="Box-cha">
-//             <div className="hourly-card-nfl-header ">
-//               <h2 className="date">
-//                 {/* <span>thứ 2 đến CN </span> */}
-//                 <span className="sub">{item.date}</span>
-//               </h2>
-//               <img
-//                 alt=""
-//                 className="weather-icon icon"
-//                 width="128px"
-//                 height="128px"
-//                 data-eager=""
-//                 src={item.day.condition.icon}
-//               />
-//               <div className="temp">
-//                 <span className="high">{item.day.maxtemp_c}°</span>
-//                 <span className="low">/{item.day.maxtemp_f}°</span>
-//               </div>
-//               <span className="real-feel">{item.day.condition.text}</span>
-//               <div className="precip">
-//                 <img
-//                   alt="rain drop"
-//                   className="precip-icon"
-//                   src="https://banner2.cleanpng.com/20180327/uze/kisspng-drop-computer-icons-water-clip-art-water-drop-5aba3136cedcf6.6157995315221517348473.jpg"
-//                 />
-//                 {item.day.daily_chance_of_rain}%
-//               </div>
-//               <i className="fas fa-arrow-right" onClick={viewDetail}></i>
-//             </div>
-//             <CommonModal
-//               title="Ngày tháng"
-//               show={isShow}
-//               setIsShow={() => setIsShow(false)}
-//             >
-//               ádjsadjai
-//             </CommonModal>
-//           </div>
-//         );
-//       })}
-//     </>
-//   );
-// }
-
-// export default Daily;
-import React from 'react';
-
-
-const Daily = () => {
+  console.log("getWeatherDailyRequest", item);
+  if (!item.loaded) {
+    return <h3>Loading...</h3>;
+  }
   return (
-    <div className='footer-container'>
-      
-    </div>
+    <>
+      <p className="module-title container">
+        {item.weatherDaily[0].date} <span style={{ color: "red" }}>to</span>{" "}
+        {item.weatherDaily[2].date}
+      </p>
+      {item.weatherDaily.map((item: any) => {
+        return (
+          <div className="Box-cha container" key={item.date_epoch}>
+            <div className="hourly-card-nfl-header ">
+              <h2 className="date">
+                {/* <span>thứ 2 đến CN </span> */}
+                <span className="sub">{item.date}</span>
+              </h2>
+              <div className="d-flex align-items-center">
+                <img
+                  alt=""
+                  className="weather-icon icon"
+                  width="128px"
+                  height="128px"
+                  data-eager=""
+                  src={item.day.condition.icon}
+                />
+                <div className="temp">
+                  <span className="high">{item.day.mintemp_c}°</span>
+                  <span className="high">
+                    <i className="fas fa-long-arrow-alt-right"></i>
+                    {item.day.maxtemp_c}°
+                  </span>
+                </div>
+              </div>
+              <span className="real-feel">{item.day.condition.text}</span>
+              <div className="precip">
+                <img
+                  alt="rain drop"
+                  className="precip-icon"
+                  src="/assets/icons/water.png"
+                />
+                {item.day.daily_chance_of_rain}%
+              </div>
+
+              <i className="fas fa-arrow-right" onClick={viewDetail}></i>
+            </div>
+            <CommonModal
+              className="modalDaily"
+              title={`Date: ${item.date}`}
+              show={isShow}
+              setIsShow={() => setIsShow(false)}
+            >
+              <div className="Box-cha ">
+                <p className="cur-con-weather-card__subtitle">
+                  {item.astro.date}
+                </p>
+                <div className="box-con ">
+                  <div className="forecast-container flex-grow-1 d-flex align-items-center justify-content-center">
+                    <img
+                      className="weather-icon"
+                      src={item.day.condition.icon}
+                      width="88"
+                      height="88"
+                    />
+                    <div className="temp-container">
+                      <div className="temp" style={{fontSize:"40px"}}>
+                        <p>{item.day.avgtemp_c}°C</p>
+                        
+                      </div>
+                      <div className="real-feel mt-4">
+                        RealFeel®
+                        {item.day.avgtemp_f}F
+                      </div>
+                    </div>
+                  </div>
+                  <div className="forecast-container flex-grow-3">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Wind</th>
+                          <td scope="col">{item.day.maxwind_kph}km/h</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Visibility</th>
+                          <td scope="col">{item.day.avgvis_km}km/h</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Humidity</th>
+                          <td scope="col">{item.day.avghumidity}%</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">UV</th>
+                          <td scope="col">{item.day.uv}</td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sunrise / Sun set */}
+              <div className="Box-cha">
+                <h2 className="cur-con-weather-card__title">
+                  Sunrise / Sun set
+                </h2>
+                <div className="d-flex astro-wrap">
+                  <div className="forecast-container">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th
+                            style={{ textAlign: "center" }}
+                            colSpan={2}
+                            scope="col"
+                          >
+                            <img
+                              className="weather-icon"
+                              src="/assets/icons/sun.png"
+                            />
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Sun Rise</th>
+                          <td scope="row">{item.astro.sunrise}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Sun Set</th>
+                          <td scope="row">{item.astro.sunset}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="forecast-container">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th style={{ textAlign: "center" }} colSpan={2}>
+                            <img
+                              className="weather-icon"
+                              src="/assets/icons/moon.png"
+                            />
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Moon Rise</th>
+                          <td scope="row">{item.astro.moonrise}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Moon Set</th>
+                          <td scope="row">{item.astro.moonset}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </CommonModal>
+          </div>
+        );
+      })}
+    </>
   );
 }
 
 export default Daily;
-

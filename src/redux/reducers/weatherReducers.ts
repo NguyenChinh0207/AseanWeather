@@ -10,9 +10,13 @@ interface IState {
     success: boolean;
     loading: boolean;
     loaded: boolean;
+    load:boolean;
     error: string;
     data: any;
     weather: any[],
+    weatherHourly:any[],
+    weatherDaily:any[],
+    astro:any[],
     location:[]
 }
 
@@ -20,9 +24,13 @@ const initalState:IState = {
     success: false,
     loading: false,
     loaded: false,
+    load:false,
     error: '',
     data: {},
     weather: [] ,
+    weatherHourly:[],
+    weatherDaily:[],
+    astro:[],
     location:[]
 }
 
@@ -45,31 +53,32 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_HOURLY_SUCCESS: {
             return {
                 ...state,
-                success: true,
-                weather: action.payload
+                loading: true,
+                weatherHourly: action.payload
             }
         }
         case WeatherActionTypes.GET_WEATHER_HOURLY_FAIL: {
             return {
                 ...state,
-                success: true,
+                loading: true,
                 error: action.payload
             }
         }
         case WeatherActionTypes.GET_WEATHER_DAILY_SUCCESS: {
             return {
                 ...state,
-                success: true,
-                weather: action.payload
+                loaded: true,
+                weatherDaily: action.payload
             }
         }
         case WeatherActionTypes.GET_WEATHER_DAILY_FAIL: {
             return {
                 ...state,
-                success: true,
+                loaded: true,
                 error: action.payload
             }
         }
+        
         case WeatherActionTypes.SEARCH_WEATHER_SUCCESS: {
             return {
                 ...state,

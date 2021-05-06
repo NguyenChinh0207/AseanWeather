@@ -14,17 +14,17 @@ interface IBoxWeather {
   }
 const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) => {
 
-	useEffect(() => {
-		getWeatherNowRequest();
-	  }, [])
+	// useEffect(() => {
+	// 	getWeatherNowRequest();
+	//   }, [])
 	
-	  console.log("propsData", propsData);
+	console.log("BoxWeather",propsData.weather);
 	
-	  if (!propsData.success) {
-		return (
-		  <div>Loading ... </div>
-		);
-	  }
+	if (!propsData.success) {
+	  return (
+		<div>Loading ... </div>
+	  );
+	}
   return (
     <div className="main-container">
       <Router>
@@ -33,7 +33,9 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) =
           <Route path="/now">
             <Now propsData={propsData.weather} />
           </Route>
-		 
+		  <Route path="/search/now">
+            <Now propsData={propsData.weather} />
+          </Route>
           <Route path="/hourly" component={Hourly} />
           <Route path="/daily" component={Daily} />
         </Switch>

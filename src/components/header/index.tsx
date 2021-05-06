@@ -5,12 +5,14 @@ import CommonModal from "../modal/CommonModal";
 import { Button, Form } from "react-bootstrap";
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
+import { isConstructorDeclaration } from "typescript";
 
 const Header = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [isShow, setIsShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showUser, setShowUser] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -22,24 +24,36 @@ const Header = () => {
       setButton(true);
     }
   };
-
+  var userLogin;
+  
   useEffect(() => {
     showButton();
+    axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
+    .then(res => {
+      console.log("user api: ",res.data)
+      localStorage.setItem("userLogin", JSON.stringify(res.data));
+        })
+    .catch(error => console.log(error));
   }, []);
 
   window.addEventListener("resize", showButton);
-   
+ 
+  if (localStorage.getItem("userLogin")) {
+    var obj = JSON.parse(localStorage.getItem("userLogin") || '{}'); 
+    
+  } 
   
   const onRedirectLogin=()=>{ 
+    
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`)
     .then(res => {
       console.log("resulr: ",res.data)
-     // window.location.href=`${res.data}`;
-      
+        window.location.href=`${res.data}`;     
         })
     .catch(error => console.log(error));
-    
+
   }
+
   return (
     < >
       <nav className="navbar">
@@ -55,10 +69,17 @@ const Header = () => {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
+
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/favouritees" className="nav-links" onClick={closeMobileMenu}>
+                <i className="fas fa-heart heart" style={{color:"red"}}></i>
+                Favourite
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/search" className="nav-links" onClick={closeMobileMenu}>
                 <i className="fas fa-search"></i>
-                Find Location
               </Link>
             </li>
 
@@ -70,6 +91,10 @@ const Header = () => {
               >
                 Sign In
               </Link>
+            </li>
+            <li className="nav-item d-flex wrap-user-login" >
+              <i className="fas fa-user" style={{color:"white"}}></i>
+              <span className="">{obj.name}</span>
             </li>
           </ul>
         </div>
@@ -131,6 +156,7 @@ const Header = () => {
           </form>
         </div>
       </CommonModal>
+     
     </>
   );
 };

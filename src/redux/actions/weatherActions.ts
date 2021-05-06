@@ -41,6 +41,8 @@ export const getWeatherDailyFail = (payload:any) => {
         payload
     }
 }
+
+
 export const searchWeatherSuccess = (payload:any) => {
     return {
         type: WeatherActionTypes.SEARCH_WEATHER_SUCCESS,

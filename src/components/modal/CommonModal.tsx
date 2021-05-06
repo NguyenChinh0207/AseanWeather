@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from 'react-bootstrap';
 import './modal.scss';
 
-const CommonModal = ({show, setIsShow, title, size="md",  children}: any) => {
+const CommonModal = ({show, setIsShow, title, size="lg",  children}: any) => {
 const test = () => {
 console.log(`object test`)
 }

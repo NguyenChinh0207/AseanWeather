@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData }: any) => {
+  const [click, setClick] = useState(true);
+  const handleClick = () => setClick(!click);
+
   return (
     <div className="container">
       <div id="btn-wrap">
@@ -28,7 +31,7 @@ const NavbarWeather = ({ propsData }: any) => {
             <span className="location-title">{propsData.location.name}, {propsData.location.country}</span>
         </div>
         <div className="favourite-wrap">
-            <button><i className="fas fa-heart heart" title="Thêm vào yêu thích"></i></button>
+            <button  onClick={handleClick}><i className="fas fa-heart heart" style={{color: click?"red":"#a4b0be"}} title="Thêm vào yêu thích"></i></button>
             <button><i className="fab fa-facebook facebook" title="Chia sẻ lên Facebook"></i></button>
         </div>
       </div>

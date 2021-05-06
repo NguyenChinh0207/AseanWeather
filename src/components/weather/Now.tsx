@@ -1,10 +1,13 @@
-import React from "react";
-
+import React, {useEffect} from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import "./Now.scss";
 
-const Now = ({ propsData }: any) => {
+const Now = ({propsData}: any) => {
+  console.log("a",propsData)
+
   return (
     <div className="container">
+       {console.log("location now:",propsData)}
       <div className="weather-container">
         <div className="cur-con-weather-card">
           <div className="d-flex main-now-wrap">
@@ -45,7 +48,7 @@ const Now = ({ propsData }: any) => {
                   </tr>
                   <tr>
                     <th scope="col">Wind degree</th>
-                    <td scope="col">{propsData.current.wind_dir} km/h</td>
+                    <td scope="col">{propsData.current.wind_degree} °</td>
                   </tr>
                   <tr>
                     <th scope="col">UV</th>
@@ -91,19 +94,19 @@ const Now = ({ propsData }: any) => {
                     <th style={{ textAlign: "center" }} colSpan={2} scope="col">
                       <img
                         className="weather-icon"
-                        src="/assets/icons/sunrise.png"
+                        src="/assets/icons/sun.png"
                       />
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Rise</th>
-                    <td scope="row">{propsData.current.gust_kph}km/h</td>
+                    <th scope="row">Sun Rise</th>
+                    <td scope="row">{propsData.forecast.forecastday[0].astro.sunrise}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Set</th>
-                    <td scope="row">{propsData.current.humidity}%</td>
+                    <th scope="row">Sun Set</th>
+                    <td scope="row">{propsData.forecast.forecastday[0].astro.sunset}</td>
                   </tr>
                 </tbody>
               </table>
@@ -115,19 +118,19 @@ const Now = ({ propsData }: any) => {
                     <th style={{ textAlign: "center" }} colSpan={2}>
                       <img
                         className="weather-icon"
-                        src="/assets/icons/sunset.png"
+                        src="/assets/icons/moon.png"
                       />
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Rise</th>
-                    <td scope="row">{propsData.current.gust_kph}km/h</td>
+                    <th scope="row">Moon Rise</th>
+                    <td scope="row">{propsData.forecast.forecastday[0].astro.moonrise}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Set</th>
-                    <td scope="row">{propsData.current.humidity}%</td>
+                    <th scope="row">Moon Set</th>
+                    <td scope="row">{propsData.forecast.forecastday[0].astro.moonset}</td>
                   </tr>
                 </tbody>
               </table>
@@ -149,11 +152,11 @@ const Now = ({ propsData }: any) => {
                 <thead>
                   <tr>
                     <th scope="col">CO</th>
-                    <td scope="col">{propsData.current.gust_kph}km/h</td>
+                    <td scope="col">{propsData.current.air_quality.co}</td>
                   </tr>
                   <tr>
                     <th scope="col">O3</th>
-                    <td scope="col">{propsData.current.humidity}%</td>
+                    <td scope="col">{propsData.current.air_quality.o3}</td>
                   </tr>
                 </thead>
               </table>
@@ -163,11 +166,11 @@ const Now = ({ propsData }: any) => {
                 <thead>
                   <tr>
                     <th scope="col">SO2</th>
-                    <td scope="col">{propsData.current.vis_km}km/h</td>
+                    <td scope="col">{propsData.current.air_quality.so2}</td>
                   </tr>
                   <tr>
-                    <th scope="col">NO3</th>
-                    <td scope="col">{propsData.current.precip_mm}mm</td>
+                    <th scope="col">NO2</th>
+                    <td scope="col">{propsData.current.air_quality.no2}</td>
                   </tr>
                 </thead>
               </table>
