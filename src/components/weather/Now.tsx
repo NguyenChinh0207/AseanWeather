@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./now.scss";
+import "./Now.scss";
 
 const Now = ({ propsData }: any) => {
   return (
