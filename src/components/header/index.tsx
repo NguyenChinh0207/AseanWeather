@@ -94,7 +94,7 @@ const Header = () => {
             </li>
             <li className="nav-item d-flex wrap-user-login"  >
               <i className="fas fa-user" style={{color:"white"}}></i>
-              <span className="">{obj.name}</span>
+              {/* <span className="">{obj.name}</span> */}
             </li>
           </ul>
         </div>
