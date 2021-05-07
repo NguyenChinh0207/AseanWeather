@@ -30,16 +30,16 @@ const Header = () => {
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
     .then(res => {      
       localStorage.setItem("userLogin", JSON.stringify(res.data));
+      setShowUser(true);
         })
     .catch(error => console.log(error));
   }, []);
 
-  
- 
+
   if (localStorage.getItem("userLogin")) {
     var obj = JSON.parse(localStorage.getItem("userLogin") || '{}'); 
      console.log("user",obj)
-     setShowUser(true);
+     
   } 
  
   window.addEventListener("resize", showButton);
