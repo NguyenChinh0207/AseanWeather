@@ -30,7 +30,7 @@ const Header = () => {
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
     .then(res => {      
       localStorage.setItem("userLogin", JSON.stringify(res.data));
-      setShowUser(true);
+      // setShowUser(true); 
         })
     .catch(error => console.log(error));
   }, []);
@@ -38,8 +38,8 @@ const Header = () => {
 
   if (localStorage.getItem("userLogin")) {
     var obj = JSON.parse(localStorage.getItem("userLogin") || '{}'); 
-     console.log("user",obj)
-     
+     console.log("userLogin exist:",obj)
+      // setShowUser(true); 
   } 
  
   window.addEventListener("resize", showButton);
@@ -94,7 +94,9 @@ const Header = () => {
             </li>
             <li className="nav-item d-flex wrap-user-login"  >
               <i className="fas fa-user" style={{color:"white"}}></i>
-              <span style={{display:showUser?"none":"block"}}>{obj.name}</span>
+              <span 
+              // style={{display:showUser?"none":"block"}}
+              >{obj.name}</span>
             </li>
           </ul>
         </div>
