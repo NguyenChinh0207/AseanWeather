@@ -40,7 +40,7 @@ const Header = () => {
  
   if (localStorage.getItem("userLogin")) {
     var obj = JSON.parse(localStorage.getItem("userLogin") || '{}'); 
-    
+  // setShowUser(true);
   } 
   
   const onRedirectLogin=()=>{ 
@@ -92,7 +92,7 @@ const Header = () => {
                 Sign In
               </Link>
             </li>
-            <li className="nav-item d-flex wrap-user-login" >
+            <li className="nav-item d-flex wrap-user-login"  >
               <i className="fas fa-user" style={{color:"white"}}></i>
               <span className="">{obj.name}</span>
             </li>

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import MainRoute from "./routes/MainRoute";
 
@@ -14,11 +14,11 @@ class App extends Component<IProps, IState> {
 
 	render() {
 		return (
-			<BrowserRouter>
+			<Router>
 				<Switch>											
 					<Route path="/" render={() => <MainRoute />} />
 				</Switch>
-			</BrowserRouter>
+			</Router>
 		);
 	}
 }

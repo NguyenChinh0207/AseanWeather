@@ -152,11 +152,11 @@ const Now = ({propsData}: any) => {
                 <thead>
                   <tr>
                     <th scope="col">CO</th>
-                    <td scope="col">{propsData.current.air_quality.co}</td>
+                    <td scope="col">{propsData.current.air_quality.co} μg/m3</td>
                   </tr>
                   <tr>
                     <th scope="col">O3</th>
-                    <td scope="col">{propsData.current.air_quality.o3}</td>
+                    <td scope="col">{propsData.current.air_quality.o3} μg/m3</td>
                   </tr>
                 </thead>
               </table>
@@ -166,11 +166,11 @@ const Now = ({propsData}: any) => {
                 <thead>
                   <tr>
                     <th scope="col">SO2</th>
-                    <td scope="col">{propsData.current.air_quality.so2}</td>
+                    <td scope="col">{propsData.current.air_quality.so2} μg/m3</td>
                   </tr>
                   <tr>
                     <th scope="col">NO2</th>
-                    <td scope="col">{propsData.current.air_quality.no2}</td>
+                    <td scope="col">{propsData.current.air_quality.no2} μg/m3</td>
                   </tr>
                 </thead>
               </table>
