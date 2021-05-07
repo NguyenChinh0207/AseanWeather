@@ -27,12 +27,16 @@ const Header = () => {
   var userLogin;
   useEffect(() => {
     showButton();
+    
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
-    .then(res => {      
-      localStorage.setItem("userLogin", JSON.stringify(res.data));
-      // setShowUser(true); 
+    .then(res => { 
+      if (!localStorage.getItem("userLogin")) {
+        localStorage.setItem("userLogin", JSON.stringify(res.data)); 
+      }        
         })
     .catch(error => console.log(error));
+     
+    
   }, []);
 
 
@@ -96,7 +100,9 @@ const Header = () => {
               <i className="fas fa-user" style={{color:"white"}}></i>
               <span 
               // style={{display:showUser?"none":"block"}}
-              >{obj.name}</span>
+              >
+                Xin chào, {obj.name}
+              </span>
             </li>
           </ul>
         </div>
