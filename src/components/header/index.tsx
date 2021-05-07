@@ -25,26 +25,26 @@ const Header = () => {
     }
   };
   var userLogin;
-  
   useEffect(() => {
     showButton();
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
-    .then(res => {
-      console.log("user api: ",res.data)
+    .then(res => {      
       localStorage.setItem("userLogin", JSON.stringify(res.data));
         })
     .catch(error => console.log(error));
   }, []);
 
-  window.addEventListener("resize", showButton);
+  
  
   if (localStorage.getItem("userLogin")) {
     var obj = JSON.parse(localStorage.getItem("userLogin") || '{}'); 
-  // setShowUser(true);
+     console.log("user",obj)
+     setShowUser(true);
   } 
-  
+ 
+  window.addEventListener("resize", showButton);
+
   const onRedirectLogin=()=>{ 
-    
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`)
     .then(res => {
       console.log("resulr: ",res.data)
@@ -94,7 +94,7 @@ const Header = () => {
             </li>
             <li className="nav-item d-flex wrap-user-login"  >
               <i className="fas fa-user" style={{color:"white"}}></i>
-              {/* <span className="">{obj.name}</span> */}
+              <span style={{display:showUser?"none":"block"}}>{obj.name}</span>
             </li>
           </ul>
         </div>
