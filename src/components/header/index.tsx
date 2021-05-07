@@ -30,9 +30,9 @@ const Header = () => {
     
     axios.get(`https://vti-aca-april-team1-api.herokuapp.com/login/user`)
     .then(res => { 
-      if (!localStorage.getItem("userLogin")) {
+      // if (!localStorage.getItem("userLogin")) {
         localStorage.setItem("userLogin", JSON.stringify(res.data)); 
-      }        
+      // }        
         })
     .catch(error => console.log(error));
      
@@ -101,7 +101,7 @@ const Header = () => {
               <span 
               // style={{display:showUser?"none":"block"}}
               >
-                Xin chào, {obj.name}
+                {/* Xin chào, {obj.name} */}
               </span>
             </li>
           </ul>
