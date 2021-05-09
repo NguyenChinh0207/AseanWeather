@@ -13,7 +13,8 @@ const Header = () => {
   const [button, setButton] = useState(true);
   const [isShow, setIsShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showUser, setShowUser] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(true);
+  // const [showUser, setShowUser] = useState(false);
   // const [user, setUser] = useState("");
 
   const handleClick = () => setClick(!click);
@@ -29,18 +30,21 @@ const Header = () => {
 
   window.addEventListener("resize", showButton);
 
-  var userLogin;
+  let userLogin;
   if(localStorage.getItem("userName")){
     userLogin= localStorage.getItem("userName");
-    setShowUser(true);
   }
+  else{
+    userLogin="";
+  }
+  
  
   const responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
-    if(localStorage.getItem("userName")==""||localStorage.getItem("userName")==null){
+    if(localStorage.getItem("userName")){
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
@@ -50,18 +54,13 @@ const Header = () => {
           localStorage.setItem("userName", res.data.data.data.name);
           // setUser(res.data.data.data.name);
           // setShowUser(true);
+          setShowSignIn(false);
           setIsShow(false);
           alert(
             "xin chào, " + res.data.data.data.name + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
           );
         })
         .catch((error) => console.log(error));
-    }
-    else{
-      setIsShow(false);
-      userLogin= localStorage.getItem("userName");       
-      alert("Bạn đã đăng nhập rồi!");
-           
     }
     
   };
@@ -102,20 +101,18 @@ const Header = () => {
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item" style={{display:showSignIn?"block":"none"}}>
               <Link
                 to="#"
                 className="nav-links"
-                onClick={() => setIsShow(true)}
+                onClick={() => setIsShow(true)}               
               >
                 Sign In
               </Link>
             </li>
             <li className="nav-item d-flex wrap-user-login">
-              <div style={{ display: showUser ? "block" : "none" }}>
-                <i className="fas fa-user" style={{ color: "white" }}></i>
+                <i title="UserName" className="fas fa-user" style={{ color: "white" }}></i>
                 <span id="userName">{userLogin}</span>
-              </div>
             </li>
           </ul>
         </div>
@@ -128,6 +125,11 @@ const Header = () => {
       >
         <div className="login-fb-wrap">
           {/* <a href="https://vti-aca-april-team1-api.herokuapp.com/auth/facebook"> */}
+          <div className="mt-4 mb-4">
+            <span>
+              Bằng cách nhấp vào <b>Login</b>, bạn đồng ý cho <b>Facebook</b> chia sẻ thông tin đăng nhập với chúng tôi:         
+            </span>
+          </div>
           <FacebookLogin
             appId="369670134345835"
             autoLoad={false}
@@ -135,23 +137,12 @@ const Header = () => {
             callback={responseFacebook}
             cssClass="my-facebook-button-class-blue"
             icon="fa-facebook"
+          
           />
-          <div className="mt-4 mb-2">
-            <span>
-              Are you Admin of Asean Weather?
-              <Link
-                to="#"
-                style={{ color: "#fa8231" }}
-                onClick={() => setShowModal(true)}
-              >
-                SignIn
-              </Link>
-            </span>
-          </div>
         </div>
       </CommonModal>
 
-      <CommonModal
+      {/* <CommonModal
         title="SignIn Admin"
         show={showModal}
         size="lg"
@@ -185,7 +176,7 @@ const Header = () => {
             </div>
           </form>
         </div>
-      </CommonModal>
+      </CommonModal> */}
     </>
   );
 };
