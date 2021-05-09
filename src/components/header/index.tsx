@@ -37,12 +37,13 @@ const Header = () => {
   else{
     userLogin="";
   }
-  
+
   useEffect(() => {
     if(localStorage.getItem("userName")){
       setShowSignIn(false);
       setShowUser(true);
     }
+    
 });
 
   const responseFacebook = (response: any) => {
@@ -50,7 +51,7 @@ const Header = () => {
     let params: any = {
       token: response.accessToken,
     };
-    if(localStorage.getItem("userName")){
+    if(!localStorage.getItem("userName")){
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
