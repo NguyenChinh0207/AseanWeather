@@ -14,7 +14,7 @@ const Header = () => {
   const [isShow, setIsShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showSignIn, setShowSignIn] = useState(true);
-  // const [showUser, setShowUser] = useState(false);
+  const [showUser, setShowUser] = useState(false);
   // const [user, setUser] = useState("");
 
   const handleClick = () => setClick(!click);
@@ -38,7 +38,13 @@ const Header = () => {
     userLogin="";
   }
   
- 
+  useEffect(() => {
+    if(localStorage.getItem("userName")){
+      setShowSignIn(false);
+      setShowUser(true);
+    }
+});
+
   const responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
     let params: any = {
@@ -110,9 +116,11 @@ const Header = () => {
                 Sign In
               </Link>
             </li>
-            <li className="nav-item d-flex wrap-user-login">
+            <li className="nav-item d-flex wrap-user-login" >
+                <div style={{display:showUser?"block":"none"}}>
                 <i title="UserName" className="fas fa-user" style={{ color: "white" }}></i>
                 <span id="userName">{userLogin}</span>
+                </div>
             </li>
           </ul>
         </div>
