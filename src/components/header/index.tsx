@@ -28,6 +28,10 @@ const Header = () => {
   };
 
   window.addEventListener("resize", showButton);
+  var userLogin;
+  if(localStorage.getItem("userName")){
+    userLogin= localStorage.getItem("userName");
+  }
 
   const responseFacebook = (response: any) => {
     console.log(response);
@@ -39,7 +43,8 @@ const Header = () => {
       setIsShow(false);
       alert("Bạn đã đăng nhập rồi!");      
     }
-    axios
+    else{
+      axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
           params
@@ -55,6 +60,8 @@ const Header = () => {
           );
         })
         .catch((error) => console.log(error));
+    }
+    
   };
 
   return (
@@ -105,7 +112,7 @@ const Header = () => {
             <li className="nav-item d-flex wrap-user-login">
               <div style={{ display: showUser ? "block" : "none" }}>
                 <i className="fas fa-user" style={{ color: "white" }}></i>
-                <span id="userName">{localStorage.getItem("userName")}</span>
+                <span id="userName">{userLogin}</span>
               </div>
             </li>
           </ul>
