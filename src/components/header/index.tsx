@@ -31,8 +31,9 @@ const Header = () => {
   var userLogin;
   if(localStorage.getItem("userName")){
     userLogin= localStorage.getItem("userName");
+    setShowUser(true);
   }
-  console.log("userLogin",userLogin);
+ 
   const responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
     let params: any = {
@@ -56,10 +57,10 @@ const Header = () => {
         .catch((error) => console.log(error));
     }
     else{
-      userLogin= localStorage.getItem("userName"); 
       setIsShow(false);
+      userLogin= localStorage.getItem("userName");       
       alert("Bạn đã đăng nhập rồi!");
-      
+      setShowUser(true);      
     }
     
   };
