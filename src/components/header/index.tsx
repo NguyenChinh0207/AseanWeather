@@ -28,20 +28,18 @@ const Header = () => {
   };
 
   window.addEventListener("resize", showButton);
-  var obj;
+
   const responseFacebook = (response: any) => {
     console.log(response);
     // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
-    
     if(localStorage.getItem("userName")){
-      alert("Bạn đã đăng nhập rồi!");
       setIsShow(false);
+      alert("Bạn đã đăng nhập rồi!");      
     }
-    else{
-      axios
+    axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
           params
@@ -49,17 +47,14 @@ const Header = () => {
         .then((res) => {
           console.log(res.data.data.data.name);
           localStorage.setItem("userName", res.data.data.data.name);
-          obj = JSON.parse(localStorage.getItem("userName")||'{}');
           // setUser(res.data.data.data.name);
           setShowUser(true);
           setIsShow(false);
           alert(
-            "xin chào, " + obj + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
+            "xin chào, " + res.data.data.data.name + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
           );
         })
         .catch((error) => console.log(error));
-    
-      }
   };
 
   return (
@@ -110,7 +105,7 @@ const Header = () => {
             <li className="nav-item d-flex wrap-user-login">
               <div style={{ display: showUser ? "block" : "none" }}>
                 <i className="fas fa-user" style={{ color: "white" }}></i>
-                <span id="userName">{obj}</span>
+                <span id="userName">{localStorage.getItem("userName")}</span>
               </div>
             </li>
           </ul>
