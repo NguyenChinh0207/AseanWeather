@@ -28,6 +28,7 @@ const Header = () => {
   };
 
   window.addEventListener("resize", showButton);
+
   var userLogin;
   if(localStorage.getItem("userName")){
     userLogin= localStorage.getItem("userName");
@@ -48,7 +49,7 @@ const Header = () => {
         .then((res) => {
           localStorage.setItem("userName", res.data.data.data.name);
           // setUser(res.data.data.data.name);
-          setShowUser(true);
+          // setShowUser(true);
           setIsShow(false);
           alert(
             "xin chào, " + res.data.data.data.name + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
@@ -60,7 +61,7 @@ const Header = () => {
       setIsShow(false);
       userLogin= localStorage.getItem("userName");       
       alert("Bạn đã đăng nhập rồi!");
-      setShowUser(true);      
+           
     }
     
   };
