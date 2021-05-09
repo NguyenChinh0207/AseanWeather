@@ -25,7 +25,6 @@ const FavouriteLocation: React.FC<IFavourite> = ({
   if (!propsData.success) {
     return <div>Loading ... </div>;
   }
-  console.log("propData Favorive:",propsData.weather)
   return (
     <div className="d-flex favourite-wrap">
       <div className="favourite-item">

@@ -29,29 +29,35 @@ const Header = () => {
 
   window.addEventListener("resize", showButton);
 
-  var userName;
   const responseFacebook = (response: any) => {
     console.log(response);
-    localStorage.setItem("userName", response.name);
+    // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
-    axios
-      .post(
-        `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
-        params
-      )
-      .then((res) => {
-        console.log(res.data.data.data.name);
-        localStorage.setItem("userName", res.data.data.data.name);
-        setUser(res.data.data.data.name);
-        setShowUser(true);
-      })
-      .catch((error) => console.log(error));
+    if (user !== "") {
+      alert("Bạn đã đăng nhập rồi !");
+      setIsShow(false);
+    } else {
+      axios
+        .post(
+          `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
+          params
+        )
+        .then((res) => {
+          console.log(res.data.data.data.name);
+          // localStorage.setItem("userName", res.data.data.data.name);
+          setUser(res.data.data.data.name);
+          setShowUser(true);
+          setIsShow(false);
+          alert(
+            "xin chào, " + user + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
+          );
+        })
+        .catch((error) => console.log(error));
+    }
   };
-    // if(localStorage.getItem("userName")){
-    //   var obj = JSON.parse(localStorage.getItem("userName")||'{}');    
-    // }
+
   return (
     <>
       <nav className="navbar">
@@ -98,9 +104,9 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item d-flex wrap-user-login">
-              <div style={{display: showUser?"block":"none"}}>
-              <i className="fas fa-user" style={{ color: "white" }}></i>
-              <span id="userName">{user}</span>
+              <div style={{ display: showUser ? "block" : "none" }}>
+                <i className="fas fa-user" style={{ color: "white" }}></i>
+                <span id="userName">{user}</span>
               </div>
             </li>
           </ul>
@@ -121,12 +127,15 @@ const Header = () => {
             callback={responseFacebook}
             cssClass="my-facebook-button-class-blue"
             icon="fa-facebook"
-         
           />
           <div className="mt-4 mb-2">
             <span>
               Are you Admin of Asean Weather?
-              <Link to="#" style={{color:"#fa8231"}} onClick={() => setShowModal(true)}>
+              <Link
+                to="#"
+                style={{ color: "#fa8231" }}
+                onClick={() => setShowModal(true)}
+              >
                 SignIn
               </Link>
             </span>
@@ -137,7 +146,7 @@ const Header = () => {
       <CommonModal
         title="SignIn Admin"
         show={showModal}
-        size='lg'
+        size="lg"
         setIsShow={() => setShowModal(false)}
       >
         <div className="row">
