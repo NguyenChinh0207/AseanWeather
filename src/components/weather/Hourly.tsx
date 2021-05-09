@@ -81,8 +81,8 @@ const Hourly = () => {
                 <div className="temp metric">{item.temp_c}°</div>
               </div>
               <span className="real-feel">
-                Cảm thấy như
-                {item.feelslike_c}°
+                Cảm thấy như{" "}
+                {item.feelslike_c}°C
               </span>
               <div className="precip">
                 <img

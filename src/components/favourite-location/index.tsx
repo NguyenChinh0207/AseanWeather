@@ -32,24 +32,23 @@ const FavouriteLocation: React.FC<IFavourite> = ({
         <Link to="/now">
           <div className="recent-location-item featured-location">
             <span className="recent-location-name">
-              Ha Noi
-              {/* {propsData.weather.location.name},{" "}
-              {propsData.weather.location.country} */}
+              {propsData.weather.location.name},{" "}
+              {propsData.weather.location.country}
             </span>
-            {/* <img
+            <img
               className="weather-icon recent-location-icon"
               width="20px"
               height="20px"
               data-eager=""
               src={propsData.weather.current.condition.icon}
-            /> */}
-            {/* <span className="recent-location-temp">
+            />
+            <span className="recent-location-temp">
               {propsData.weather.current.temp_c}° C
-            </span> */}
+            </span>
           </div>
         </Link>
       </div>
-      {/* <div className="favourite-item">
+      <div className="favourite-item">
         <Link to="/now">
           <div className="recent-location-item featured-location">
             <span className="recent-location-name">
@@ -68,7 +67,7 @@ const FavouriteLocation: React.FC<IFavourite> = ({
             </span>
           </div>
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 };

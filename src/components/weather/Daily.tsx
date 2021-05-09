@@ -67,6 +67,7 @@ function Daily() {
             <CommonModal
               className="modalDaily"
               title={`Date: ${item.date}`}
+              size="lg"
               show={isShow}
               setIsShow={() => setIsShow(false)}
             >
