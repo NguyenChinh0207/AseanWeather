@@ -61,10 +61,14 @@
     margin: auto;
     
 }
-.cur-con-weather-card .forecast-container .weather-icon {
-    width: 80px;
-    height: 80px;
+.weather-icon-main{
+    width: 134px;
+    height: 110px;
     margin-right: 12px;
+}
+.cur-con-weather-card .forecast-container .weather-icon {
+    width: 40px;
+    height: 40px;
 }
 
 .cur-con-weather-card .forecast-container .temp {

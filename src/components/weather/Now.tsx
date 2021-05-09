@@ -20,7 +20,7 @@ const Now = ({propsData}: any) => {
               </div>
               <div className="d-flex">
                 <img
-                  className="weather-icon"
+                  className="weather-icon-main"
                   src={propsData.current.condition.icon}
                 />
                 <div className="temp-container">

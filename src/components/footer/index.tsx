@@ -17,8 +17,8 @@ const Footer = () => {
             </Link>
           </div>
           <small className="website-rights">AseanWeather - Một sản phẩm của team SCKTTTP</small>
-          <div className="social-icons">
-              {/* <span>AseanWeather - Sản phẩm được phát triển bởi team SCKTTTP</span> */}
+          <div className="">
+              <img className="logApiWeather" src="/assets/images/logoAPIWeather.png" alt="Logo api weather" />
           </div>
         </div>
       </section>

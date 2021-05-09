@@ -88,8 +88,8 @@ function Daily() {
                         
                       </div>
                       <div className="real-feel mt-4">
-                        RealFeel®
-                        {item.day.avgtemp_f}F
+                        Cảm thấy như 
+                        {item.day.avgtemp_f}°F
                       </div>
                     </div>
                   </div>
@@ -97,19 +97,19 @@ function Daily() {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Wind</th>
+                          <th scope="col">Tốc độ gió</th>
                           <td scope="col">{item.day.maxwind_kph}km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Visibility</th>
+                          <th scope="col">Tầm nhìn xa</th>
                           <td scope="col">{item.day.avgvis_km}km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Humidity</th>
+                          <th scope="col">Độ ẩm</th>
                           <td scope="col">{item.day.avghumidity}%</td>
                         </tr>
                         <tr>
-                          <th scope="col">UV</th>
+                          <th scope="col">Chỉ số UV</th>
                           <td scope="col">{item.day.uv}</td>
                         </tr>
                       </thead>
@@ -121,7 +121,7 @@ function Daily() {
               {/* Sunrise / Sun set */}
               <div className="Box-cha">
                 <h2 className="cur-con-weather-card__title">
-                  Sunrise / Sun set
+                  Thời gian mọc / lặn
                 </h2>
                 <div className="d-flex astro-wrap">
                   <div className="forecast-container">
@@ -142,11 +142,11 @@ function Daily() {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">Sun Rise</th>
+                          <th scope="row">Mặt trời mọc</th>
                           <td scope="row">{item.astro.sunrise}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Sun Set</th>
+                          <th scope="row">Mặt trời lặn</th>
                           <td scope="row">{item.astro.sunset}</td>
                         </tr>
                       </tbody>
@@ -166,11 +166,11 @@ function Daily() {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">Moon Rise</th>
+                          <th scope="row">mặt trăng lên</th>
                           <td scope="row">{item.astro.moonrise}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Moon Set</th>
+                          <th scope="row">Mặt trăng lặn</th>
                           <td scope="row">{item.astro.moonset}</td>
                         </tr>
                       </tbody>

@@ -81,7 +81,7 @@ const Hourly = () => {
                 <div className="temp metric">{item.temp_c}°</div>
               </div>
               <span className="real-feel">
-                RealFeel®
+                Cảm thấy như
                 {item.feelslike_c}°
               </span>
               <div className="precip">
@@ -103,19 +103,19 @@ const Hourly = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Wind</th>
+                          <th scope="col">Tốc độ gió</th>
                           <td scope="col">{item.wind_kph} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Wind gust</th>
+                          <th scope="col">Gió mạnh</th>
                           <td scope="col">{item.gust_kph} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Wind degree</th>
+                          <th scope="col">Hướng gió</th>
                           <td scope="col">{item.wind_degree} °</td>
                         </tr>
                         <tr>
-                          <th scope="col">UV</th>
+                          <th scope="col">Chỉ số UV</th>
                           <td scope="col">{item.uv}</td>
                         </tr>
                       </thead>
@@ -125,19 +125,19 @@ const Hourly = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Cloud Cover</th>
+                          <th scope="col">Độ che phủ mây</th>
                           <td scope="col">{item.cloud} %</td>
                         </tr>
                         <tr>
-                          <th scope="col">Visibility</th>
+                          <th scope="col">Tầm nhìn xa</th>
                           <td scope="col">{item.vis_km} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Humidity</th>
+                          <th scope="col">Độ ẩm</th>
                           <td scope="col">{item.humidity} %</td>
                         </tr>
                         <tr>
-                          <th scope="col">Precipitation</th>
+                          <th scope="col">Lượng mưa</th>
                           <td scope="col">{item.precip_mm} mm</td>
                         </tr>
                       </thead>
