@@ -32,25 +32,19 @@ const Header = () => {
   if(localStorage.getItem("userName")){
     userLogin= localStorage.getItem("userName");
   }
-
+  console.log("userLogin",userLogin);
   const responseFacebook = (response: any) => {
-    console.log(response);
     // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
-    if(localStorage.getItem("userName")){
-      setIsShow(false);
-      alert("Bạn đã đăng nhập rồi!");      
-    }
-    else{
+    if(localStorage.getItem("userName")==""||localStorage.getItem("userName")==null){
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
           params
         )
         .then((res) => {
-          console.log(res.data.data.data.name);
           localStorage.setItem("userName", res.data.data.data.name);
           // setUser(res.data.data.data.name);
           setShowUser(true);
@@ -60,6 +54,12 @@ const Header = () => {
           );
         })
         .catch((error) => console.log(error));
+    }
+    else{
+      userLogin= localStorage.getItem("userName"); 
+      setIsShow(false);
+      alert("Bạn đã đăng nhập rồi!");
+      
     }
     
   };
