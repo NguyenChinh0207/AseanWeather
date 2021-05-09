@@ -168,12 +168,16 @@ video {
   }
   .suggest-wrap{
     max-height: 32%;
-    width: 30%;
+    width: 50%;
     overflow-y:scroll;
-    background-color: rgba(243, 242, 242, 0.7);
+    background-color: white;
     margin-top: -4.5%;
     position: absolute;
     z-index: 1;
+    
+  }
+  a{
+    color: #1e2432;
   }
   .suggest{
     cursor: pointer;

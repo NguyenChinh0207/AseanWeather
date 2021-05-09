@@ -13,7 +13,7 @@ const Now = ({propsData}: any) => {
           <div className="d-flex main-now-wrap">
             <div className="forecast-container ">
               <div className="date-title-wrap">
-                <h2 className="cur-con-weather-card__title">Current weather</h2>
+                <h2 className="cur-con-weather-card__title">Thời tiết hiện tại</h2>
                 <p className="cur-con-weather-card__subtitle">
                   {propsData.location.localtime}
                 </p>
@@ -26,7 +26,7 @@ const Now = ({propsData}: any) => {
                 <div className="temp-container">
                   <div className="temp">{propsData.current.temp_c}°</div>
                   <div className="real-feel">
-                    <span>RealFeel® </span>
+                    <span>Cảm thấy như  </span>
                     {propsData.current.temp_c}°
                   </div>
                 </div>
@@ -39,19 +39,19 @@ const Now = ({propsData}: any) => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Wind</th>
+                    <th scope="col">Tốc độ gió</th>
                     <td scope="col">{propsData.current.wind_kph} km/h</td>
                   </tr>
                   <tr>
-                    <th scope="col">Wind gust</th>
+                    <th scope="col">Gió mạnh</th>
                     <td scope="col">{propsData.current.gust_kph} km/h</td>
                   </tr>
                   <tr>
-                    <th scope="col">Wind degree</th>
+                    <th scope="col">Hướng gió</th>
                     <td scope="col">{propsData.current.wind_degree} °</td>
                   </tr>
                   <tr>
-                    <th scope="col">UV</th>
+                    <th scope="col">Chỉ số UV</th>
                     <td scope="col">{propsData.current.uv}</td>
                   </tr>
                 </thead>
@@ -61,19 +61,19 @@ const Now = ({propsData}: any) => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Cloud Cover</th>
+                    <th scope="col">Độ che phủ mây</th>
                     <td scope="col">{propsData.current.cloud} %</td>
                   </tr>
                   <tr>
-                    <th scope="col">Visibility</th>
+                    <th scope="col">Tầm nhìn xa</th>
                     <td scope="col">{propsData.current.vis_km} km/h</td>
                   </tr>
                   <tr>
-                    <th scope="col">Humidity</th>
+                    <th scope="col">Độ ẩm</th>
                     <td scope="col">{propsData.current.humidity} %</td>
                   </tr>
                   <tr>
-                    <th scope="col">Precipitation</th>
+                    <th scope="col">Lượng mưa</th>
                     <td scope="col">{propsData.current.precip_mm} mm</td>
                   </tr>
                 </thead>
@@ -85,7 +85,7 @@ const Now = ({propsData}: any) => {
       {/* Sunrise / Sun set */}
       <div className="weather-container">
         <div className="cur-con-weather-card">
-          <h2 className="cur-con-weather-card__title">Sunrise / Sun set</h2>
+          <h2 className="cur-con-weather-card__title">Thời gian mọc / lặn</h2>
           <div className="d-flex astro-wrap">
             <div className="forecast-container">
               <table className="table">
@@ -101,11 +101,11 @@ const Now = ({propsData}: any) => {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Sun Rise</th>
+                    <th scope="row">Mặt trời mọc</th>
                     <td scope="row">{propsData.forecast.forecastday[0].astro.sunrise}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Sun Set</th>
+                    <th scope="row">Mặt trời lặn</th>
                     <td scope="row">{propsData.forecast.forecastday[0].astro.sunset}</td>
                   </tr>
                 </tbody>
@@ -125,11 +125,11 @@ const Now = ({propsData}: any) => {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Moon Rise</th>
+                    <th scope="row">Mặt trăng lên</th>
                     <td scope="row">{propsData.forecast.forecastday[0].astro.moonrise}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Moon Set</th>
+                    <th scope="row">Mặt trăng lặn</th>
                     <td scope="row">{propsData.forecast.forecastday[0].astro.moonset}</td>
                   </tr>
                 </tbody>
@@ -141,7 +141,7 @@ const Now = ({propsData}: any) => {
       {/* Air Quality */}
       <div className="weather-container">
         <div className="cur-con-weather-card">
-          <h2 className="cur-con-weather-card__title">Air Quality</h2>
+          <h2 className="cur-con-weather-card__title">CHẤT LƯỢNG KHÔNG KHÍ</h2>
           <h5 className="air-quality-title">
             Air Quality: <span style={{ color: "#1616ff" }}>Moderate</span>
           </h5>
@@ -151,11 +151,11 @@ const Now = ({propsData}: any) => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">CO</th>
+                    <th scope="col">khí CO</th>
                     <td scope="col">{propsData.current.air_quality.co} μg/m3</td>
                   </tr>
                   <tr>
-                    <th scope="col">O3</th>
+                    <th scope="col">Ozon</th>
                     <td scope="col">{propsData.current.air_quality.o3} μg/m3</td>
                   </tr>
                 </thead>
@@ -165,11 +165,11 @@ const Now = ({propsData}: any) => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">SO2</th>
+                    <th scope="col">Khí SO2</th>
                     <td scope="col">{propsData.current.air_quality.so2} μg/m3</td>
                   </tr>
                   <tr>
-                    <th scope="col">NO2</th>
+                    <th scope="col">Khí NO2</th>
                     <td scope="col">{propsData.current.air_quality.no2} μg/m3</td>
                   </tr>
                 </thead>

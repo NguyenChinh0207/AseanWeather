@@ -31,7 +31,7 @@ const NavbarWeather = ({ propsData }: any) => {
             <span className="location-title">{propsData.location.name}, {propsData.location.country}</span>
         </div>
         <div className="favourite-wrap">
-            <button  onClick={handleClick}><i className="fas fa-heart heart" style={{color: click?"red":"#a4b0be"}} title="Thêm vào yêu thích"></i></button>
+            <button  onClick={handleClick}><i className="fas fa-heart heart" style={{color: click?"#a4b0be":"red"}} title="Thêm vào yêu thích"></i></button>
             <button><i className="fab fa-facebook facebook" title="Chia sẻ lên Facebook"></i></button>
         </div>
       </div>

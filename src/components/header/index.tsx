@@ -113,7 +113,6 @@ const Header = () => {
         setIsShow={() => setIsShow(false)}
       >
         <div className="login-fb-wrap">
-          {/* <a href="https://vti-aca-april-team1-api.herokuapp.com/auth/facebook"> */}
           <Button variant="primary" type="submit" className="mb-2 mt-2" onClick={onRedirectLogin}>
             <i className="fa fa-facebook fa-fw"></i>
             Login with Facebook
