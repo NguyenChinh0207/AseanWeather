@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+
 import "./Now.scss";
 
 const Now = ({propsData}: any) => {

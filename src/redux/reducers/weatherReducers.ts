@@ -1,6 +1,4 @@
 import { WeatherActionTypes } from "../actionTypes/weatherTypes"
-
-
 interface IAction {
     type: string;
     payload?: any;

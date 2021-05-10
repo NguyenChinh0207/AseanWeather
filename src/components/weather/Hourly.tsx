@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./hourly.scss";
 import {
   Accordion,
   Card,
-  ButtonGroup,
-  Button,
   useAccordionToggle,
   AccordionContext,
 } from "react-bootstrap";

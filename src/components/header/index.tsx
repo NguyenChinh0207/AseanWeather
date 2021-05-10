@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import CommonModal from "../modal/CommonModal";
-import { Button, Form } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
-import { isConstructorDeclaration } from "typescript";
 import FacebookLogin from "react-facebook-login";
 
 const Header = () => {
@@ -31,46 +29,53 @@ const Header = () => {
   window.addEventListener("resize", showButton);
 
   let userLogin;
-  if(localStorage.getItem("userName")){
-    userLogin= localStorage.getItem("userName");
-  }
-  else{
-    userLogin="";
+  if (localStorage.getItem("userName")) {
+    userLogin = localStorage.getItem("userName");
+  } else {
+    userLogin = "";
   }
 
   useEffect(() => {
-    if(localStorage.getItem("userName")){
+    if (localStorage.getItem("userName")) {
       setShowSignIn(false);
       setShowUser(true);
     }
-    
-});
+    else{
+      setShowSignIn(true);
+      setShowUser(false);
+    }
+  });
 
   const responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
-    if(!localStorage.getItem("userName")){
+    if (!localStorage.getItem("userName")) {
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
           params
         )
         .then((res) => {
+          setIsShow(false);
           localStorage.setItem("userName", res.data.data.data.name);
           // setUser(res.data.data.data.name);
           // setShowUser(true);
           setShowSignIn(false);
-          setIsShow(false);
           alert(
-            "xin chào, " + res.data.data.data.name + "\nChúc bạn xem thông tin thời tiết vui vẻ!"
+            "xin chào, " +
+              res.data.data.data.name +
+              "\nChúc bạn xem thông tin thời tiết vui vẻ!"
           );
         })
         .catch((error) => console.log(error));
     }
-    
   };
+  
+  const logoutClick=()=>{
+    localStorage.removeItem("userName");
+  }
 
   return (
     <>
@@ -108,20 +113,42 @@ const Header = () => {
               </Link>
             </li>
 
-            <li className="nav-item" style={{display:showSignIn?"block":"none"}}>
+            <li
+              className="nav-item"
+              style={{ display: showSignIn ? "block" : "none" }}
+            >
               <Link
                 to="#"
                 className="nav-links"
-                onClick={() => setIsShow(true)}               
+                onClick={() => setIsShow(true)}
               >
                 Sign In
               </Link>
             </li>
-            <li className="nav-item d-flex wrap-user-login" >
-                <div style={{display:showUser?"block":"none"}}>
-                <i title="UserName" className="fas fa-user" style={{ color: "white" }}></i>
-                <span id="userName">{userLogin}</span>
+            <li className="nav-item d-flex wrap-user-login">
+              <div style={{ display: showUser ? "block" : "none" }}>
+                <div style={{display:"flex"}}>
+                <div>
+                  <i
+                    title="UserName"
+                    className="fas fa-user"
+                    style={{ color: "white" }}
+                  ></i>
+                  <span id="userName">{userLogin}</span>
                 </div>
+                <div className="dropdown">
+                  <Dropdown >
+                    <Dropdown.Toggle style={{ backgroundColor: "#657382" }}
+                      variant="secondary btn-sm"
+                      id="dropdown-basic"
+                    ></Dropdown.Toggle>
+                    <Dropdown.Menu style={{ backgroundColor: "#73a47" }}>
+                      <Dropdown.Item href="#" onClick={()=>logoutClick()} >Thoát tài khoản</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -136,7 +163,8 @@ const Header = () => {
           {/* <a href="https://vti-aca-april-team1-api.herokuapp.com/auth/facebook"> */}
           <div className="mt-4 mb-4">
             <span>
-              Bằng cách nhấp vào <b>Login</b>, bạn đồng ý cho <b>Facebook</b> chia sẻ thông tin đăng nhập với chúng tôi:         
+              Bằng cách nhấp vào <b>Login</b>, bạn đồng ý cho <b>AseanWeather</b>{" "}
+              sẽ có quyền truy cập vào tên và email của bạn:
             </span>
           </div>
           <FacebookLogin
@@ -146,12 +174,23 @@ const Header = () => {
             callback={responseFacebook}
             cssClass="my-facebook-button-class-blue"
             icon="fa-facebook"
-          
           />
+          <div className="mt-4 mb-4">
+            <span>
+              Are you Admin of Asean Weather?
+              <Link
+                to="#"
+                style={{ color: "#fa8231" }}
+                onClick={() => setShowModal(true)}
+              >
+                SignIn
+              </Link>
+            </span>
+          </div>
         </div>
       </CommonModal>
 
-      {/* <CommonModal
+      <CommonModal
         title="SignIn Admin"
         show={showModal}
         size="lg"
@@ -185,7 +224,7 @@ const Header = () => {
             </div>
           </form>
         </div>
-      </CommonModal> */}
+      </CommonModal>
     </>
   );
 };
