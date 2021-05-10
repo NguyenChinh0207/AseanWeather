@@ -44,7 +44,7 @@ const Header = () => {
       setShowSignIn(true);
       setShowUser(false);
     }
-  },[]);
+  });
 
   const  responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
@@ -72,9 +72,11 @@ const Header = () => {
         .catch((error) => console.log(error));
     }
   };
-  
+
   const logoutClick=()=>{
     localStorage.removeItem("userName");
+    setShowSignIn(true);
+    setShowUser(false);
   }
 
   return (
