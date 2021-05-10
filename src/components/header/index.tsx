@@ -44,9 +44,9 @@ const Header = () => {
       setShowSignIn(true);
       setShowUser(false);
     }
-  });
+  },[]);
 
-  const responseFacebook = (response: any) => {
+  const  responseFacebook = (response: any) => {
     // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
