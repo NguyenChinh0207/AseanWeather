@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import "./searchbg.scss";
 import "../../App.scss";
-import { getWeatherSearchRequest ,getWeatherNowRequest} from "../../redux/effects/weatherEffects";
+import {
+  getWeatherSearchRequest,
+  getWeatherNowRequest,
+} from "../../redux/effects/weatherEffects";
 import FavouriteLocation from "../favourite-location";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-
 interface ISearch {
   propsData: any;
   getWeatherSearchRequest: (searchKey: string) => void;
-  getWeatherNowRequest:(city?:string) => void;
+  getWeatherNowRequest: (city?: string) => void;
 }
 
 const SearchComponent: React.FC<ISearch> = ({
   propsData,
   getWeatherSearchRequest,
-  getWeatherNowRequest
+  getWeatherNowRequest,
 }) => {
   const [cityMatch, setCityMatch] = useState([]);
   const [text, setText] = useState("");
-  const [show,setShow]=useState(false);
+  const [show, setShow] = useState(false);
 
   const handleSearch = (text: string) => {
     // e.preventDefault()
@@ -37,9 +39,12 @@ const SearchComponent: React.FC<ISearch> = ({
   };
   const onCityHandler = (item: any) => {
     setText(item.name);
-    console.log("item",item)
-    getWeatherNowRequest(item.lable)
+    console.log("item", item);
+    getWeatherNowRequest(item.lable);
     setCityMatch([]);
+  };
+  const searchClick=()=>{
+    getWeatherNowRequest(text);
   };
 
   return (
@@ -48,34 +53,40 @@ const SearchComponent: React.FC<ISearch> = ({
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
       <div className="hero-btns">
-        <input
-          type="text"
-          className="form-control input_search"
-          placeholder="&#xF002; Search Location..."
-          onChange={(e) => handleSearch(e.target.value)}
-          value={text}
+        <div className="d-flex ">
+          <input
+            type="text"
+            className="form-control input_search"
+            placeholder="&#xF002; Search Location..."
+            onChange={(e) => handleSearch(e.target.value)}
+            value={text}
+            onBlur={() => {
+              setTimeout(() => {
+                setCityMatch([]);
+                setShow(false);
+              }, 200);
+            }}
+          />
+           <Link to="/now">
+            <button className="btn-search" onClick={searchClick}>
+              <i className="fas fa-search icon-search"></i>
+            </button> 
+           </Link>
           
-          onBlur={() => {
-            setTimeout(() => {
-              setCityMatch([]);
-              setShow(false)
-            }, 200);
-          }}
-        />
-
+        </div>
         <br />
 
         <FavouriteLocation />
-        
-        <div className="suggest-wrap" style={{display: show ? 'block' : 'none'}}>
+
+        <div
+          className="suggest-wrap"
+          style={{ display: show ? "block" : "none" }}
+        >
           {propsData.location.map((item: any, index: any) => {
             return (
               <Link to="/now" key={index}>
-                <div                
-                  className="suggest"
-                  onClick={() => onCityHandler(item)}
-                >
-                  {item.name}
+                <div className="suggest" onClick={() => onCityHandler(item)}>
+                  {item.name}, {item.country.name}
                 </div>
               </Link>
             );
@@ -95,7 +106,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       getWeatherSearchRequest,
-      getWeatherNowRequest
+      getWeatherNowRequest,
     },
     dispatch
   );

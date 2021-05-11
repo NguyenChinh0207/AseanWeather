@@ -11,23 +11,18 @@ video {
   .form-control {
     display: block;
     width: 100%;
-    padding: 7px;
-  
+   
     appearance: none;
     background: none;
     border: none;
     outline: none;
-  
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 16px 16px 16px 16px;
-    margin-top: -20px;
-  
-    box-shadow: 0px 5px rgba(0.2, 0.2, 0.2, 0.2);
-    
+    margin-top: -20px; 
+    box-shadow: 0px 5px rgba(0.2, 0.2, 0.2, 0.2);  
     color: #313131;
-    font-size: 35px;
-  
+    font-size: 25px; 
     transition: 0.4s ease;
+  
   }
   
   .hero-container {
@@ -158,14 +153,33 @@ video {
     width: 50%;
     
   }
+
   .input_search{
    background-color: whitesmoke  ;
    margin-top: 30px;
    font-family: "FontAwesome", "Source Sans Pro"; 
     position: relative;
     padding-left: 20px;
-    
+    border-radius: 0;
   }
+  .btn-search{
+    border: 0;
+    background-color:#dcdde1;
+    margin-top: 30px;
+    padding:10px;
+    box-shadow: 0px 5px rgba(0.2, 0.2, 0.2, 0.2);  
+  }
+  .icon-search{
+    font-size: 20px;
+    color: #313131;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  .btn-search:hover{
+    background-color: #ff8c00;
+  }
+
   .suggest-wrap{
     max-height: 32%;
     width: 50%;
