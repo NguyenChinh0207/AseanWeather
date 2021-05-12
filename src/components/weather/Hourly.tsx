@@ -30,8 +30,6 @@ const ContextAwareToggle: React.FC<IContextAwareToggle> = ({
 
   const isCurrentEventKey = currentEventKey === eventKey;
 
-  console.log("++++", isCurrentEventKey);
-
   return (
     <span onClick={decoratedOnClick}>
       {isCurrentEventKey ? (
@@ -53,7 +51,6 @@ const Hourly = () => {
   useEffect(() => {
     dispatch(getWeatherHourlyRequest(propsData.weather.location.name));
   }, []);
-  console.log("getWeatherHourlyRequest", propsData);
   if (!propsData.loading) {
     return <h3>Loading...</h3>;
   }

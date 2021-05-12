@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./searchbg.scss";
 import "../../App.scss";
 import {
@@ -9,6 +9,7 @@ import FavouriteLocation from "../favourite-location";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 interface ISearch {
   propsData: any;
@@ -24,26 +25,60 @@ const SearchComponent: React.FC<ISearch> = ({
   const [cityMatch, setCityMatch] = useState([]);
   const [text, setText] = useState("");
   const [show, setShow] = useState(false);
+  const [listCities, setlistCities] = useState([]);
+  const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
+  const config = {
+    url,
+    headers: {
+      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Headers': 'Content-Type'
+      }
+  }
+  useEffect(() => {
+    const loadCities = async () => {
+      const response = await axios(config);
+      setlistCities(response.data);
+    };
+    loadCities();
+},[])
 
   const handleSearch = (text: string) => {
     // e.preventDefault()
+    // if (!text) {
+    //   setCityMatch([]);
+    //   setShow(false);
+    // } else {
+    //   setShow(true);
+    //   getWeatherSearchRequest(text.trim());
+    //   setCityMatch(propsData.location);
+    // }
+    // setText(text);
     if (!text) {
-      setCityMatch([]);
-      setShow(false);
+      setCityMatch([]); 
+      setShow(false);  
     } else {
       setShow(true);
-      getWeatherSearchRequest(text.trim());
-      setCityMatch(propsData.location);
+      let matches = listCities.filter((city: any) => {
+        const regex = new RegExp(`${text}`, "gi");
+        return city.name.match(regex);
+      });
+      setCityMatch(matches);
     }
     setText(text);
   };
   const onCityHandler = (item: any) => {
-    setText(item.name);
-    console.log("item", item);
-    getWeatherNowRequest(item.lable);
+    // let str:string=item.label+","+item.country.label;
+    // console.log("item str",str)
+    console.log("item",item);
+    console.log("item1",item.name);
+    console.log("item2",item.label);
+    getWeatherNowRequest(item.label);
     setCityMatch([]);
   };
   const searchClick=()=>{
+    console.log("text",text);
     getWeatherNowRequest(text);
   };
 
@@ -82,7 +117,7 @@ const SearchComponent: React.FC<ISearch> = ({
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
         >
-          {propsData.location.map((item: any, index: any) => {
+          {/* {listCities.map((item: any, index: any) => {
             return (
               <Link to="/now" key={index}>
                 <div className="suggest" onClick={() => onCityHandler(item)}>
@@ -90,7 +125,18 @@ const SearchComponent: React.FC<ISearch> = ({
                 </div>
               </Link>
             );
-          })}
+          })} */}
+          {cityMatch &&
+            cityMatch.map((item: any, index: any) => (
+              <Link to="/now" key={index}>
+              <div
+                className="suggest"
+                onClick={() => onCityHandler(item)}
+              >
+                {item.name}, {item.country.name}
+              </div>
+              </Link>
+            ))}
         </div>
       </div>
     </div>

@@ -2,11 +2,9 @@
 import "./Now.scss";
 
 const Now = ({propsData}: any) => {
-  console.log("a",propsData)
 
   return (
     <div className="container">
-       {console.log("location now:",propsData)}
       <div className="weather-container">
         <div className="cur-con-weather-card">
           <div className="d-flex main-now-wrap">

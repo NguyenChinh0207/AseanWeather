@@ -12,12 +12,10 @@ function Daily() {
     dispatch(getWeatherDailyRequest(item.weather.location.name));
   }, []);
   const viewDetail = () => {
-    // console.log(item)
     setIsShow(true);
     // setProduct(item)
   };
 
-  console.log("getWeatherDailyRequest", item);
   if (!item.loaded) {
     return <h3>Loading...</h3>;
   }
