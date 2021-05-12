@@ -1,5 +1,6 @@
 import  { useState } from "react";
 import { NavLink } from "react-router-dom";
+import {EmailShareButton, FacebookShareButton,FacebookIcon, EmailIcon} from "react-share"
 
 import "./navbar.scss";
 
@@ -32,9 +33,12 @@ const NavbarWeather = ({ propsData }: any) => {
         </div>
         <div className="favourite-wrap">
             <button  onClick={handleClick}><i className="fas fa-heart heart" style={{color: click?"#a4b0be":"red"}} title="Thêm vào yêu thích"></i></button>
-            <button><i className="fab fa-facebook facebook" title="Chia sẻ lên Facebook"></i></button>
-            <button><i className="fas fa-envelope gmail" title="Chia sẻ qua email"></i></button>
-
+             <EmailShareButton url={'https://aseanweather.herokuapp.com/now'}  className="shareEmail" title="Chia sẻ qua email" >
+                <EmailIcon size={32} round={true}/>
+             </EmailShareButton>
+             <FacebookShareButton url={'https://aseanweather.herokuapp.com/now'} quote={' AseanWeather'} className="share" title="Chia sẻ lên Facebook">
+                 <FacebookIcon size={32} round={true}/>
+            </FacebookShareButton>
         </div>
       </div>
     </div>
