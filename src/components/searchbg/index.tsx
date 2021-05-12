@@ -69,12 +69,8 @@ const SearchComponent: React.FC<ISearch> = ({
     setText(text);
   };
   const onCityHandler = (item: any) => {
-    // let str:string=item.label+","+item.country.label;
-    // console.log("item str",str)
-    console.log("item",item);
-    console.log("item1",item.name);
-    console.log("item2",item.label);
-    getWeatherNowRequest(item.label);
+    let str:string=item.lable+","+item.country.lable;
+    getWeatherNowRequest(str);
     setCityMatch([]);
   };
   const searchClick=()=>{

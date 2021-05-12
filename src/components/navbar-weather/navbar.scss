@@ -35,16 +35,17 @@
 .favourite-wrap button{
     border:none;
     background-color: transparent;
+    padding: 0;
 }
 .heart{
     color: red;
     font-size: 30px;
 }
-.facebook{
-    color: #2e86de;
-    font-size: 30px;
+.favourite-wrap{
+    display: flex;
+    align-items: center;
 }
+
 .gmail{
-    color: red;
-    font-size: 30px;
+    color: red !important;
 }

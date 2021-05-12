@@ -18,9 +18,11 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) =
 	// 	getWeatherNowRequest();
 	//   }, [])
 	
+	// console.log("BoxWeather",propsData.weather);
+	
 	if (!propsData.success) {
 	  return (
-		<div>Loading ... </div>
+		<div className="loading" >Loading ... </div>
 	  );
 	}
   return (

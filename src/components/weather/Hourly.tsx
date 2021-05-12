@@ -52,16 +52,19 @@ const Hourly = () => {
     dispatch(getWeatherHourlyRequest(propsData.weather.location.name));
   }, []);
   if (!propsData.loading) {
-    return <h3>Loading...</h3>;
+    return <div className="loading">Loading...</div>;
   }
   return (
     <Accordion defaultActiveKey="0">
       {propsData.weatherHourly.map((item: any) => {
+        let d = new Date(item.time.substring(0, 10));
+        let date =
+          d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
         return (
           <div className="container Box-cha" key={item.time_epoch}>
             <div className="hourly-card-nfl-header ">
               <h2 className="date">
-                <span>{item.time.substring(0, 10)}</span>
+                <span>{date}</span>
                 <span className="sub">{item.time.substring(11, 16)}</span>
               </h2>
               <div className="d-flex align-items-center">

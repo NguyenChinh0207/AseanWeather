@@ -17,13 +17,17 @@ function Daily() {
   };
 
   if (!item.loaded) {
-    return <h3>Loading...</h3>;
+    return <div className="loading">Loading...</div>;
+  }
+  const dateForrmat=(dateItem:any)=>{
+    let d = new Date(dateItem);
+    return  d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
   }
   return (
     <>
       <p className="module-title container">
-        {item.weatherDaily[0].date} <span style={{ color: "red" }}>to</span>{" "}
-        {item.weatherDaily[2].date}
+        {dateForrmat(item.weatherDaily[0].date)} <span style={{ color: "red" }}>to</span>{" "}
+        {dateForrmat(item.weatherDaily[2].date)}
       </p>
       {item.weatherDaily.map((item: any) => {
         return (
@@ -31,7 +35,7 @@ function Daily() {
             <div className="hourly-card-nfl-header ">
               <h2 className="date">
                 {/* <span>thứ 2 đến CN </span> */}
-                <span className="sub">{item.date}</span>
+                <span className="sub">{dateForrmat(item.date)}</span>
               </h2>
               <div className="d-flex align-items-center">
                 <img
@@ -64,7 +68,7 @@ function Daily() {
             </div>
             <CommonModal
               className="modalDaily"
-              title={`Date: ${item.date}`}
+              title={`Date: ${dateForrmat(item.date)}`}
               size="lg"
               show={isShow}
               setIsShow={() => setIsShow(false)}
@@ -87,7 +91,7 @@ function Daily() {
                         
                       </div>
                       <div className="real-feel mt-4">
-                        Cảm thấy như 
+                        Cảm thấy như{" "}
                         {item.day.avgtemp_f}°F
                       </div>
                     </div>

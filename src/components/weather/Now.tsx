@@ -149,11 +149,11 @@ const Now = ({propsData}: any) => {
                 <thead>
                   <tr>
                     <th scope="col">khí CO</th>
-                    <td scope="col">{propsData.current.air_quality.co} μg/m3</td>
+                    <td scope="col">{Math.round(propsData.current.air_quality.co)} μg/m3</td>
                   </tr>
                   <tr>
                     <th scope="col">Ozon</th>
-                    <td scope="col">{propsData.current.air_quality.o3} μg/m3</td>
+                    <td scope="col">{Math.round(propsData.current.air_quality.o3)} μg/m3</td>
                   </tr>
                 </thead>
               </table>
@@ -163,11 +163,11 @@ const Now = ({propsData}: any) => {
                 <thead>
                   <tr>
                     <th scope="col">Khí SO2</th>
-                    <td scope="col">{propsData.current.air_quality.so2} μg/m3</td>
+                    <td scope="col">{Math.round(propsData.current.air_quality.so2)} μg/m3</td>
                   </tr>
                   <tr>
                     <th scope="col">Khí NO2</th>
-                    <td scope="col">{propsData.current.air_quality.no2} μg/m3</td>
+                    <td scope="col">{Math.round(propsData.current.air_quality.no2)} μg/m3</td>
                   </tr>
                 </thead>
               </table>
