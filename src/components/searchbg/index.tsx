@@ -69,8 +69,8 @@ const SearchComponent: React.FC<ISearch> = ({
     setText(text);
   };
   const onCityHandler = (item: any) => {
-    let str:string=item.lable+","+item.country.lable;
-    getWeatherNowRequest(str);
+    setText(item.name);
+    getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
   const searchClick=()=>{
@@ -129,7 +129,7 @@ const SearchComponent: React.FC<ISearch> = ({
                 className="suggest"
                 onClick={() => onCityHandler(item)}
               >
-                {item.name}, {item.country.name}
+                {item.name}
               </div>
               </Link>
             ))}
