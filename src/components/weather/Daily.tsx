@@ -4,16 +4,22 @@ import CommonModal from "../modal/CommonModal";
 import "./daily.scss";
 import { getWeatherDailyRequest } from "../../redux/effects/weatherEffects";
 
-function Daily() {
+const Daily=()=> {
+
   const [isShow, setIsShow] = useState(false);
   const item = useSelector((state: RootStateOrAny) => state.weatherReducer);
+  const [daily, setDaily] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getWeatherDailyRequest(item.weather.location.name));
   }, []);
-  const viewDetail = () => {
+
+  const viewDetail = (day:any) => {
+    setDaily(day);
     setIsShow(true);
-    // setProduct(item)
+    console.log("day",day);
+    console.log("daily",daily);
   };
 
   if (!item.loaded) {
@@ -26,15 +32,14 @@ function Daily() {
   return (
     <>
       <p className="module-title container">
-        {dateForrmat(item.weatherDaily[0].date)} <span style={{ color: "red" }}>to</span>{" "}
+        THỜI TIẾT BA NGÀY: {dateForrmat(item.weatherDaily[0].date)} <span style={{ color: "red" }}>to</span>{" "}
         {dateForrmat(item.weatherDaily[2].date)}
       </p>
       {item.weatherDaily.map((item: any) => {
         return (
-          <div className="Box-cha container" key={item.date_epoch}>
+          <div className="box-daily container" key={item.date}>
             <div className="hourly-card-nfl-header ">
               <h2 className="date">
-                {/* <span>thứ 2 đến CN </span> */}
                 <span className="sub">{dateForrmat(item.date)}</span>
               </h2>
               <div className="d-flex align-items-center">
@@ -59,12 +64,12 @@ function Daily() {
                 <img
                   alt="rain drop"
                   className="precip-icon"
-                  src="/assets/icons/water.png"
+                  src="/assets/icons/rainss.png"
                 />
                 {item.day.daily_chance_of_rain}%
               </div>
 
-              <i className="fas fa-arrow-right" onClick={viewDetail}></i>
+              <i className="fas fa-arrow-right" onClick={() => viewDetail(item)}></i>
             </div>
             <CommonModal
               className="modalDaily"
@@ -74,9 +79,6 @@ function Daily() {
               setIsShow={() => setIsShow(false)}
             >
               <div className="Box-cha ">
-                <p className="cur-con-weather-card__subtitle">
-                  {item.astro.date}
-                </p>
                 <div className="box-con ">
                   <div className="forecast-container flex-grow-1 d-flex align-items-center justify-content-center">
                     <img
@@ -100,20 +102,32 @@ function Daily() {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Tốc độ gió</th>
+                          <th scope="col">
+                          <img src="/assets/icons/windgust.png" alt="" />
+                          {"  "}
+                            Tốc độ gió</th>
                           <td scope="col">{item.day.maxwind_kph}km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Tầm nhìn xa</th>
+                          <th scope="col">
+                          <img src="/assets/icons/eye.png" alt="" />
+                          {"  "}
+                            Tầm nhìn xa</th>
                           <td scope="col">{item.day.avgvis_km}km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Độ ẩm</th>
+                          <th scope="col">
+                          <img src="/assets/icons/doam.png" alt="" />
+                          {"  "}
+                            Độ ẩm</th>
                           <td scope="col">{item.day.avghumidity}%</td>
                         </tr>
                         <tr>
-                          <th scope="col">Chỉ số UV</th>
-                          <td scope="col">{item.day.uv}</td>
+                          <th scope="col">
+                          <img src="/assets/icons/UV.png" alt="" />
+                          {"  "}
+                            Chỉ số UV</th>
+                          <td scope="col">{item.day.uv}/10</td>
                         </tr>
                       </thead>
                     </table>
@@ -145,11 +159,17 @@ function Daily() {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">Mặt trời mọc</th>
+                          <th scope="row">
+                          <img src="/assets/icons/sunrise.png" alt="" />
+                          {"  "}
+                            Mặt trời mọc</th>
                           <td scope="row">{item.astro.sunrise}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Mặt trời lặn</th>
+                          <th scope="row">
+                          <img src="/assets/icons/sunset.png" alt="" />
+                          {"  "}
+                            Mặt trời lặn</th>
                           <td scope="row">{item.astro.sunset}</td>
                         </tr>
                       </tbody>
@@ -169,11 +189,17 @@ function Daily() {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">mặt trăng lên</th>
+                          <th scope="row">
+                          <img src="/assets/icons/moonrise.png" alt="" />
+                          {"  "}
+                            Mặt trăng lên</th>
                           <td scope="row">{item.astro.moonrise}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Mặt trăng lặn</th>
+                          <th scope="row">
+                          <img src="/assets/icons/moonset.png" alt="" />
+                          {"  "}
+                            Mặt trăng lặn</th>
                           <td scope="row">{item.astro.moonset}</td>
                         </tr>
                       </tbody>
@@ -183,8 +209,10 @@ function Daily() {
               </div>
             </CommonModal>
           </div>
-        );
+       
+       );
       })}
+    
     </>
   );
 }

@@ -53,11 +53,23 @@
 .astro-wrap .forecast-container:nth-of-type(1),.astro-wrap .forecast-container:nth-of-type(2){
     flex-grow: 1;
 }
-.air-quality .forecast-container:nth-of-type(1),.air-quality .forecast-container:nth-of-type(2){
-    flex-grow: 1;
+.air-quality .forecast-container:nth-of-type(1){
+   width: 50%;
 }
+.air-quality .forecast-container:nth-of-type(2){
+    width: 50%;
+}
+.aqi-text{
+    padding: 0 !important;
+}
+.air-quality-title{
+    padding: 18px 0;
+    font-weight: bold;
+    padding: 0 !important;
+}
+
 .astro-wrap,.air-quality{
-    width: 70%;
+    width: 90%;
     margin: auto;
     
 }
@@ -102,8 +114,5 @@
 table td{
     text-align: right;
 }
-.air-quality-title{
-    margin:auto;
-    padding-bottom: 18px;
-}
+
 

@@ -22,10 +22,12 @@ const SearchComponent: React.FC<ISearch> = ({
   getWeatherSearchRequest,
   getWeatherNowRequest,
 }) => {
+  //Khai báo state để sử dụng
   const [cityMatch, setCityMatch] = useState([]);
   const [text, setText] = useState("");
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
+  //Config api tìm kiếm
   const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
   const config = {
     url,
@@ -36,6 +38,7 @@ const SearchComponent: React.FC<ISearch> = ({
       'Access-Control-Allow-Headers': 'Content-Type'
       }
   }
+  //Load api tìm kiếm địa phương
   useEffect(() => {
     const loadCities = async () => {
       const response = await axios(config);
@@ -44,17 +47,8 @@ const SearchComponent: React.FC<ISearch> = ({
     loadCities();
 },[])
 
+  //Match
   const handleSearch = (text: string) => {
-    // e.preventDefault()
-    // if (!text) {
-    //   setCityMatch([]);
-    //   setShow(false);
-    // } else {
-    //   setShow(true);
-    //   getWeatherSearchRequest(text.trim());
-    //   setCityMatch(propsData.location);
-    // }
-    // setText(text);
     if (!text) {
       setCityMatch([]); 
       setShow(false);  
@@ -68,11 +62,15 @@ const SearchComponent: React.FC<ISearch> = ({
     }
     setText(text);
   };
+
+  //Click item filter
   const onCityHandler = (item: any) => {
     setText(item.name);
     getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
+
+  //Click button search
   const searchClick=()=>{
     console.log("text",text);
     getWeatherNowRequest(text);
@@ -112,16 +110,10 @@ const SearchComponent: React.FC<ISearch> = ({
         <div
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
-        >
-          {/* {listCities.map((item: any, index: any) => {
-            return (
-              <Link to="/now" key={index}>
-                <div className="suggest" onClick={() => onCityHandler(item)}>
-                  {item.name}, {item.country.name}
-                </div>
-              </Link>
-            );
-          })} */}
+        > 
+          {
+            cityMatch.length==0 &&(<div className="suggest">Không tìm thấy kết quả nào .</div>)
+          }      
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
               <Link to="/now" key={index}>
@@ -129,6 +121,7 @@ const SearchComponent: React.FC<ISearch> = ({
                 className="suggest"
                 onClick={() => onCityHandler(item)}
               >
+                <i className="fas fa-search search-item-icon"></i>
                 {item.name}
               </div>
               </Link>
