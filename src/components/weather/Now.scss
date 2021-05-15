@@ -23,13 +23,16 @@
     line-height: 1.5;
     font-size: 16px;
     text-transform: uppercase;
-   
+    color: #487eb0;
 }
 
 .date-title-wrap p{
     margin:0;
 }
-
+.condition-text{
+    color: #0097e6;
+    font-weight: bold;
+}
 .cur-con-weather-card__subtitle {
     opacity: .6;
     font-size: 14px;
@@ -60,8 +63,15 @@
     width: 50%;
 }
 .aqi-text{
-    padding: 0 !important;
+    padding: 0 !important; 
 }
+.aqi-text-detail{
+    font-size: 18px;
+}
+.aqi-text-main{
+    font-size: 30px;
+}
+
 .air-quality-title{
     padding: 18px 0;
     font-weight: bold;

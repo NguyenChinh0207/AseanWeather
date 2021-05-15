@@ -76,11 +76,10 @@
     text-align: center;
 }
 
-.daily-card-nfl-header .real-feel {
+.condition-text{
+    color: #0097e6;
+    font-weight: bold;
     font-size: 20px;
-    font-weight: 500;
-    color: black;
-    margin:10px 0;
 }
 
 .daily-card-nfl-header .phrase {
@@ -96,7 +95,7 @@
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    margin-right: 8px;
+    margin: 20px 0;
     width: 50px;
     -webkit-box-pack: center;
     justify-content: center;
@@ -146,3 +145,8 @@
     color: white;
     margin-left: 4px;
 }
+
+// .weather-icon{
+//     width: 150px;
+//     height: 100%;
+// }

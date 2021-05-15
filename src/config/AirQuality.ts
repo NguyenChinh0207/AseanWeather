@@ -1,6 +1,5 @@
 
  const aqiNumberToString=(indexEpaVI:any) => {
-   if(indexEpaVI){
     switch (indexEpaVI) {
         case 1:
             return "Tốt";
@@ -17,10 +16,9 @@
         default:
             return null;
     }
-   }
+   
 }
 const aqiIndexDetail=(indexEpaVI:any) => {
-    if(indexEpaVI){
      switch (indexEpaVI) {
          case 1:
              return "Chất lượng không khí được cho là thỏa đáng, ô nhiếm không khí đem lại rất ít hoặc không có rủi ro nào.";
@@ -37,7 +35,7 @@ const aqiIndexDetail=(indexEpaVI:any) => {
          default:
              return null;
      }
-    }
+    
  }
  
 export default  {aqiNumberToString,aqiIndexDetail};

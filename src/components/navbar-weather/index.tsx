@@ -1,17 +1,33 @@
-import { useState } from "react";
-import { NavLink,Link } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import {
   EmailShareButton,
   FacebookShareButton,
   FacebookIcon,
-  EmailIcon,
 } from "react-share";
 
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData }: any) => {
   const [click, setClick] = useState(true);
-  const handleClick = () => setClick(!click);
+  
+  // useEffect(() => {
+  //   const loadCities = async () => {
+  //     const response = await axios(config);
+     
+  //   };
+  //   loadCities();
+  // }, [])
+
+  const handleClick = () => {
+    if (localStorage.getItem("userName")) {
+      setClick(!click)
+
+    } else {
+      alert("Bạn phải login trước !")
+    }
+  }
+ 
   let i:number=0;
   const configCityShare=(name:string)=>{
     for(i=0; i<name.length-1;i++){

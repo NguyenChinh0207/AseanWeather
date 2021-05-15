@@ -1,6 +1,6 @@
 import "./Now.scss";
 import config from "../../config/AirQuality";
-
+import winDirConvert from "../../config/WindDir";
 const Now = ({ propsData }: any) => {
   
   return (
@@ -31,7 +31,7 @@ const Now = ({ propsData }: any) => {
                 </div>
               </div>
               <div>
-                <span>{propsData.current.condition.text}</span>
+                <span className="condition-text">{propsData.current.condition.text}</span>
               </div>
             </div>
             <div className="forecast-container">
@@ -59,7 +59,7 @@ const Now = ({ propsData }: any) => {
                       {"  "}
                       Hướng gió
                     </th>
-                    <td scope="col">{propsData.current.wind_degree} °</td>
+                    <td scope="col">{propsData.current.wind_degree} °{" "}{winDirConvert(propsData.current.wind_dir)}</td>
                   </tr>
                   <tr>
                     <th scope="col">
@@ -202,13 +202,13 @@ const Now = ({ propsData }: any) => {
                 <thead>
                   <tr>
                     <h5 className="air-quality-title">
-                      <span className="aqi-text"  style={{ color: "black", fontWeight: "bold" }}>
+                      <span className="aqi-text aqi-text-main"  style={{ color: "black", fontWeight: "bold" }}>
                         {config.aqiNumberToString(
                           Object.values(propsData.current.air_quality)[6]
                         )}
                       </span>
                     </h5>
-                    <span className="aqi-text">
+                    <span className="aqi-text aqi-text-detail">
                       {config.aqiIndexDetail(
                         Object.values(propsData.current.air_quality)[6]
                       )}
