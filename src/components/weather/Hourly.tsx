@@ -41,7 +41,14 @@ const ContextAwareToggle: React.FC<IContextAwareToggle> = ({
   );
 };
 
-const Hourly = () => {
+interface IHourly{
+  match:any;
+}
+
+const Hourly:React.FC<IHourly> = ({match}) => {
+
+  const { city } = match.params;
+
   const [timeNow, setTimeNow] = useState(new Date().getHours());
   const propsData = useSelector(
     (state: RootStateOrAny) => state.weatherReducer

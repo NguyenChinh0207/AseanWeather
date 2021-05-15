@@ -2,6 +2,7 @@ import "./Now.scss";
 import config from "../../config/AirQuality";
 
 const Now = ({ propsData }: any) => {
+  
   return (
     <div className="container">
       <div className="weather-container">

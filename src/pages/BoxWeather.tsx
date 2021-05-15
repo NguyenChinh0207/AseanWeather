@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarWeather from "../components/navbar-weather";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Now from "../components/weather/Now";
@@ -10,29 +10,38 @@ import { bindActionCreators } from 'redux';
 
 interface IBoxWeather {
 	propsData: any;
-	getWeatherNowRequest: () => void;
-  }
-const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) => {
+	getWeatherNowRequest: (city:any) => void;
+  match: any;
+}
+
+const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest, match}) => {
+
+  const { city } = match.params;
+  useEffect(() => {
+    getWeatherNowRequest(city);
+  }, []);
 
 	if (!propsData.success) {
 	  return (
 		<div className="loading" >Loading ... </div>
 	  );
 	}
+
+
   return (
     <div className="main-container">
       <div  className="main-container-innner-wrap">
       <Router>
-        <NavbarWeather propsData={propsData.weather}/>
+        <NavbarWeather propsData={propsData.weather} city={city}/>
         <Switch>
-          <Route path="/now">
+          <Route path="/now/:city">
             <Now propsData={propsData.weather} />
           </Route>
 		      <Route path="/search/now">
             <Now propsData={propsData.weather} />
           </Route>
-          <Route path="/hourly" component={Hourly} />
-          <Route path="/daily" component={Daily} />
+          <Route path="/hourly/:city" component={Hourly} />
+          <Route path="/daily/:city" component={Daily} />
         </Switch>
       </Router>
       </div>
@@ -51,7 +60,6 @@ const mapStateToProps = (state:any) => {
 	  getWeatherNowRequest,
 	  getWeatherHourlyRequest,
 	  getWeatherDailyRequest,
-	 
 	}
 	, dispatch);
   
