@@ -82,11 +82,11 @@ const SearchComponent: React.FC<ISearch> = ({
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
       <div className="hero-btns">
-        <div className="d-flex ">
+        <form className="d-flex ">
           <input
             type="text"
             className="form-control input_search"
-            placeholder="&#xF002; Search Location..."
+            placeholder="&#xF002; Tìm kiếm vị trí..."
             onChange={(e) => handleSearch(e.target.value)}
             value={text}
             onBlur={() => {
@@ -97,16 +97,12 @@ const SearchComponent: React.FC<ISearch> = ({
             }}
           />
            <Link to="/now">
-            <button className="btn-search" onClick={searchClick}>
-              <i className="fas fa-search icon-search"></i>
+            <button className="btn-search" onClick={searchClick} style={{backgroundColor:show?"white":"#1e90ff"}}>
+              <i className="fas fa-search icon-search" style={{color:show?"#747d8c":"#dcdde1"}}></i>
             </button> 
            </Link>
           
-        </div>
-        <br />
-
-        <FavouriteLocation />
-
+        </form>
         <div
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
@@ -127,6 +123,8 @@ const SearchComponent: React.FC<ISearch> = ({
               </Link>
             ))}
         </div>
+            <br />
+            <FavouriteLocation />
       </div>
     </div>
   );
