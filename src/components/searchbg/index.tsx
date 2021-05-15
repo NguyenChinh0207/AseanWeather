@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./searchbg.scss";
 import "../../App.scss";
 import {
@@ -32,11 +32,11 @@ const SearchComponent: React.FC<ISearch> = ({
   const config = {
     url,
     headers: {
-      'Access-Control-Allow-Origin' : '*',
-      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Headers': 'Content-Type'
-      }
+    }
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
@@ -45,13 +45,13 @@ const SearchComponent: React.FC<ISearch> = ({
       setlistCities(response.data);
     };
     loadCities();
-},[])
+  }, [])
 
   //Match
   const handleSearch = (text: string) => {
     if (!text) {
-      setCityMatch([]); 
-      setShow(false);  
+      setCityMatch([]);
+      setShow(false);
     } else {
       setShow(true);
       let matches = listCities.filter((city: any) => {
@@ -71,13 +71,15 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   //Click button search
-  const searchClick=()=>{
-    console.log("text",text);
+  const searchClick = () => {
+    console.log("text", text);
     getWeatherNowRequest(text);
   };
 
   return (
     <div className="hero-container">
+      {console.log('text',text)
+      }
       <video src="/assets/videos/video-1.mp4" autoPlay loop muted />
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
@@ -96,12 +98,12 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-           <Link to="/now">
+          <Link to="/now">
             <button className="btn-search" onClick={searchClick}>
               <i className="fas fa-search icon-search"></i>
-            </button> 
-           </Link>
-          
+            </button>
+          </Link>
+
         </div>
         <br />
 
@@ -110,20 +112,20 @@ const SearchComponent: React.FC<ISearch> = ({
         <div
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
-        > 
+        >
           {
-            cityMatch.length==0 &&(<div className="suggest">Không tìm thấy kết quả nào .</div>)
-          }      
+            cityMatch.length == 0 && (<div className="suggest">Không tìm thấy kết quả nào .</div>)
+          }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
               <Link to="/now" key={index}>
-              <div
-                className="suggest"
-                onClick={() => onCityHandler(item)}
-              >
-                <i className="fas fa-search search-item-icon"></i>
-                {item.name}
-              </div>
+                <div
+                  className="suggest"
+                  onClick={() => onCityHandler(item)}
+                >
+                  <i className="fas fa-search search-item-icon"></i>
+                  {item.name}
+                </div>
               </Link>
             ))}
         </div>

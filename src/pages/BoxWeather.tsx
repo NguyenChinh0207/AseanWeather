@@ -11,7 +11,8 @@ import { bindActionCreators } from 'redux';
 interface IBoxWeather {
 	propsData: any;
 	getWeatherNowRequest: () => void;
-  }
+}
+
 const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) => {
 
 	if (!propsData.success) {
@@ -19,6 +20,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) =
 		<div className="loading" >Loading ... </div>
 	  );
 	}
+
   return (
     <div className="main-container">
       <div  className="main-container-innner-wrap">
@@ -51,7 +53,6 @@ const mapStateToProps = (state:any) => {
 	  getWeatherNowRequest,
 	  getWeatherHourlyRequest,
 	  getWeatherDailyRequest,
-	 
 	}
 	, dispatch);
   
