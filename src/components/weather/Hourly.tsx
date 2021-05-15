@@ -86,7 +86,7 @@ const Hourly = () => {
                 <img
                   alt="rain drop"
                   className="precip-icon"
-                  src="/assets/icons/water.png"
+                  src="/assets/icons/rainss.png"
                 />
                 {item.precip_mm}mm
               </div>
@@ -101,19 +101,33 @@ const Hourly = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Tốc độ gió</th>
+                          <th scope="col">
+                          <img src="/assets/icons/wind.png" alt="" />
+                          {"  "}
+                          Tốc độ gió
+                          </th>
                           <td scope="col">{item.wind_kph} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Gió mạnh</th>
+                          <th scope="col">
+                          <img src="/assets/icons/windgust.png" alt="" />
+                          {"  "}
+                          Gió mạnh
+                          </th>
                           <td scope="col">{item.gust_kph} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Hướng gió</th>
+                          <th scope="col">
+                          <img src="/assets/icons/compass.png" alt="" />
+                          {"  "}
+                            Hướng gió</th>
                           <td scope="col">{item.wind_degree} °</td>
                         </tr>
                         <tr>
-                          <th scope="col">Chỉ số UV</th>
+                          <th scope="col">
+                          <img src="/assets/icons/UV.png" alt="" />
+                          {"  "}
+                            Chỉ số UV</th>
                           <td scope="col">{item.uv}</td>
                         </tr>
                       </thead>
@@ -123,19 +137,31 @@ const Hourly = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th scope="col">Độ che phủ mây</th>
+                          <th scope="col">
+                          <img src="/assets/icons/chephu.png" alt="" />
+                          {"  "}
+                            Độ che phủ mây</th>
                           <td scope="col">{item.cloud} %</td>
                         </tr>
                         <tr>
-                          <th scope="col">Tầm nhìn xa</th>
+                          <th scope="col">
+                          <img src="/assets/icons/eye.png" alt="" />
+                          {"  "}
+                            Tầm nhìn xa</th>
                           <td scope="col">{item.vis_km} km/h</td>
                         </tr>
                         <tr>
-                          <th scope="col">Độ ẩm</th>
+                          <th scope="col">
+                          <img src="/assets/icons/doam.png" alt="" />
+                          {"   "}
+                            Độ ẩm</th>
                           <td scope="col">{item.humidity} %</td>
                         </tr>
                         <tr>
-                          <th scope="col">Lượng mưa</th>
+                          <th scope="col">
+                          <img src="/assets/icons/rain.png" alt="" />
+                          {"  "}
+                            Lượng mưa</th>
                           <td scope="col">{item.precip_mm} mm</td>
                         </tr>
                       </thead>
