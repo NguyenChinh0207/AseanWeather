@@ -195,25 +195,27 @@ const Header = () => {
       <CommonModal
         title="SignIn Admin"
         show={showModal}
-        size="lg"
+        size="md"
         setIsShow={() => setShowModal(false)}
       >
         <div className="row">
           <form action="">
-            <div className="form-group ">
+            <div className="form-group form-login-wrap">
               <input
                 type="email"
-                className="form-control input-item  mb-4 mt-2"
+                className="form-control input-item  mt-2"
                 placeholder="Email..."
               />
+              <h6 className="error-text"></h6>
             </div>
 
-            <div className="form-group ">
+            <div className="form-group form-login-wrap ">
               <input
                 type="password"
-                className="form-control input-item mt-4 mb-4"
+                className="form-control input-item mt-2 "
                 placeholder="Password..."
               />
+               <h6 className="error-text"></h6>
             </div>
 
             <div className="form-group ">
