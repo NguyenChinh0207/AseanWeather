@@ -1,6 +1,6 @@
 .navbar {
-    background-color: #3d3d3d; /* Dành cho các trình duyệt không hỗ trợ gradient*/
-    background-image: linear-gradient(to top right, #3d3d3d, #778ca3); 
+    background-color: #2f3542; /* Dành cho các trình duyệt không hỗ trợ gradient*/
+    background-image: linear-gradient(to top right, #2f3542, #718093); 
     height: 80px;
     display: flex;
     justify-content: center;
@@ -15,7 +15,6 @@
 .login-fb-wrap{
   text-align: center;
 }
-
   .navbar-container {
     display: flex;
     justify-content: space-between;

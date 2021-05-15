@@ -38,8 +38,6 @@ const Daily = () => {
   const viewDetail = (day: any) => {
     setDaily(day);
     setIsShow(true);
-    console.log("day", day);
-    console.log("daily", daily);
   };
 
   if (!item.loaded) {
@@ -51,16 +49,15 @@ const Daily = () => {
   }
   return (
     <>
-      {console.log('daily', daily)
-      }
       <p className="module-title container">
         THỜI TIẾT BA NGÀY: {dateForrmat(item.weatherDaily[0].date)} <span style={{ color: "red" }}>to</span>{" "}
         {dateForrmat(item.weatherDaily[2].date)}
       </p>
+      <div className="daily-wrap container">
       {item.weatherDaily.map((item: any) => {
         return (
-          <div className="box-daily container" key={item.date}>
-            <div className="hourly-card-nfl-header ">
+          <div className="box-daily" key={item.date}>
+            <div className="daily-card-nfl-header ">
               <h2 className="date">
                 <span className="sub">{dateForrmat(item.date)}</span>
               </h2>
@@ -76,7 +73,7 @@ const Daily = () => {
                 <div className="temp">
                   <span className="high">{item.day.mintemp_c}°</span>
                   <span className="high">
-                    <i className="fas fa-long-arrow-alt-right"></i>
+                    /
                     {item.day.maxtemp_c}°
                   </span>
                 </div>
@@ -91,11 +88,15 @@ const Daily = () => {
                 {item.day.daily_chance_of_rain}%
               </div>
 
-              <i className="fas fa-arrow-right" onClick={() => viewDetail(item)}></i>
+              <button onClick={() => viewDetail(item)}>
+                Xem thêm
+              <i className="fas fa-arrow-right" ></i>
+              </button>
             </div>
           </div>
         );
       })}
+      </div>
       <CommonModal
         className="modalDaily"
         title={`Date: ${dateForrmat(daily.date)}`}

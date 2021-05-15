@@ -3,10 +3,11 @@
     background-color: transparent;
     padding:10px 40px;
     font-size: 18px;
+    color: #487eb0;
 }
 .active button,.btn-navbar:hover{
-    color: #0fbcf9;
-    border-bottom: 3px solid #0fbcf9;
+    color: #ffb142;
+    border-bottom: 3px solid #ffb142;
     font-weight: bold;
 }
 #btn-wrap{
@@ -14,8 +15,9 @@
     justify-content: space-evenly;
     padding:0;
     margin: 0 auto;
+    background-color: #a4b0be;
     // margin-top: 30px;
-    border-bottom: grey 1px solid;
+    // border-bottom: grey 1px solid;
     text-align: center;
 }
 .location-wrap{
@@ -31,6 +33,7 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 500;
+    color: #2f3542;
 }
 .favourite-wrap button{
     border:none;
@@ -40,6 +43,9 @@
 .heart{
     color: red;
     font-size: 30px;
+}
+.heart-btn{
+    color: red;
 }
 .favourite-wrap{
     display: flex;

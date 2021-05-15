@@ -9,7 +9,7 @@ const NavbarWeather = ({ propsData }: any) => {
   const handleClick = () => setClick(!click);
 
   return (
-    <div className="container">
+    <div className="container"style={{padding:"20px 0"}}>
       <div id="btn-wrap">
         <NavLink to="/now" activeClassName="active">
           <button type="button" id="btn" className="btn-navbar ">
@@ -26,7 +26,15 @@ const NavbarWeather = ({ propsData }: any) => {
             DAILY
           </button>
         </NavLink>
+        <NavLink to="/favourites" activeClassName="active">
+          <button type="button" id="btn" className="btn-navbar">
+          <i className="fas fa-heart heart-btn" ></i>
+                FAVOURITE
+          </button>
+        </NavLink>
+        
       </div>
+      
       <div className="location-wrap d-flex">
         <div className="location-title-wrap">          
             <span className="location-title">{propsData.location.name}, {propsData.location.country}</span>
@@ -41,6 +49,7 @@ const NavbarWeather = ({ propsData }: any) => {
             </FacebookShareButton>
         </div>
       </div>
+    
     </div>
   );
 };
