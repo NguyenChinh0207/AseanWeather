@@ -11,6 +11,7 @@
     font-weight: bold;
 }
 #btn-wrap{
+    position: sticky;
     display: flex;
     justify-content: space-evenly;
     padding:0;
@@ -41,17 +42,22 @@
     padding: 0;
 }
 .heart{
-    color: red;
+    color: #c23616;
     font-size: 30px;
 }
 .heart-btn{
-    color: red;
+    color: #c23616;
+    margin-right: 4px;
 }
 .favourite-wrap{
     display: flex;
     align-items: center;
 }
-
+.shareEmail{
+    display: flex;
+    align-items: center;
+}
 .gmail{
-    color: red !important;
+    color: #c23616 ;
+    font-size: 30px;
 }

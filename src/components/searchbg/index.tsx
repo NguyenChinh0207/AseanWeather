@@ -97,16 +97,12 @@ const SearchComponent: React.FC<ISearch> = ({
             }}
           />
           <Link to={`/now/${text}`}>
-            <button className="btn-search">
-              <i className="fas fa-search icon-search"></i>
+            <button className="btn-search" style={{backgroundColor:show?"white":"#1e90ff"}}>
+              <i className="fas fa-search icon-search"style={{color:show?"#747d8c":"#dcdde1"}}></i>
             </button>
           </Link>
 
         </div>
-        <br />
-
-        <FavouriteLocation />
-
         <div
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
@@ -127,6 +123,8 @@ const SearchComponent: React.FC<ISearch> = ({
               </Link>
             ))}
         </div>
+        <br />
+        <FavouriteLocation />
       </div>
     </div>
   );
