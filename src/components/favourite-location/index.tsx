@@ -11,7 +11,7 @@ import { bindActionCreators } from "redux";
 
 interface IFavourite {
   propsData: any;
-  getWeatherNowRequest: () => void;
+  getWeatherNowRequest: (city:any) => void;
 }
 
 const FavouriteLocation: React.FC<IFavourite> = ({
@@ -19,7 +19,7 @@ const FavouriteLocation: React.FC<IFavourite> = ({
   getWeatherNowRequest,
 }) => {
   useEffect(() => {
-    getWeatherNowRequest();
+    getWeatherNowRequest("Ha noi");
   }, []);
 
   if (!propsData.success) {
@@ -28,7 +28,7 @@ const FavouriteLocation: React.FC<IFavourite> = ({
   return (
     <div className="d-flex favourite-wrap">
       <div className="favourite-item">
-        <Link to="/now">
+        <Link to="/now/Ha Noi">
           <div className="recent-location-item featured-location">
             <span className="recent-location-name">
               {propsData.weather.location.name},{" "}
@@ -48,7 +48,7 @@ const FavouriteLocation: React.FC<IFavourite> = ({
         </Link>
       </div>
       <div className="favourite-item">
-        <Link to="/now">
+        <Link to="/now/Ha Noi">
           <div className="recent-location-item featured-location">
             <span className="recent-location-name">
               {propsData.weather.location.name},{" "}

@@ -7,7 +7,6 @@ import HomePage from '../pages/HomePage';
 import Notfound from '../pages/Notfound';
 
 import BoxWeather from '../pages/BoxWeather';
-import axios from 'axios';
 
 const MainRoute = () => {
     return (
@@ -16,7 +15,7 @@ const MainRoute = () => {
             <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path='/search' component={HomePage} />
-                <Route path='/now' component={BoxWeather} />
+                <Route path='/now/:city' component={BoxWeather} />
                 <Route component={Notfound} />
             </Switch>
 

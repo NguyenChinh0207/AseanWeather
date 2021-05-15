@@ -71,15 +71,13 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   //Click button search
-  const searchClick = () => {
-    console.log("text", text);
-    getWeatherNowRequest(text);
-  };
+  // const searchClick = () => {
+  //   console.log("textttttt", text);
+  //   getWeatherNowRequest(text);
+  // };
 
   return (
     <div className="hero-container">
-      {console.log('text',text)
-      }
       <video src="/assets/videos/video-1.mp4" autoPlay loop muted />
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
@@ -98,8 +96,8 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to="/now">
-            <button className="btn-search" onClick={searchClick}>
+          <Link to={`/now/${text}`}>
+            <button className="btn-search">
               <i className="fas fa-search icon-search"></i>
             </button>
           </Link>
@@ -118,7 +116,7 @@ const SearchComponent: React.FC<ISearch> = ({
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to="/now" key={index}>
+              <Link to={`/now/${text}`} key={index}>
                 <div
                   className="suggest"
                   onClick={() => onCityHandler(item)}

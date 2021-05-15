@@ -25,7 +25,14 @@ const initialDaily = {
   }
 }
 
-const Daily = () => {
+interface IDaily{
+  match:any;
+}
+
+const Daily:React.FC<IDaily> = ({match}) => {
+
+  const { city } = match.params;
+
   const [isShow, setIsShow] = useState(false);
   const item = useSelector((state: RootStateOrAny) => state.weatherReducer);
   const [daily, setDaily] = useState(initialDaily);
