@@ -4,7 +4,7 @@
   padding: 100;
   font-family: 'PT Sans', sans-serif;
   text-decoration: none;
-  
+ 
 }
 .loading{
   height: 450px;
@@ -12,9 +12,14 @@
   justify-content: center;
   text-align: center;
   align-items: center;
+  color: grey;
 }
+
+// .temp{
+//   color: #1b4de4;
+// }
 .main-container{
-  background-color: #ebebeb;
+  background: linear-gradient(to top,#f1f2f6 0, #dfe4ea 30%, #ced6e0 100%);
   padding-bottom: 30px;
 }
 .main-container-innner-wrap{

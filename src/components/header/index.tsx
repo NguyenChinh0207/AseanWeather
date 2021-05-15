@@ -94,16 +94,6 @@ const Header = () => {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link
-                to="/favouritees"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                <i className="fas fa-heart heart" style={{ color: "red" }}></i>
-                Favourite
-              </Link>
-            </li>
 
             <li className="nav-item">
               <Link
