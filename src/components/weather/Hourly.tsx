@@ -67,11 +67,11 @@ const Hourly:React.FC<IHourly> = ({match}) => {
       {propsData.weatherHourly.map((item: any) => {
         let d = new Date(item.time.substring(0, 10));
         let date =
-          d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();       
+          d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();  
+
           if(item.time.substring(11, 13) >= timeNow){
             return (
               <div className="container Box-cha" key={item.time_epoch}>
-                {console.log("item",(item.time.substring(11, 13) > 22))}
                 <div className="hourly-card-nfl-header ">
                   <h2 className="date">
                     <span>{date}</span>

@@ -51,7 +51,8 @@ const Header = () => {
     let params: any = {
       token: response.accessToken,
     };
-    if (!localStorage.getItem("userName")) {
+    console.log("respone FB:", response)
+    // if (!localStorage.getItem("userName")) {
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
@@ -59,9 +60,8 @@ const Header = () => {
         )
         .then((res) => {
           setIsShow(false);
+          console.log("data login:",res.data.data.data);
           localStorage.setItem("userName", res.data.data.data.name);
-          // setUser(res.data.data.data.name);
-          // setShowUser(true);
           setShowSignIn(false);
           alert(
             "xin chào, " +
@@ -70,13 +70,13 @@ const Header = () => {
           );
         })
         .catch((error) => console.log(error));
-    }
+    // }
   };
 
   const logoutClick=()=>{
-    localStorage.removeItem("userName");
-    setShowSignIn(true);
-    setShowUser(false);
+    // localStorage.removeItem("userName");
+    // setShowSignIn(true);
+    // setShowUser(false);
   }
 
   return (
@@ -135,7 +135,9 @@ const Header = () => {
                       id="dropdown-basic"
                     ></Dropdown.Toggle>
                     <Dropdown.Menu style={{ backgroundColor: "#73a47" }}>
-                      <Dropdown.Item href="#" onClick={()=>logoutClick()} >Thoát tài khoản</Dropdown.Item>
+                      <Dropdown.Item href="#" 
+                      onClick={()=>logoutClick()} 
+                      >Thoát tài khoản</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>

@@ -8,6 +8,7 @@ const initialDaily = {
   day: {
     condition: {
       icon: "",
+      text:""
     },
     avgtemp_c: 0,
     avgtemp_f: 0,
@@ -83,7 +84,7 @@ const Daily: React.FC<IDaily> = ({ match }) => {
                     </span>
                   </div>
                 </div>
-                <span className="real-feel">{item.day.condition.text}</span>
+
                 <div className="precip">
                   <img
                     alt="rain drop"
@@ -113,24 +114,26 @@ const Daily: React.FC<IDaily> = ({ match }) => {
         setIsShow={() => setIsShow(false)}
       >
         <div className="Box-cha ">
+        <h2 className="cur-con-weather-card__title pt-2">Dự báo</h2>
           <div className="box-con ">
-            <div className="forecast-container flex-grow-1 d-flex align-items-center justify-content-center">
+            <div className="forecast-container d-flex align-items-center justify-content-center">
               <img
                 className="weather-icon"
                 src={daily.day.condition.icon}
-                width="88"
-                height="88"
+                width="110"
+                height="80%"
               />
               <div className="temp-container">
                 <div className="temp" style={{ fontSize: "40px" }}>
                   <p>{daily.day.avgtemp_c}°C</p>
                 </div>
-                <div className="real-feel mt-4">
+                <span className="condition-text">{daily.day.condition.text}</span>
+                <div className="real-feel mt-2">
                   Cảm thấy như {daily.day.avgtemp_f}°F
                 </div>
               </div>
             </div>
-            <div className="forecast-container flex-grow-3">
+            <div className="forecast-container ">
               <table className="table">
                 <thead>
                   <tr>
@@ -173,7 +176,7 @@ const Daily: React.FC<IDaily> = ({ match }) => {
 
         {/* Sunrise / Sun set */}
         <div className="Box-cha">
-          <h2 className="cur-con-weather-card__title">Thời gian mọc / lặn</h2>
+          <h2 className="cur-con-weather-card__title pt-2">Thời gian mọc / lặn</h2>
           <div className="d-flex astro-wrap">
             <div className="forecast-container">
               <table className="table">
