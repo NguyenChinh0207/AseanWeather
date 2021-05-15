@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./searchbg.scss";
 import "../../App.scss";
 import {
@@ -32,11 +32,11 @@ const SearchComponent: React.FC<ISearch> = ({
   const config = {
     url,
     headers: {
-      'Access-Control-Allow-Origin' : '*',
-      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Headers': 'Content-Type'
-      }
+    }
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
@@ -45,13 +45,13 @@ const SearchComponent: React.FC<ISearch> = ({
       setlistCities(response.data);
     };
     loadCities();
-},[])
+  }, [])
 
   //Match
   const handleSearch = (text: string) => {
     if (!text) {
-      setCityMatch([]); 
-      setShow(false);  
+      setCityMatch([]);
+      setShow(false);
     } else {
       setShow(true);
       let matches = listCities.filter((city: any) => {
@@ -71,10 +71,10 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   //Click button search
-  const searchClick=()=>{
-    console.log("text",text);
-    getWeatherNowRequest(text);
-  };
+  // const searchClick = () => {
+  //   console.log("textttttt", text);
+  //   getWeatherNowRequest(text);
+  // };
 
   return (
     <div className="hero-container">
@@ -82,11 +82,11 @@ const SearchComponent: React.FC<ISearch> = ({
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
       <div className="hero-btns">
-        <form className="d-flex ">
+        <div className="d-flex ">
           <input
             type="text"
             className="form-control input_search"
-            placeholder="&#xF002; Tìm kiếm vị trí..."
+            placeholder="&#xF002; Search Location..."
             onChange={(e) => handleSearch(e.target.value)}
             value={text}
             onBlur={() => {
@@ -96,35 +96,37 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-           <Link to="/now">
-            <button className="btn-search" onClick={searchClick} style={{backgroundColor:show?"white":"#1e90ff"}}>
-              <i className="fas fa-search icon-search" style={{color:show?"#747d8c":"#dcdde1"}}></i>
-            </button> 
-           </Link>
-          
-        </form>
+          <Link to={`/now/${text}`}>
+            <button className="btn-search">
+              <i className="fas fa-search icon-search"></i>
+            </button>
+          </Link>
+
+        </div>
+        <br />
+
+        <FavouriteLocation />
+
         <div
           className="suggest-wrap"
           style={{ display: show ? "block" : "none" }}
-        > 
+        >
           {
-            cityMatch.length==0 &&(<div className="suggest">Không tìm thấy kết quả nào .</div>)
-          }      
+            cityMatch.length == 0 && (<div className="suggest">Không tìm thấy kết quả nào .</div>)
+          }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to="/now" key={index}>
-              <div
-                className="suggest"
-                onClick={() => onCityHandler(item)}
-              >
-                <i className="fas fa-search search-item-icon"></i>
-                {item.name}
-              </div>
+              <Link to={`/now/${text}`} key={index}>
+                <div
+                  className="suggest"
+                  onClick={() => onCityHandler(item)}
+                >
+                  <i className="fas fa-search search-item-icon"></i>
+                  {item.name}
+                </div>
               </Link>
             ))}
         </div>
-            <br />
-            <FavouriteLocation />
       </div>
     </div>
   );

@@ -4,24 +4,24 @@ import {EmailShareButton, FacebookShareButton,FacebookIcon, EmailIcon} from "rea
 
 import "./navbar.scss";
 
-const NavbarWeather = ({ propsData }: any) => {
+const NavbarWeather = ({ propsData, city }: any) => {
   const [click, setClick] = useState(true);
   const handleClick = () => setClick(!click);
 
   return (
     <div className="container"style={{padding:"20px 0"}}>
       <div id="btn-wrap">
-        <NavLink to="/now" activeClassName="active">
+        <NavLink to={`/now/${city}`} activeClassName="active">
           <button type="button" id="btn" className="btn-navbar ">
             NOW
           </button>
         </NavLink>
-        <NavLink to="/hourly" activeClassName="active">
+        <NavLink to={`/hourly/${city}`} activeClassName="active">
           <button type="button" id="btn" className="btn-navbar">
             HOURLY
           </button>
         </NavLink>
-        <NavLink to="/daily" activeClassName="active">
+        <NavLink to={`/daily/${city}`} activeClassName="active">
           <button type="button" id="btn" className="btn-navbar">
             DAILY
           </button>
@@ -41,10 +41,10 @@ const NavbarWeather = ({ propsData }: any) => {
         </div>
         <div className="favourite-wrap">
             <button  onClick={handleClick}><i className="fas fa-heart heart" style={{color: click?"#a4b0be":"red"}} title="Thêm vào yêu thích"></i></button>
-             <EmailShareButton url={'https://aseanweather.herokuapp.com/now'}  className="shareEmail p-2" title="Chia sẻ qua email" >
+             <EmailShareButton url={`https://aseanweather.herokuapp.com/now/${city}`}  className="shareEmail p-2" title="Chia sẻ qua email" >
                 <EmailIcon size={32} round={true} />
              </EmailShareButton>
-             <FacebookShareButton url={'https://aseanweather.herokuapp.com/now'} quote={' AseanWeather'} className="share" title="Chia sẻ lên Facebook">
+             <FacebookShareButton url={`https://aseanweather.herokuapp.com/now/${city}`} quote={' AseanWeather'} className="share" title="Chia sẻ lên Facebook">
                  <FacebookIcon  size={32} round={true}/>
             </FacebookShareButton>
         </div>
