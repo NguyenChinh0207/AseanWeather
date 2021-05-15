@@ -47,12 +47,11 @@ const Header = () => {
   });
 
   const  responseFacebook = (response: any) => {
-    // localStorage.setItem("userName", response.name);
     let params: any = {
       token: response.accessToken,
     };
     console.log("respone FB:", response)
-    // if (!localStorage.getItem("userName")) {
+    if (!localStorage.getItem("userName")) {
       axios
         .post(
           `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
@@ -62,7 +61,6 @@ const Header = () => {
           setIsShow(false);
           console.log("res:",res);
           console.log("res data:",res.data);
-          console.log("data login:",res.data.data.data);
           localStorage.setItem("userName", res.data.data.data.name);
           setShowSignIn(false);
           alert(
@@ -72,13 +70,13 @@ const Header = () => {
           );
         })
         .catch((error) => console.log(error));
-    // }
+    }
   };
 
   const logoutClick=()=>{
-    // localStorage.removeItem("userName");
-    // setShowSignIn(true);
-    // setShowUser(false);
+    localStorage.removeItem("userName");
+    setShowSignIn(true);
+    setShowUser(false);
   }
 
   return (
