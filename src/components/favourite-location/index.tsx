@@ -18,16 +18,17 @@ const FavouriteLocation: React.FC<IFavourite> = ({
   propsData,
   getWeatherNowRequest,
 }) => {
-  useEffect(() => {
-    getWeatherNowRequest("Ha noi");
-  }, []);
+
+  // useEffect(() => {
+  //   getWeatherNowRequest("Ha noi");
+  // }, []);
 
   if (!propsData.success) {
     return <div>Loading ... </div>;
   }
   return (
     <div className="d-flex favourite-wrap">
-      <div className="favourite-item">
+      {/* <div className="favourite-item">
         <Link to="/now/Ha Noi">
           <div className="recent-location-item featured-location">
             <span className="recent-location-name">
@@ -66,7 +67,7 @@ const FavouriteLocation: React.FC<IFavourite> = ({
             </span>
           </div>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
