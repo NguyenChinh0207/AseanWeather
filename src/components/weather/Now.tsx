@@ -3,6 +3,9 @@ import config from "../../config/AirQuality";
 import winDirConvert from "../../config/WindDir";
 const Now = ({ propsData }: any) => {
   
+  // if(!propsData.success){
+  //   return <div>Loading...</div>
+  // }
   return (
     <div className="container">
       <div className="weather-container">

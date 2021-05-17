@@ -5,6 +5,7 @@ import CommonModal from "../modal/CommonModal";
 import { Dropdown } from "react-bootstrap";
 import axios from "axios";
 import FacebookLogin from "react-facebook-login";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -14,6 +15,7 @@ const Header = () => {
   const [showSignIn, setShowSignIn] = useState(true);
   const [showUser, setShowUser] = useState(false);
   // const [user, setUser] = useState("");
+  const dispatch = useDispatch();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -54,6 +56,7 @@ const Header = () => {
       token: response.accessToken,
     };
     console.log("respone FB:", response)
+    localStorage.setItem("userID", response.userID);
     if (!localStorage.getItem("userName")) {
       axios
         .post(

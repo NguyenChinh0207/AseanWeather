@@ -56,3 +56,45 @@ export const searchWeatherFail = (payload:any) => {
         payload
     }
 }
+
+export const getWeatherFavoriteSuccess = (payload:any) => {
+    return {
+        type: WeatherActionTypes.GET_WEATHER_FAVOURITE_SUCCESS,
+        payload
+    }
+}
+
+export const getWeatherFavoriteFail = (payload:any) => {
+    return {
+        type: WeatherActionTypes.GET_WEATHER_FAVOURITE_FAIL,
+        payload
+    }
+}
+
+export const addWeatherSuccess = (payload:any) => {
+    return {
+        type: WeatherActionTypes.ADD_WEATHER_SUCCESS,
+        payload
+    }
+}
+
+export const addWeatherFail = (payload:any) => {
+    return {
+        type: WeatherActionTypes.ADD_WEATHER_FAIL,
+        payload
+    }
+}
+
+export const removeWeatherSuccess = (payload:any) => {
+    return {
+        type: WeatherActionTypes.REMOVE_WEATHER_SUCCESS,
+        payload
+    }
+}
+
+export const removeWeatherFail = (payload:any) => {
+    return {
+        type: WeatherActionTypes.REMOVE_WEATHER_FAIL,
+        payload
+    }
+}

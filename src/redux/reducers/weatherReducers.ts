@@ -15,7 +15,9 @@ interface IState {
     weatherHourly:any[],
     weatherDaily:any[],
     astro:any[],
-    location:[]
+    location:[],
+    favorite:[],
+    lo:boolean
 }
 
 const initalState:IState = {
@@ -23,13 +25,15 @@ const initalState:IState = {
     loading: false,
     loaded: false,
     load:false,
+    lo:false,
     error: '',
     data: {},
     weather: [] ,
     weatherHourly:[],
     weatherDaily:[],
     astro:[],
-    location:[]
+    location:[],
+    favorite:[]
 }
 
 export const weatherReducer = (state = initalState, action:IAction) => {
@@ -88,6 +92,20 @@ export const weatherReducer = (state = initalState, action:IAction) => {
             return {
                 ...state,
                 success: true,
+                error: action.payload
+            }
+        }
+        case WeatherActionTypes.GET_WEATHER_FAVOURITE_SUCCESS: {
+            return {
+                ...state,
+                lo: true,
+                favorite: action.payload
+            }
+        }
+        case WeatherActionTypes.GET_WEATHER_FAVOURITE_FAIL: {
+            return {
+                ...state,
+                lo: true,
                 error: action.payload
             }
         }
