@@ -223,6 +223,27 @@ video {
     color: #7f8c8d;
     margin-right: 15px;
   }
+
+//view panel people
+.view-fixed-panel{
+  width: 118px;
+    position: fixed;
+    right: 0;
+    bottom: 80px;
+    z-index: 999;
+    background-color: #FEB58A;
+    padding: 10px 0px;
+    border-radius: 25px 0 0 25px;
+}
+.view-fixed-panel i,.view-fixed-panel span{
+  color: #313131;
+}
+.view-fixed-panel i{
+  padding-left: 10px;
+  padding-right: 4px;
+}
+
+
   // @media only screen and (max-width: 600px) {
   //   .search {
   //       padding: 20px 15%;

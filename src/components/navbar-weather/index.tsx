@@ -10,14 +10,6 @@ import "./navbar.scss";
 
 const NavbarWeather = ({ propsData }: any) => {
   const [click, setClick] = useState(true);
-  
-  // useEffect(() => {
-  //   const loadCities = async () => {
-  //     const response = await axios(config);
-     
-  //   };
-  //   loadCities();
-  // }, [])
 
   const handleClick = () => {
     if (localStorage.getItem("userName")) {
@@ -36,7 +28,7 @@ const NavbarWeather = ({ propsData }: any) => {
     return name;
   }
   return (
-    <div className="container" style={{ paddingTop: "20px" }}>
+    <div className="container navbar-weather-wrap" >
       <div id="btn-wrap">
         <NavLink
           to={`/now/${propsData.location.name}`}
@@ -62,12 +54,7 @@ const NavbarWeather = ({ propsData }: any) => {
             DAILY
           </button>
         </NavLink>
-        <NavLink to="/favourites" activeClassName="active">
-          <button type="button" id="btn" className="btn-navbar">
-            <i className="fas fa-heart heart-btn"></i>
-            FAVOURITE
-          </button>
-        </NavLink>
+        
       </div>
 
       <div className="location-wrap d-flex">

@@ -126,8 +126,15 @@ const SearchComponent: React.FC<ISearch> = ({
         <br />
         <FavouriteLocation />
       </div>
+
+      {/* view số người xem trang web từ trước tới giờ */}
+      <div className="view-fixed-panel">
+        <i className="fas fa-eye"></i>
+        <span>1200</span>              
+      </div>
     </div>
-  );
+ 
+ );
 };
 
 const mapStateToProps = (state: any) => {
