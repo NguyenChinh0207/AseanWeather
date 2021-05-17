@@ -101,12 +101,12 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             DAILY
           </button>
         </NavLink>
-        <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
+        {/* <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
           <button type="button" id="btn" className="btn-navbar">
             <i className="fas fa-heart heart-btn"></i>
             FAVOURITE
           </button>
-        </NavLink>
+        </NavLink> */}
       </div>
 
       <div className="location-wrap d-flex">
