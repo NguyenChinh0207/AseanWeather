@@ -112,7 +112,7 @@ const SearchComponent: React.FC<ISearch> = ({
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to={`/now/${text}`} key={index}>
+              <Link to={`/now/${item.lable}`} key={index}>
                 <div
                   className="suggest"
                   onClick={() => onCityHandler(item)}

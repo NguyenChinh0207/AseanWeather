@@ -12,7 +12,6 @@ const AdminDashboard = () => {
 				<Switch>
 						<Route path="/dashboard" exact  component={MainDashBoard} />
 						<Route path="/dashboard/home"  component={MainDashBoard} />
-						<Route path="/dashboard/cities/setting"  component={MainDashBoard} />
 						<Route path="/dashboard/users/setting" component={MainDashBoard} />
 				</Switch>
 			</div>

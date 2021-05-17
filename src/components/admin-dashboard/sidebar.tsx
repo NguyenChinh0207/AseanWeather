@@ -16,12 +16,6 @@ const Sidebar = () => {
 	  </NavLink>
         <div className="btn-main-wrap">
           <div>
-            <NavLink to="/dashboard/cities/setting" activeClassName="is-active">
-              <div className="btn-main-text btn-main-item">
-                <i className="fas fa-map-marker-alt black-text"></i>
-                <span className="black-text">{"  "}Quản Lý Địa Phương</span>
-              </div>
-            </NavLink>
             <NavLink to="/dashboard/users/setting" activeClassName="is-active">
               <div className="btn-main-text btn-main-item">
                 <i className="fas fa-user-cog black-text"></i>

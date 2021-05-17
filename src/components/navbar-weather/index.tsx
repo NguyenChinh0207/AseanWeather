@@ -46,7 +46,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       }
     })
   }
-
+// cái gọi setstate trong useEffect này anh sửa lại đi, nó log lỗi maximum nhiều lắm
   useEffect(() => {
     setFv();
     setDt();
@@ -66,6 +66,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     }
   }
 
+  //config city để share email đúng
   let i: number = 0;
   const configCityShare = (name: string) => {
     for (i = 0; i < name.length - 1; i++) {
