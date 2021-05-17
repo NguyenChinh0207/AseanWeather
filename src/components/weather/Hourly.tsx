@@ -9,6 +9,7 @@ import {
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { getWeatherHourlyRequest } from "../../redux/effects/weatherEffects";
+import winDirConvert from "../../config/WindDir";
 
 interface IContextAwareToggle {
   children?: any;
@@ -131,14 +132,14 @@ const Hourly:React.FC<IHourly> = ({match}) => {
                               <img src="/assets/icons/compass.png" alt="" />
                               {"  "}
                                 Hướng gió</th>
-                              <td scope="col">{item.wind_degree} °</td>
+                              <td scope="col">{item.wind_degree} °{" "}{winDirConvert(item.wind_dir)}</td>
                             </tr>
                             <tr>
                               <th scope="col">
                               <img src="/assets/icons/UV.png" alt="" />
                               {"  "}
                                 Chỉ số UV</th>
-                              <td scope="col">{item.uv}</td>
+                              <td scope="col">{item.uv}/10</td>
                             </tr>
                           </thead>
                         </table>

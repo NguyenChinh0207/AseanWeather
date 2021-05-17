@@ -85,37 +85,36 @@
   .menu-icon {
     display: none;
   }
-  .btn_submit{
-    padding: 10px 75px;
-    border-radius: 23px;
-    font-size: 20px;
-    width: 80%;
-    margin:auto;
-    box-shadow: white 0px 7px 29px 0px;
-  }
-  .form-group{
-    font-size: 25px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    
-  }
-  .form-login-wrap{
-    display: flex;
-    flex-direction: column;
-}
+  // .btn_submit{
+  //   padding: 10px 75px;
+  //   border-radius: 23px;
+  //   font-size: 20px;
+  //   width: 80%;
+  //   margin:auto;
+  //   box-shadow: white 0px 7px 29px 0px;
+  // }
+  // .form-group{
+  //   font-size: 25px;
+  //   display: flex;
+  //   text-align: center;
+  //   align-items: center;
+  // }
+//   .form-login-wrap{
+//     display: flex;
+//     flex-direction: column;
+// }
 
-  .input-item{
-    padding-left: 20px;
-    width: 80% !important;
-    margin: auto;
-    border-radius: 23px;
-    background-color: #f1f2f6 !important;
-  }
-  .error-text{
-    color: red;
-    margin-top: 8px;
-  }
+  // .input-item{
+  //   padding-left: 20px;
+  //   width: 80% !important;
+  //   margin: auto;
+  //   border-radius: 23px;
+  //   background-color: #f1f2f6 !important;
+  // }
+  // .error-text{
+  //   color: red;
+  //   margin-top: 8px;
+  // }
   @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;

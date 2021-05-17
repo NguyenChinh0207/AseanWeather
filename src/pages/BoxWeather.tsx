@@ -50,7 +50,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({propsData, cityData, getWeatherFavor
           </Route>
           <Route path="/hourly/:city" component={Hourly} />
           <Route path="/daily/:city" component={Daily} />
-          <Route path="/favourites/:city" component={Favourite} />
+          {/* <Route path="/favourites/:city" component={Favourite} /> */}
         </Switch>
       </Router>
       </div>

@@ -46,7 +46,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       }
     })
   }
-
+// cái gọi setstate trong useEffect này anh sửa lại đi, nó log lỗi maximum nhiều lắm
   useEffect(() => {
     setFv();
     setDt();
@@ -66,6 +66,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     }
   }
 
+  //config city để share email đúng
   let i: number = 0;
   const configCityShare = (name: string) => {
     for (i = 0; i < name.length - 1; i++) {
@@ -75,7 +76,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   }
 
   return (
-    <div className="container" style={{ paddingTop: "20px" }}>
+    <div className="container navbar-weather-wrap" >
       <div id="btn-wrap">
         <NavLink
           to={`/now/${propsData.location.name}`}
@@ -101,12 +102,12 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             DAILY
           </button>
         </NavLink>
-        <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
+        {/* <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
           <button type="button" id="btn" className="btn-navbar">
             <i className="fas fa-heart heart-btn"></i>
             FAVOURITE
           </button>
-        </NavLink>
+        </NavLink> */}
       </div>
 
       <div className="location-wrap d-flex">

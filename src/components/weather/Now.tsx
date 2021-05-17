@@ -33,7 +33,7 @@ const Now = ({ propsData }: any) => {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="condition-text-now">
                 <span className="condition-text">{propsData.current.condition.text}</span>
               </div>
             </div>
@@ -114,8 +114,68 @@ const Now = ({ propsData }: any) => {
           </div>
         </div>
       </div>
-      {/* Sunrise / Sun set */}
+    
+      {/* Air Quality */}
       <div className="weather-container">
+        <div className="cur-con-weather-card">
+          <h2 className="cur-con-weather-card__title">CHẤT LƯỢNG KHÔNG KHÍ</h2>
+
+          <div className="d-flex air-quality">          
+            <div className="forecast-container">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <h5 className="air-quality-title">
+                      <span className="aqi-text aqi-text-main"  style={{ color: "black", fontWeight: "bold" }}>
+                        {config.aqiNumberToString(
+                          Object.values(propsData.current.air_quality)[6]
+                        )}
+                      </span>
+                    </h5>
+                    <span className="aqi-text aqi-text-detail">
+                      {config.aqiIndexDetail(
+                        Object.values(propsData.current.air_quality)[6]
+                      )}
+                    </span>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div className="forecast-container">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Khí CO</th>
+                    <td scope="col">
+                      {Math.round(propsData.current.air_quality.co)} μg/m3
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Ozon</th>
+                    <td scope="col">
+                      {Math.round(propsData.current.air_quality.o3)} μg/m3
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Khí SO2</th>
+                    <td scope="col">
+                      {Math.round(propsData.current.air_quality.so2)} μg/m3
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Khí NO2</th>
+                    <td scope="col">
+                      {Math.round(propsData.current.air_quality.no2)} μg/m3
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        {/* Sunrise / Sun set */}
+        <div className="weather-container">
         <div className="cur-con-weather-card">
           <h2 className="cur-con-weather-card__title">Thời gian mọc / lặn</h2>
           <div className="d-flex astro-wrap">
@@ -188,71 +248,14 @@ const Now = ({ propsData }: any) => {
                       {propsData.forecast.forecastday[0].astro.moonset}
                     </td>
                   </tr>
+      
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-      {/* Air Quality */}
-      <div className="weather-container">
-        <div className="cur-con-weather-card">
-          <h2 className="cur-con-weather-card__title">CHẤT LƯỢNG KHÔNG KHÍ</h2>
-
-          <div className="d-flex air-quality">          
-            <div className="forecast-container">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <h5 className="air-quality-title">
-                      <span className="aqi-text aqi-text-main"  style={{ color: "black", fontWeight: "bold" }}>
-                        {config.aqiNumberToString(
-                          Object.values(propsData.current.air_quality)[6]
-                        )}
-                      </span>
-                    </h5>
-                    <span className="aqi-text aqi-text-detail">
-                      {config.aqiIndexDetail(
-                        Object.values(propsData.current.air_quality)[6]
-                      )}
-                    </span>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-            <div className="forecast-container">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Khí CO</th>
-                    <td scope="col">
-                      {Math.round(propsData.current.air_quality.co)} μg/m3
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="col">Ozon</th>
-                    <td scope="col">
-                      {Math.round(propsData.current.air_quality.o3)} μg/m3
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="col">Khí SO2</th>
-                    <td scope="col">
-                      {Math.round(propsData.current.air_quality.so2)} μg/m3
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="col">Khí NO2</th>
-                    <td scope="col">
-                      {Math.round(propsData.current.air_quality.no2)} μg/m3
-                    </td>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };

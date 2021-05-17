@@ -20,6 +20,7 @@ const Header = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  //xử lý button
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -29,14 +30,15 @@ const Header = () => {
   };
 
   window.addEventListener("resize", showButton);
-
+  
+  //Kiểm tra local storage
   let userLogin;
   if (localStorage.getItem("userName")) {
     userLogin = localStorage.getItem("userName");
   } else {
     userLogin = "";
   }
-
+  
   useEffect(() => {
     if (localStorage.getItem("userName")) {
       setShowSignIn(false);
@@ -48,6 +50,7 @@ const Header = () => {
     }
   });
 
+  //Xử lý response facebook
   const  responseFacebook = (response: any) => {
     let params: any = {
       token: response.accessToken,
@@ -76,6 +79,7 @@ const Header = () => {
     }
   };
 
+  //xử lý log out
   const logoutClick=()=>{
     localStorage.removeItem("userName");
     setShowSignIn(true);
@@ -93,6 +97,7 @@ const Header = () => {
               <span>Weather</span>
             </div>
           </Link>
+
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
@@ -107,7 +112,15 @@ const Header = () => {
                 <i className="fas fa-search"></i>
               </Link>
             </li>
-
+            <li className="nav-item">
+              <Link
+                to="/favourites"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >               
+                Favourite
+              </Link>
+            </li>
             <li
               className="nav-item"
               style={{ display: showSignIn ? "block" : "none" }}
@@ -176,9 +189,9 @@ const Header = () => {
             <span>
               Are you Admin of Asean Weather?
               <Link
-                to="#"
+                to="/sign-in"
                 style={{ color: "#fa8231" }}
-                onClick={() => setShowModal(true)}
+                // onClick={() => setShowModal(true)}
               >
                 SignIn
               </Link>
@@ -187,7 +200,7 @@ const Header = () => {
         </div>
       </CommonModal>
 
-      <CommonModal
+      {/* <CommonModal
         title="SignIn Admin"
         show={showModal}
         size="md"
@@ -223,7 +236,7 @@ const Header = () => {
             </div>
           </form>
         </div>
-      </CommonModal>
+      </CommonModal> */}
     </>
   );
 };

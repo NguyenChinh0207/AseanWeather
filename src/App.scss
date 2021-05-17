@@ -6,8 +6,12 @@
   text-decoration: none;
  
 }
+.dasboard-main{
+  min-height: 650px;
+  min-width: 100%;
+}
 .loading{
-  height: 450px;
+  height: 500px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -18,9 +22,11 @@
 // .temp{
 //   color: #1b4de4;
 // }
+
 .main-container{
   background: linear-gradient(to top,#f1f2f6 0, #dfe4ea 30%, #ced6e0 100%);
   padding-bottom: 30px;
+  min-height: 600px;
 }
 .main-container-innner-wrap{
   width: 75%;

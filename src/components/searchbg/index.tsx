@@ -112,7 +112,7 @@ const SearchComponent: React.FC<ISearch> = ({
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to={`/now/${text}`} key={index}>
+              <Link to={`/now/${item.lable}`} key={index}>
                 <div
                   className="suggest"
                   onClick={() => onCityHandler(item)}
@@ -126,8 +126,15 @@ const SearchComponent: React.FC<ISearch> = ({
         <br />
         <FavouriteLocation />
       </div>
+
+      {/* view số người xem trang web từ trước tới giờ */}
+      <div className="view-fixed-panel">
+        <i className="fas fa-eye"></i>
+        <span>1200</span>              
+      </div>
     </div>
-  );
+ 
+ );
 };
 
 const mapStateToProps = (state: any) => {
