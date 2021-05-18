@@ -27,41 +27,47 @@ const initialDaily = {
 };
 
 interface IDaily {
-  match: any;
 }
 
-const Daily: React.FC<IDaily> = ({ match }) => {
-  const { city } = match.params;
-
+const Daily: React.FC<IDaily> = () => {
   const [isShow, setIsShow] = useState(false);
   const item = useSelector((state: RootStateOrAny) => state.weatherReducer);
   const [daily, setDaily] = useState(initialDaily);
   const dispatch = useDispatch();
 
+  // Khi component được sinh ra thì chạy hàm để lấy danh sách daily
   useEffect(() => {
     dispatch(getWeatherDailyRequest(item.weather.location.name));
   }, []);
 
+  // Mở modal view detail
   const viewDetail = (day: any) => {
     setDaily(day);
     setIsShow(true);
   };
 
+  // điều kiện nếu danh sách thời tiết chưa load xong
   if (!item.loaded) {
     return <div className="loading">Loading...</div>;
   }
+
+  // Format lại ngày tháng theo ngày tháng năm
   const dateForrmat = (dateItem: any) => {
     let d = new Date(dateItem);
     return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
   };
+
   return (
     <>
+      {/* Thời gian hiền thị của trang daily, hiển thị trong 3 ngày gần nhất */}
       <p className="module-title container">
         THỜI TIẾT BA NGÀY: {dateForrmat(item.weatherDaily[0].date)}{" "}
         <span style={{ color: "red" }}>to</span>{" "}
         {dateForrmat(item.weatherDaily[2].date)}
       </p>
-      <div className="daily-wrap container">
+      
+      {/* Hiển thị danh sách dự báo thời tiết trong 3 ngày của địa phương được chọn */}
+      <div className="daily-wrap container">       
         {item.weatherDaily.map((item: any) => {
           return (
             <div className="box-daily" key={item.date}>
@@ -106,6 +112,8 @@ const Daily: React.FC<IDaily> = ({ match }) => {
           );
         })}
       </div>
+ 
+      {/* Hiển thị phần detail của từng ngày được chọn trong 3 ngày đó */}
       <CommonModal
         className="modalDaily"
         title={`Date: ${dateForrmat(daily.date)}`}

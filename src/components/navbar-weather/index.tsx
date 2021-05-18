@@ -6,7 +6,7 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from "react-share";
-import { addWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
+import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
 
 import "./navbar.scss";
 
@@ -20,45 +20,44 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   )
   const dispatch = useDispatch();
 
-  const setFv = () =>{
+  // Hàm kiểm tra xem địa phương này có nằm trong phần yêu thích hay k 
+  const setFv = () => {
     city.listCity.map((list: any) => {
       favorite.map((item: any) => {
         if (list.id == item.cityId) {
           if (propsData.location.name.toUpperCase() == list.lable.toUpperCase()) {
             setClick(false);
           }
-          // else{
-          //   setClick(true);
-          // }
         }
       })
     })
   }
 
+  // Lấy dữ liệu của địa phương như Id người dùng và id city
   const setDt = () => {
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         setData({
-      // userId: userID,
-          userId: "1403943429941869",
-          cityId: list.id
+          userId: userID,
+          cityId: list.id,
         });
       }
     })
   }
-// cái gọi setstate trong useEffect này anh sửa lại đi, nó log lỗi maximum nhiều lắm
+
   useEffect(() => {
     setFv();
     setDt();
-  }, [setFv,setDt])
+  }, [])
 
+  // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
-    // if (true) {
- if(localStorage.getItem("userName")){
+    if (localStorage.getItem("userName")) {
       if (click) {
         dispatch(addWeatherFavoriteRequest(data))
         setClick(false)
       } else {
+        dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
         setClick(true)
       }
     } else {
@@ -77,6 +76,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
 
   return (
     <div className="container navbar-weather-wrap" >
+
+      {/* thanh navbar weather */}
       <div id="btn-wrap">
         <NavLink
           to={`/now/${propsData.location.name}`}
@@ -102,21 +103,21 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             DAILY
           </button>
         </NavLink>
-        {/* <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
-          <button type="button" id="btn" className="btn-navbar">
-            <i className="fas fa-heart heart-btn"></i>
-            FAVOURITE
-          </button>
-        </NavLink> */}
       </div>
 
       <div className="location-wrap d-flex">
+
+        {/* tên địa phương với quốc gia của địa phương đấy */}
         <div className="location-title-wrap">
           <span className="location-title">
             {propsData.location.name}, {propsData.location.country}
           </span>
         </div>
+
         <div className="favourite-wrap">
+
+          {/* Hiển thị xem đó có phải là địa phương yêu thích k */}
+          {/* Nếu đỏ là địa phương yêu thích, click vào thì bỏ yêu thích và ngược lại */}
           <button onClick={handleClick}>
             <i
               className="fas fa-heart heart"
@@ -124,6 +125,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
               title="Thêm vào yêu thích"
             ></i>
           </button>
+
+          {/* Nút share cho Email */}
           <EmailShareButton
             url={`https://aseanweather.herokuapp.com/now/${configCityShare(propsData.location.name)}`}
             subject="ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"
@@ -135,6 +138,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           >
             <i className="fas fa-envelope gmail"></i>
           </EmailShareButton>
+
+          {/* Nút share cho facebook */}
           <FacebookShareButton
             url={`https://aseanweather.herokuapp.com/now/${propsData.location.name}`}
             quote={" AseanWeather"}

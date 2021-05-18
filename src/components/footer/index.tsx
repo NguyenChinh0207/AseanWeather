@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
+    // Phần footer
     <div className="footer-container" >
       <section className="social-media">
         <div className="social-media-wrap">

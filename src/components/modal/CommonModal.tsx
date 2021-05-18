@@ -4,6 +4,7 @@ import './modal.scss';
 
 const CommonModal = ({show, setIsShow, title, size,  children}: any) => {
     return (
+        // Common modal dùng chung
         <>
             <Modal
                 size={size}
