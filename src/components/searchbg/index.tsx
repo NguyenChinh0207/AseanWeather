@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { isBuffer } from "node:util";
 
 interface ISearch {
   propsData: any;
@@ -38,12 +39,29 @@ const SearchComponent: React.FC<ISearch> = ({
       'Access-Control-Allow-Headers': 'Content-Type'
     }
   }
+
+  const getTotalView = ()=>{
+    var viewTotal: number;
+    if(!sessionStorage.getItem("ipAddress"))
+    {
+      axios
+        .get(
+          `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+        ).then((res)=>{
+          sessionStorage.setItem("ipAddress",res.data.data.ip)
+          // console.log(res.data.data.ip);
+          // console.log(res.data.data.count);
+          localStorage.setItem("count",res.data.data.count);
+        })
+      }
+  }
   //Load api tìm kiếm địa phương
   useEffect(() => {
     const loadCities = async () => {
       const response = await axios(config);
       setlistCities(response.data);
     };
+    getTotalView(); 
     loadCities();
   }, [])
 
@@ -62,7 +80,7 @@ const SearchComponent: React.FC<ISearch> = ({
     }
     setText(text);
   };
-
+  
   //Click item filter
   const onCityHandler = (item: any) => {
     setText(item.name);
@@ -130,7 +148,7 @@ const SearchComponent: React.FC<ISearch> = ({
       {/* view số người xem trang web từ trước tới giờ */}
       <div className="view-fixed-panel">
         <i className="fas fa-eye"></i>
-        <span>1200</span>              
+        <span>{localStorage.getItem("count")}</span>              
       </div>
     </div>
  
