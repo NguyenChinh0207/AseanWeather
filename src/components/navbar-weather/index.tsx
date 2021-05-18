@@ -137,8 +137,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             <FacebookShareButton
               url={`https://aseanweather.herokuapp.com/now/${propsData.location.name}/`}
               // url={`https://peing.net/ja/`}
-              quote={"ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"}
-              hashtag={"#"}
+              quote={`Cùng xem thời tiết tại ${propsData.location.name} cùng AseanWeather `}
+              // hashtag={`#${propsData.location.name}`}
               className="share"
               title="Chia sẻ lên Facebook"
               >
