@@ -8,6 +8,7 @@ import {
 } from "react-share";
 import { addWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
 
+
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
@@ -18,9 +19,10 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       cityId: ""
     }
   )
+
   const dispatch = useDispatch();
 
-  const setFv = () =>{
+  const setFv = () => {
     city.listCity.map((list: any) => {
       favorite.map((item: any) => {
         if (list.id == item.cityId) {
@@ -39,22 +41,22 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         setData({
-      // userId: userID,
+          // userId: userID,
           userId: "1403943429941869",
           cityId: list.id
         });
       }
     })
   }
-// cái gọi setstate trong useEffect này anh sửa lại đi, nó log lỗi maximum nhiều lắm
+  // cái gọi setstate trong useEffect này anh sửa lại đi, nó log lỗi maximum nhiều lắm
   useEffect(() => {
     setFv();
     setDt();
-  }, [setFv,setDt])
+  }, [setFv, setDt])
 
   const handleClick = async () => {
     // if (true) {
- if(localStorage.getItem("userName")){
+    if (localStorage.getItem("userName")) {
       if (click) {
         dispatch(addWeatherFavoriteRequest(data))
         setClick(false)
@@ -75,77 +77,77 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     return name;
   }
 
-  return (
-    <div className="container navbar-weather-wrap" >
-      <div id="btn-wrap">
-        <NavLink
-          to={`/now/${propsData.location.name}`}
-          activeClassName="active"
-        >
-          <button type="button" id="btn" className="btn-navbar ">
-            NOW
-          </button>
-        </NavLink>
-        <NavLink
-          to={`/hourly/${propsData.location.name}`}
-          activeClassName="active"
-        >
-          <button type="button" id="btn" className="btn-navbar">
-            HOURLY
-          </button>
-        </NavLink>
-        <NavLink
-          to={`/daily/${propsData.location.name}`}
-          activeClassName="active"
-        >
-          <button type="button" id="btn" className="btn-navbar">
-            DAILY
-          </button>
-        </NavLink>
-        {/* <NavLink to={`/favourites/${propsData.location.name}`} activeClassName="active">
-          <button type="button" id="btn" className="btn-navbar">
-            <i className="fas fa-heart heart-btn"></i>
-            FAVOURITE
-          </button>
-        </NavLink> */}
-      </div>
 
-      <div className="location-wrap d-flex">
-        <div className="location-title-wrap">
-          <span className="location-title">
-            {propsData.location.name}, {propsData.location.country}
-          </span>
-        </div>
-        <div className="favourite-wrap">
-          <button onClick={handleClick}>
-            <i
-              className="fas fa-heart heart"
-              style={{ color: click ? "#a4b0be" : "red" }}
-              title="Thêm vào yêu thích"
-            ></i>
+
+  return (
+      <div className="container navbar-weather-wrap" id="container navbar-weather-wrap">
+        <div id="btn-wrap">
+          <NavLink
+            to={`/now/${propsData.location.name}`}
+            activeClassName="active"
+          >
+            <button type="button" id="btn" className="btn-navbar ">
+              NOW
           </button>
-          <EmailShareButton
-            url={`https://aseanweather.herokuapp.com/now/${configCityShare(propsData.location.name)}`}
-            subject="ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"
-            body={
-              `Xin Chào, Mời bạn xem thời tiết hôm nay của ${propsData.location.name}` + " trong đường link sau: "
-            }
-            className="shareEmail p-2 "
-            title="Chia sẻ qua email"
+          </NavLink>
+          <NavLink
+            to={`/hourly/${propsData.location.name}`}
+            activeClassName="active"
           >
-            <i className="fas fa-envelope gmail"></i>
-          </EmailShareButton>
-          <FacebookShareButton
-            url={`https://aseanweather.herokuapp.com/now/${propsData.location.name}`}
-            quote={" AseanWeather"}
-            className="share"
-            title="Chia sẻ lên Facebook"
+            <button type="button" id="btn" className="btn-navbar">
+              HOURLY
+          </button>
+          </NavLink>
+          <NavLink
+            to={`/daily/${propsData.location.name}`}
+            activeClassName="active"
           >
-            <FacebookIcon size={30} round={true} />
-          </FacebookShareButton>
+            <button type="button" id="btn" className="btn-navbar">
+              DAILY
+          </button>
+          </NavLink>
+      
+        </div>
+
+        <div className="location-wrap d-flex">
+          <div className="location-title-wrap">
+            <span className="location-title">
+              {propsData.location.name}, {propsData.location.country}
+            </span>
+          </div>
+          <div className="favourite-wrap">
+            <button onClick={handleClick}>
+              <i
+                className="fas fa-heart heart"
+                style={{ color: click ? "#a4b0be" : "red" }}
+                title="Thêm vào yêu thích"
+              ></i>
+            </button>
+            <EmailShareButton
+              url={`https://aseanweather.herokuapp.com/now/${configCityShare(propsData.location.name)}`}
+              subject="ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"
+              body={
+                `Xin Chào, Mời bạn xem thời tiết hôm nay của ${propsData.location.name}` + " trong đường link sau: "
+              }
+              className="shareEmail p-2 "
+              title="Chia sẻ qua email"
+            >
+              <i className="fas fa-envelope gmail"></i>
+            </EmailShareButton>
+            <FacebookShareButton
+              url={`https://aseanweather.herokuapp.com/now/${propsData.location.name}/`}
+              // url={`https://peing.net/ja/`}
+              quote={"ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"}
+              hashtag={"#"}
+              className="share"
+              title="Chia sẻ lên Facebook"
+              >
+              <FacebookIcon size={30} round={true} />
+              {/* <img src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="" /> */}
+            </FacebookShareButton>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
