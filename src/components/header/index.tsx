@@ -7,6 +7,7 @@ import axios from "axios";
 import FacebookLogin from "react-facebook-login";
 import { useDispatch } from "react-redux";
 import Favourite from "../weather/Favourite";
+// import useMetaTags from "react-metatags-hook"
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -84,6 +85,33 @@ const Header = () => {
     setShowSignIn(true);
     setShowUser(false);
   }
+
+
+  //   useMetaTags({
+  //   title: `Page Title 1 `,
+  //   description: `An interesting page description with id: `,
+  //   charset: 'utf8',
+  //   lang: 'en',
+  //   metas: [
+  //     { name: 'keywords', content: 'a, list, of, keywords' },
+  //     { name: 'robots', content: 'index, follow' },
+  //     { name: 'DC.Title', content: 'Dublin Core Title' },
+  //     { name: 'url', content: `https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png` },
+  //     { property: 'fb:app_id', content: '369670134345835' },
+  //     { 'http-equiv': 'Cache-Control', content: 'no-cache' },
+  //   ],
+  //   links: [
+  //     { rel: 'canonical', href: 'https://aseanweather.herokuapp.com/' },
+  //     { rel: 'icon', type: 'image/ico', href: '/favicon.ico' },
+  //     { rel: 'apple-touch-icon', sizes: '72x72', type: 'image/png', href: 'https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png' },
+  //   ],
+  //   openGraph: {
+  //     title: 'Page Title 2',
+  //     image: 'https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png',
+  //     'site_name': 'My Site'
+  //   },
+   
+  // }, []);
 
   return (
     <>

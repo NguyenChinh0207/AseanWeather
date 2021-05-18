@@ -8,6 +8,7 @@ import {
 } from "react-share";
 import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
 
+
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
@@ -18,6 +19,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       cityId: ""
     }
   )
+
   const dispatch = useDispatch();
 
   // Hàm kiểm tra xem địa phương này có nằm trong phần yêu thích hay k 
@@ -74,6 +76,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     return name;
   }
 
+
+
   return (
     <div className="container navbar-weather-wrap" >
 
@@ -96,11 +100,11 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           </button>
         </NavLink>
         <NavLink
-          to={`/daily/${propsData.location.name}`}
+          to={`/hourly/${propsData.location.name}`}
           activeClassName="active"
         >
           <button type="button" id="btn" className="btn-navbar">
-            DAILY
+            HOURLY
           </button>
         </NavLink>
       </div>
