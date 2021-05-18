@@ -67,8 +67,8 @@ const Header = () => {
         )
         .then((res) => {
           setIsShow(false);
-          console.log("res:",res);
-          console.log("res data:",res.data);
+          // console.log("res:",res);
+          // console.log("res data:",res.data);
           localStorage.setItem("userName", res.data.data.data.name);
           setShowSignIn(false);
           alert(

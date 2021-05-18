@@ -38,11 +38,23 @@ const SearchComponent: React.FC<ISearch> = ({
       'Access-Control-Allow-Headers': 'Content-Type'
     }
   }
+
+  var viewTotal: number;
+  const getTotalView = ()=>{
+    axios
+        .get(
+          `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip/count`
+        ).then((res)=>{
+          // console.log(res.data.data.count);
+          return res.data.data.count;
+        })
+  }
   //Load api tìm kiếm địa phương
   useEffect(() => {
     const loadCities = async () => {
       const response = await axios(config);
       setlistCities(response.data);
+      getTotalView();
     };
     loadCities();
   }, [])
@@ -62,7 +74,7 @@ const SearchComponent: React.FC<ISearch> = ({
     }
     setText(text);
   };
-
+  
   //Click item filter
   const onCityHandler = (item: any) => {
     setText(item.name);
@@ -130,7 +142,7 @@ const SearchComponent: React.FC<ISearch> = ({
       {/* view số người xem trang web từ trước tới giờ */}
       <div className="view-fixed-panel">
         <i className="fas fa-eye"></i>
-        <span>1200</span>              
+        <span>{}</span>              
       </div>
     </div>
  
