@@ -57,7 +57,7 @@ const Header = () => {
     let params: any = {
       token: response.accessToken,
     };
-    console.log("respone FB:", response)
+    // console.log("respone FB:", response)
     localStorage.setItem("userID", response.userID);
     if (!localStorage.getItem("userName")) {
       axios
