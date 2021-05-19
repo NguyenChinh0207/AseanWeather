@@ -43,33 +43,38 @@ const ContextAwareToggle: React.FC<IContextAwareToggle> = ({
 };
 
 interface IHourly{
-  match:any;
 }
 
-const Hourly:React.FC<IHourly> = ({match}) => {
-
-  const { city } = match.params;
-
+const Hourly:React.FC<IHourly> = () => {
   const [timeNow, setTimeNow] = useState(new Date().getHours());
+  const dispatch = useDispatch();
   const propsData = useSelector(
     (state: RootStateOrAny) => state.weatherReducer
   );
 
-  const dispatch = useDispatch();
 
+  // Khi component được sinh ra thì chạy hàm để lấy danh sách hourly
   useEffect(() => {
     dispatch(getWeatherHourlyRequest(propsData.weather.location.name));
   }, []);
+
+  // điều kiện nếu danh sách thời tiết chưa load xong
   if (!propsData.loading) {
     return <div className="loading">Loading...</div>;
   }
+
   return (
     <Accordion defaultActiveKey="0">
+
+      {/* dùng hàm map để lấy ra danh sách thời tiết các giờ trong ngày */}
       {propsData.weatherHourly.map((item: any) => {
+
+        // format thời gian theo ngày tháng năm
         let d = new Date(item.time.substring(0, 10));
         let date =
           d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();  
 
+          // điều kiện là tính từ giờ hiện tại
           if(item.time.substring(11, 13) >= timeNow){
             return (
               <div className="container Box-cha" key={item.time_epoch}>
@@ -177,8 +182,7 @@ const Hourly:React.FC<IHourly> = ({match}) => {
                             </tr>
                           </thead>
                         </table>
-                      </div>
-                      
+                      </div>                      
                     </div>
                   </Card.Body>
                 </Accordion.Collapse>

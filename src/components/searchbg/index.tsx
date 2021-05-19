@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { isBuffer } from "node:util";
 
 interface ISearch {
   propsData: any;
@@ -18,8 +19,6 @@ interface ISearch {
 }
 
 const SearchComponent: React.FC<ISearch> = ({
-  propsData,
-  getWeatherSearchRequest,
   getWeatherNowRequest,
 }) => {
   //Khai báo state để sử dụng
@@ -40,16 +39,33 @@ const SearchComponent: React.FC<ISearch> = ({
       'Access-Control-Allow-Headers': 'Content-Type'
     }
   }
+
+  const getTotalView = ()=>{
+    var viewTotal: number;
+    if(!sessionStorage.getItem("ipAddress"))
+    {
+      axios
+        .get(
+          `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+        ).then((res)=>{
+          sessionStorage.setItem("ipAddress",res.data.data.ip)
+          // console.log(res.data.data.ip);
+          // console.log(res.data.data.count);
+          localStorage.setItem("count",res.data.data.count);
+        })
+      }
+  }
   //Load api tìm kiếm địa phương
   useEffect(() => {
     const loadCities = async () => {
       const response = await axios(config);
       setlistCities(response.data);
     };
+    getTotalView(); 
     loadCities();
   }, [])
 
-  //Match
+  //Match input with list city
   const handleSearch = (text: string) => {
     if (!text) {
       setCityMatch([]);
@@ -64,7 +80,7 @@ const SearchComponent: React.FC<ISearch> = ({
     }
     setText(text);
   };
-
+  
   //Click item filter
   const onCityHandler = (item: any) => {
     setText(item.name);
@@ -72,17 +88,15 @@ const SearchComponent: React.FC<ISearch> = ({
     setCityMatch([]);
   };
 
-  //Click button search
-  // const searchClick = () => {
-  //   console.log("textttttt", text);
-  //   getWeatherNowRequest(text);
-  // };
-
   return (
     <div className="hero-container">
+
+      {/* Giao diện của trang search */}
       <video src="/assets/videos/video-1.mp4" autoPlay loop muted />
       <h3>Asean Weather</h3>
       <h5>Today , What is the weather like in your place ? </h5>
+
+      {/* Thanh search */}
       <div className="hero-btns">
         <div className="d-flex ">
           <input
@@ -98,12 +112,11 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to={`/now/${text}`}>
-            <button className="btn-search" style={{backgroundColor:show?"white":"#1e90ff"}}>
-              <i className="fas fa-search icon-search"style={{color:show?"#747d8c":"#dcdde1"}}></i>
+          <Link to={`/now/${text}`} >
+            <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
+              <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
           </Link>
-
         </div>
         <div
           className="suggest-wrap"
@@ -126,17 +139,19 @@ const SearchComponent: React.FC<ISearch> = ({
             ))}
         </div>
         <br />
+
+        {/* Hiển thị 3 địa phương đầu trong danh sách yêu thích */}
         <FavouriteLocation />
       </div>
 
       {/* view số người xem trang web từ trước tới giờ */}
       <div className="view-fixed-panel">
         <i className="fas fa-eye"></i>
-        <span>1200</span>              
+        <span>{localStorage.getItem("count")}</span>              
       </div>
     </div>
- 
- );
+
+  );
 };
 
 const mapStateToProps = (state: any) => {
