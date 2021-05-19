@@ -1,19 +1,32 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, Redirect } from "react-router-dom";
 import "./admin.scss";
 const Sidebar = () => {
+  const [loading, setLoading] = useState(false);
+
+  //xử lý khi click nút logout
+  const clickLogout = () => {
+    alert("Bạn có chắc chắn muốn đăng xuất ?");
+    localStorage.removeItem("admin");
+    setLoading(true);
+  };
+  //Xử lý chuyển hướng sau khi login
+  if (loading) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <div className="main-sidebar">
-	  <NavLink to="/dashboard/home">
-	  <div className="logo-wrap">
-          <img src="/assets/images/logo2.png" alt="" title="logo" />
-          <div className="text-logo">
-            <span>Asean</span>
-            <span>weather</span>
+        <NavLink to="/dashboard">
+          <div className="logo-wrap">
+            <img src="/assets/images/logo2.png" alt="" title="logo" />
+            <div className="text-logo">
+              <span>Asean</span>
+              <span>weather</span>
+            </div>
           </div>
-        </div>
-	  </NavLink>
+        </NavLink>
         <div className="btn-main-wrap">
           <div>
             <NavLink to="/dashboard/users/setting" activeClassName="is-active">
@@ -24,12 +37,13 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div>
-            <NavLink to="#" >
-              <div className="view-admin-wrap btn-danger text-white mt-4">
-                <i className="fas fa-sign-out-alt "></i>
-                <span >Đăng Xuất</span>
-              </div>
-            </NavLink>
+            <div
+              className="admin-logout btn-danger text-white mt-4"
+              onClick={clickLogout}
+            >
+              <i className="fas fa-sign-out-alt "></i>
+              <span>Đăng Xuất</span>
+            </div>
           </div>
         </div>
       </div>

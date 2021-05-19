@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MainRoute from "./routes/MainRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import LoginAdmin from "./pages/LoginAdmin";
+import HomePage from "./pages/HomePage";
 
 
 interface IProps { }
@@ -20,7 +21,7 @@ class App extends Component<IProps, IState> {
 			<Router>
 				<Switch>
 					<Route path='/sign-in' exact component={LoginAdmin} /> 
-					<Route path="/dashboard"  render={() => <AdminDashboard />} />
+					<Route path="/dashboard" exact  component={AdminDashboard} />
 					<Route path="/" render={() => <MainRoute />} />
 				</Switch>
 			</Router>
