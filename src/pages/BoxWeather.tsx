@@ -19,18 +19,18 @@ interface IBoxWeather {
   match: any;
 }
 
-const BoxWeather: React.FC<IBoxWeather> = ({propsData, cityData, getWeatherFavoriteRequest, getWeatherNowRequest, getListcityRequest, match}) => {
+const BoxWeather: React.FC<IBoxWeather> = ({propsData, cityData, getWeatherNowRequest, match}) => {
 
+  // lấy param từ Link truyền vào
   const { city } = match.params;
 
+  // Sau khi Component được sinh ra thì chạy hàm getWeatherNowRequest() có param là city để lấy ra danh sách thời tiết hiện tại
   useEffect(() => {
     getWeatherNowRequest(city);
-    getListcityRequest();
-    // getWeatherFavoriteRequest(localStorage.getItem("userID"));
-    getWeatherFavoriteRequest(1403943429941869);
   }, []);
 
-	if (!propsData.success) {
+  // điều kiện nếu danh sách thời tiết chưa load xong
+	if (propsData.success) {
 	  return (
 		<div className="loading" >Loading ... </div>
 	  );

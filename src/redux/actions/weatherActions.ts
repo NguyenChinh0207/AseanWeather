@@ -1,5 +1,11 @@
 import { WeatherActionTypes } from "../actionTypes/weatherTypes"
 
+export const getWeatherNow = () => {
+    return {
+        type: WeatherActionTypes.GET_WEATHER_NOW,
+    }
+}
+
 export const getWeatherNowSuccess = (payload:any) => {
     return {
         type: WeatherActionTypes.GET_WEATHER_NOW_SUCCESS,
@@ -71,6 +77,13 @@ export const getWeatherFavoriteFail = (payload:any) => {
     }
 }
 
+export const addWeather = (payload:any) => {
+    return {
+        type: WeatherActionTypes.ADD_WEATHER,
+        payload
+    }
+}
+
 export const addWeatherSuccess = (payload:any) => {
     return {
         type: WeatherActionTypes.ADD_WEATHER_SUCCESS,
@@ -81,6 +94,13 @@ export const addWeatherSuccess = (payload:any) => {
 export const addWeatherFail = (payload:any) => {
     return {
         type: WeatherActionTypes.ADD_WEATHER_FAIL,
+        payload
+    }
+}
+
+export const removeWeather = (payload:any) => {
+    return {
+        type: WeatherActionTypes.REMOVE_WEATHER,
         payload
     }
 }

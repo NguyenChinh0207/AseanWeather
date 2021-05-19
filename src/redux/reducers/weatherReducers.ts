@@ -17,7 +17,8 @@ interface IState {
     astro:any[],
     location:[],
     favorite:[],
-    lo:boolean
+    lo:boolean,
+    action:boolean
 }
 
 const initalState:IState = {
@@ -33,15 +34,22 @@ const initalState:IState = {
     weatherDaily:[],
     astro:[],
     location:[],
-    favorite:[]
+    favorite:[],
+    action:false,
 }
 
 export const weatherReducer = (state = initalState, action:IAction) => {
     switch(action.type){
-        case WeatherActionTypes.GET_WEATHER_NOW_SUCCESS: {
+        case WeatherActionTypes.GET_WEATHER_NOW: {
             return {
                 ...state,
                 success: true,
+            }
+        }
+        case WeatherActionTypes.GET_WEATHER_NOW_SUCCESS: {
+            return {
+                ...state,
+                success: false,
                 weather: action.payload
             }
         }
@@ -107,6 +115,18 @@ export const weatherReducer = (state = initalState, action:IAction) => {
                 ...state,
                 lo: true,
                 error: action.payload
+            }
+        }
+        case WeatherActionTypes.REMOVE_WEATHER: {
+            return {
+                ...state,
+                action: action.payload,
+            }
+        }
+        case WeatherActionTypes.ADD_WEATHER: {
+            return {
+                ...state,
+                action: action.payload,
             }
         }
         default: {
