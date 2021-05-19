@@ -48,7 +48,7 @@ const SearchComponent: React.FC<ISearch> = ({
     // {
     //   axios
     //     .get(
-    //       `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+    //       `https://api-weather-asean.herokuapp.com/api/v1/ip`
     //     ).then((res)=>{
     //       localStorage.setItem("ipAddress",res.data.data.ip)
     //       // console.log(res.data.data.ip);
@@ -59,9 +59,8 @@ const SearchComponent: React.FC<ISearch> = ({
         setCookie('ipAddress', "1" ,{maxAge : 9000});
         if(!cookies.ipAddress)
         {
-          axios
-            .get(
-              `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+          axios.get(
+              `https://api-weather-asean.herokuapp.com/api/v1/ip`
             ).then((res)=>{
               // localStorage.setItem("ipAddress",res.data.data.ip)
               // console.log(res.data.data.ip);
