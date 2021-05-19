@@ -12,6 +12,7 @@ import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../r
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
+  
   const [click, setClick] = useState(true);
   const [data, setData] = useState(
     {
@@ -100,11 +101,11 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           </button>
         </NavLink>
         <NavLink
-          to={`/hourly/${propsData.location.name}`}
+          to={`/daily/${propsData.location.name}`}
           activeClassName="active"
         >
           <button type="button" id="btn" className="btn-navbar">
-            HOURLY
+            DAILY
           </button>
         </NavLink>
       </div>

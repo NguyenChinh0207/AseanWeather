@@ -26,6 +26,8 @@ const SearchComponent: React.FC<ISearch> = ({
   const [text, setText] = useState("");
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
+  const [countVisitor, setCountVisitor]=useState(0);
+
   //Config api tìm kiếm
   const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
   const config = {
@@ -63,7 +65,7 @@ const SearchComponent: React.FC<ISearch> = ({
     loadCities();
   }, [])
 
-  //Match
+  //Match input with list city
   const handleSearch = (text: string) => {
     if (!text) {
       setCityMatch([]);

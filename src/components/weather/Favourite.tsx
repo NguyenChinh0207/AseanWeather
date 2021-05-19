@@ -13,7 +13,7 @@ const Favourite = () => {
     }
 
     if (!listFv.lo || !listCity.success) {
-        return <div>....</div>
+        return <div>Bạn chưa có địa chỉ yêu thích nào</div>
     }
 
     return (

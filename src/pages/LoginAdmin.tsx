@@ -1,9 +1,59 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./login.scss";
-
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
+import "../components/admin-dashboard/login.scss";
+import axios from 'axios';
+  
 const LoginAdmin = () => {
-	
+    const [email, setEmail]=useState("");
+    const [emailError, setEmailError]=useState("");
+    const [password, setPassword]=useState("");
+    const [passwordError, setPasswordError]=useState("");
+    const [message, setMessage]=useState("");
+    const [loading, setLoading]=useState(false);
+
+    //Hàm xử lý validate email
+    function validateEmail(email:string) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
+    //Xử lý onClick login
+    const clickLogin= ()=>{
+        //Xử lý bắt validate
+        if (validateEmail(email)) {
+            setEmailError('');
+        }
+        else{
+            setEmailError('Email is not valid');
+        }
+
+        if(password==""){
+            setPasswordError("Password should not be empty");
+        }
+        else if(password.length<8){
+            setPasswordError("Password must be at least 8 characters");
+        }
+        else setPasswordError('');
+        
+        //load api
+        const loadAdmins = async () => {
+            let payload = { email: email, password: password };
+            let res = await axios.post('https://vti-aca-april-team1-api.herokuapp.com/api/v1/admin/login', payload);      
+            localStorage.setItem("admin", res.data.data.email);
+            if(res.data.message=="Success"){
+                setLoading(true);
+                // <Redirect to='/dashboard' />
+            }
+            else{
+                setMessage("Email or Password is not match");
+            }
+        };
+        loadAdmins();
+    }
+
+    if(loading){
+        return <Redirect to='/dashboard' />
+    }
+
 	return (		
 		<>
 			 <section className="login-block">
@@ -13,26 +63,29 @@ const LoginAdmin = () => {
                         <h2 className="text-center">Login Now</h2>
                         <div className="login-form-admin">
                             <div className="form-group-admin ">
-                                <label htmlFor="exampleInputEmail1" id="">Username:</label>
-                                <input id="userName" type="text"
-                                    className="form-control-admin" placeholder="email..."/>
+                                <label htmlFor="exampleInputEmail1" id="">Email:</label>
+                                <input id="email" type="text"
+                                    className="form-control-admin" placeholder="email..." onChange={(e)=>setEmail(e.target.value)}/>
+                                <h6 className="text-danger text-small">{emailError}</h6>
                             </div>
                             <div className="form-group-admin">
                                 <label htmlFor="exampleInputPassword1" id="">Password:</label>
                                 <input id="passWord" type="password"
-                                    className="form-control-admin" placeholder="password..."/>                                
+                                    className="form-control-admin" placeholder="password..." onChange={(e)=>setPassword(e.target.value)}/> 
+                                <h6 className="text-danger text-small">{passwordError}</h6>                               
                             </div>
+                            <h6 className="text-danger text-small">{message}</h6>
                             <div className="form-check">
                                 <label className="form-check-label">
                                     <input type="checkbox"
                                         className="form-check-input"/>
                                     <small>Remember Me</small>
                                 </label>
-                                <Link to="#">
+                                {/* <Link to={`/dashboard/`}> */}
                                 <button
-                                     type="submit"  className="btn btn-login-admin float-right" >Submit
+                                     type="submit" onClick={clickLogin}  className="btn btn-login-admin float-right" >Submit
                                 </button>
-                                </Link>
+                                {/* </Link> */}
                             </div>
                         </div>
                         <div className="copy-text">Created with <i className="fa
