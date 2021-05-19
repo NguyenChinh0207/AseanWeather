@@ -10,7 +10,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import { isBuffer } from "node:util";
+// import { isBuffer } from "node:util";
+import {useCookies}  from "react-cookie"
+import { Agent } from "node:http";
 
 interface ISearch {
   propsData: any;
@@ -27,6 +29,7 @@ const SearchComponent: React.FC<ISearch> = ({
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
   const [countVisitor, setCountVisitor]=useState(0);
+  const [cookies, setCookie] = useCookies(['ipAddress']);
 
   //Config api tìm kiếm
   const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
@@ -41,19 +44,33 @@ const SearchComponent: React.FC<ISearch> = ({
   }
 
   const getTotalView = ()=>{
-    var viewTotal: number;
-    if(!sessionStorage.getItem("ipAddress"))
-    {
-      axios
-        .get(
-          `https://api-weather-asean.herokuapp.com/api/v1/ip`
-        ).then((res)=>{
-          sessionStorage.setItem("ipAddress",res.data.data.ip)
-          // console.log(res.data.data.ip);
-          // console.log(res.data.data.count);
-          localStorage.setItem("count",res.data.data.count);
-        })
-      }
+    // if(!localStorage.getItem("ipAddress"))
+    // {
+    //   axios
+    //     .get(
+    //       `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+    //     ).then((res)=>{
+    //       localStorage.setItem("ipAddress",res.data.data.ip)
+    //       // console.log(res.data.data.ip);
+    //       // console.log(res.data.data.count);
+      //     localStorage.setItem("count",res.data.data.count);
+      //   })
+      // }
+        setCookie('ipAddress', "1" ,{maxAge : 9000});
+        if(!cookies.ipAddress)
+        {
+          axios
+            .get(
+              `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+            ).then((res)=>{
+              // localStorage.setItem("ipAddress",res.data.data.ip)
+              // console.log(res.data.data.ip);
+              // console.log(res.data.data.count);
+              localStorage.setItem("count",res.data.data.count);
+              setCookie('ipAddress', res.data.data.ip ,{maxAge : 900});
+              
+            })
+          }
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
