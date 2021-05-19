@@ -29,7 +29,7 @@ const SearchComponent: React.FC<ISearch> = ({
   const [countVisitor, setCountVisitor]=useState(0);
 
   //Config api tìm kiếm
-  const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
+  const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
   const config = {
     url,
     headers: {
@@ -46,7 +46,7 @@ const SearchComponent: React.FC<ISearch> = ({
     {
       axios
         .get(
-          `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+          `https://api-weather-asean.herokuapp.com/api/v1/ip`
         ).then((res)=>{
           sessionStorage.setItem("ipAddress",res.data.data.ip)
           // console.log(res.data.data.ip);
@@ -87,6 +87,9 @@ const SearchComponent: React.FC<ISearch> = ({
     getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
+
+  //click button search
+
 
   return (
     <div className="hero-container">

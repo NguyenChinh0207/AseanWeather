@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MainRoute from "./routes/MainRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import LoginAdmin from "./pages/LoginAdmin";
-import HomePage from "./pages/HomePage";
-
 
 interface IProps { }
 interface IState { }

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect ,useHistory} from "react-router-dom";
 import "./admin.scss";
 const Sidebar = () => {
   const [loading, setLoading] = useState(false);
-
+  
   //xử lý khi click nút logout
   const clickLogout = () => {
     alert("Bạn có chắc chắn muốn đăng xuất ?");

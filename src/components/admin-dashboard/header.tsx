@@ -1,12 +1,22 @@
+import {  Redirect } from "react-router-dom";
+import {useEffect, useState } from "react";
 
 const HeaderDashboard = () => {
+  const [loading, setLoading]=useState(false);
 
   //lấy data từ localstorage
   let email;
-  if (localStorage.getItem("admin")) {
-    email = localStorage.getItem("admin");
-  } else {
-    email = "";
+  useEffect(()=>{
+    if (localStorage.getItem("admin")) {
+      email = localStorage.getItem("admin");
+    } else {  
+      alert("Bạn phải login trước")
+      setLoading(true);
+    }
+  },[]);
+
+  if(loading){   
+    return <Redirect to="/sign-in"/>
   }
 
   return (

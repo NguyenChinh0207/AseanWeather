@@ -2,7 +2,7 @@ import axios from "axios"
 import { getCityFail, getCitySuccess } from "../actions/cityActions";
 
 export const getListcityRequest = () => {
-    const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
+    const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
     const config = {
         url,
         headers: {

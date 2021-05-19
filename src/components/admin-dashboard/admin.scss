@@ -85,14 +85,32 @@
   }
   
   //user-table
-  .user-wrap{
-      margin-top: 40px;
-  }
   .search-user{
     font-family: "FontAwesome", "Source Sans Pro"; 
     position: relative;
     border: none;
     outline: none;
     border-radius: 20px;
-    padding: 2px 16px ;
+    padding: 4px 30px ;
+    margin: 15px 0;
   }
+  .table-user thead tr th:nth-child(1){
+    width: 5%;
+  }
+  .table-user thead tr th:nth-child(5){
+    width: 15%;
+  }
+  .table-user thead tr th{
+    width: 25%;
+  }
+  .table-user th,  .table-user td{
+      text-align: center;
+  }
+  .page-link{
+      color: rgb(49, 49, 49);
+  }
+  .page-link:hover{
+      color: black !important;
+  }
+  
+ 
