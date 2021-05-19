@@ -32,7 +32,7 @@ const SearchComponent: React.FC<ISearch> = ({
   const [cookies, setCookie] = useCookies(['ipAddress']);
 
   //Config api tìm kiếm
-  const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
+  const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
   const config = {
     url,
     headers: {
@@ -42,8 +42,6 @@ const SearchComponent: React.FC<ISearch> = ({
       'Access-Control-Allow-Headers': 'Content-Type'
     }
   }
-
-  
 
   const getTotalView = ()=>{
     // if(!localStorage.getItem("ipAddress"))
@@ -58,8 +56,6 @@ const SearchComponent: React.FC<ISearch> = ({
       //     localStorage.setItem("count",res.data.data.count);
       //   })
       // }
-
-      
         setCookie('ipAddress', "1" ,{maxAge : 9000});
         if(!cookies.ipAddress)
         {
@@ -75,8 +71,6 @@ const SearchComponent: React.FC<ISearch> = ({
               
             })
           }
-
-  
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
@@ -110,6 +104,9 @@ const SearchComponent: React.FC<ISearch> = ({
     getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
+
+  //click button search
+
 
   return (
     <div className="hero-container">

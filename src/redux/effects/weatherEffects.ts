@@ -30,7 +30,7 @@ export const getWeatherDailyRequest = (city: any) => {
 
 export const getWeatherSearchRequest = (searchKey: string) => {
     return (dispatch: any) => {
-        axios(`https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities?search=${searchKey}`).then((res) => {
+        axios(`https://api-weather-asean.herokuapp.com/api/v1/cities?search=${searchKey}`).then((res) => {
             return dispatch(searchWeatherSuccess(res.data))
         }).catch(err => dispatch(searchWeatherFail('Something wrong !')))
     }
@@ -38,7 +38,7 @@ export const getWeatherSearchRequest = (searchKey: string) => {
 
 export const getWeatherFavoriteRequest = (userId: any) => {
     return (dispatch: any) => {
-        axios(`https://vti-aca-april-team1-api.herokuapp.com/api/v1/favoriteCities/userId/${userId}`).then((res) => {
+        axios(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities/userId/${userId}`).then((res) => {
             return dispatch(getWeatherFavoriteSuccess(res.data))
         }).catch(err => dispatch(getWeatherFavoriteFail('Something wrong !')))
     }
@@ -47,7 +47,7 @@ export const getWeatherFavoriteRequest = (userId: any) => {
 export const addWeatherFavoriteRequest = (data: any) => {
     return (dispatch: any) => {
         dispatch(addWeather(true));
-        axios.post(`https://vti-aca-april-team1-api.herokuapp.com/api/v1/favoriteCities`, data).then(res=>{
+        axios.post(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities`, data).then(res=>{
             dispatch(addWeather(false));
         });
     }
@@ -56,7 +56,7 @@ export const addWeatherFavoriteRequest = (data: any) => {
 export const removeWeatherFavoriteRequest = (userId: any, cityId: any) => {
     return (dispatch: any) => {
         dispatch(removeWeather(true));
-        axios.delete(`https://vti-aca-april-team1-api.herokuapp.com/api/v1/favoriteCities/delete/idUser=${userId},idCity=${cityId}`).then(res => {
+        axios.delete(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities/delete/idUser=${userId},idCity=${cityId}`).then(res => {
             return dispatch(removeWeather(false));
         });
     }

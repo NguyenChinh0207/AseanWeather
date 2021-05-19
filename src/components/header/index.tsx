@@ -13,7 +13,7 @@ const Header = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [isShow, setIsShow] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [showSignIn, setShowSignIn] = useState(true);
   const [showUser, setShowUser] = useState(false);
   const [isShowFv, setIsShowFv] = useState(false);
@@ -62,7 +62,7 @@ const Header = () => {
     if (!localStorage.getItem("userName")) {
       axios
         .post(
-          `https://vti-aca-april-team1-api.herokuapp.com/auth/facebook`,
+          `https://api-weather-asean.herokuapp.com/auth/facebook`,
           params
         )
         .then((res) => {
