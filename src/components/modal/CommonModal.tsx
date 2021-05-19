@@ -10,6 +10,8 @@ const CommonModal = ({show, setIsShow, title, size,  children}: any) => {
                 show={show}
                 onHide={setIsShow}
                 aria-labelledby="example-modal-sizes-title-lg"
+                className ="modal fade"
+                tabindex="-1"
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">

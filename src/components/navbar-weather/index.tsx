@@ -6,7 +6,10 @@ import "./navbar.scss";
 
 const NavbarWeather = ({ propsData }: any) => {
   const [click, setClick] = useState(true);
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+  console.log('object', propsData)
+  }
 
   return (
     <div className="container">

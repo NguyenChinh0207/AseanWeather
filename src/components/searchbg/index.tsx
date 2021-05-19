@@ -40,8 +40,10 @@ const SearchComponent: React.FC<ISearch> = ({
     const loadCities = async () => {
       const response = await axios(config);
       setlistCities(response.data);
+      // console.log(response)
     };
     loadCities();
+    
 },[])
 
   const handleSearch = (text: string) => {
@@ -107,7 +109,7 @@ const SearchComponent: React.FC<ISearch> = ({
         </div>
         <br />
 
-        <FavouriteLocation />
+        {/* <FavouriteLocation /> */}
 
         <div
           className="suggest-wrap"

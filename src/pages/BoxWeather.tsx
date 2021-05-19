@@ -16,7 +16,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, getWeatherNowRequest}) =
 
 	// useEffect(() => {
 	// 	getWeatherNowRequest();
-	//   }, [])
+	// }, []);
 	
 	// console.log("BoxWeather",propsData.weather);
 	

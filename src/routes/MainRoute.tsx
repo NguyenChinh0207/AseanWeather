@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Footer from '../components/footer';
 import Header from '../components/header';
+// import FavouriteLocation from '../components/favourite-location';
 
 import HomePage from '../pages/HomePage';
 import Notfound from '../pages/Notfound';
@@ -15,7 +16,8 @@ const MainRoute = () => {
                 <Switch>
                     <Route path="/" exact component={HomePage} />    
                     <Route path='/search' component={HomePage} />    
-                    <Route path='/now' component={BoxWeather} />   
+                    <Route path='/now' component={BoxWeather} />
+                    {/* <Route path='/favourities' component={FavouriteLocation} />    */}
                     <Route component={Notfound} />
                 </Switch>
             
