@@ -30,6 +30,7 @@ const MainRoute = () => {
                 <Route path='/daily/:city' component={BoxWeather} />
                 <Route path='/favourites' component={Favourite} />
                 <Route component={Notfound} />
+                
             </Switch>
             <Footer />
         </>

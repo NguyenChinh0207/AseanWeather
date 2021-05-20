@@ -1,14 +1,14 @@
-import {  Redirect } from "react-router-dom";
+import {  Redirect ,useHistory } from "react-router-dom";
 import {useEffect, useState } from "react";
 
 const HeaderDashboard = () => {
   const [loading, setLoading]=useState(false);
-
+  const [email,setEmail]=useState("");
   //lấy data từ localstorage
-  let email;
   useEffect(()=>{
-    if (localStorage.getItem("admin")) {
-      email = localStorage.getItem("admin");
+    let data=localStorage.getItem("admin");
+    if (data) {
+      setEmail(data);
     } else {  
       alert("Bạn phải login trước")
       setLoading(true);
