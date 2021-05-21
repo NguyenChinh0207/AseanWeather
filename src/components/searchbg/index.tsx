@@ -42,7 +42,19 @@ const SearchComponent: React.FC<ISearch> = ({
   }
 
   const getTotalView = ()=>{
-        setCookie('ipAddress', "1" ,{maxAge : 9000});
+    // if(!localStorage.getItem("ipAddress"))
+    // {
+    //   axios
+    //     .get(
+    //       `https://api-weather-asean.herokuapp.com/api/v1/ip`
+    //     ).then((res)=>{
+    //       localStorage.setItem("ipAddress",res.data.data.ip)
+    //       // console.log(res.data.data.ip);
+    //       // console.log(res.data.data.count);
+      //     localStorage.setItem("count",res.data.data.count);
+      //   })
+      // }
+        // setCookie('ipAddress', "1" ,{maxAge : 9000});
         if(!cookies.ipAddress)
         {
           axios.get(
@@ -50,9 +62,17 @@ const SearchComponent: React.FC<ISearch> = ({
             ).then((res)=>{
               localStorage.setItem("count",res.data.data.count);
               setCookie('ipAddress', res.data.data.ip ,{maxAge : 900});
-              
             })
-          }
+        }else{
+          axios.get(
+            `https://api-weather-asean.herokuapp.com/api/v1/count`
+          ).then((res)=>{
+            // localStorage.setItem("ipAddress",res.data.data.ip)
+            // console.log(res.data.data.ip);
+            console.log(res);
+            localStorage.setItem("count",res.data.data.count);
+          })
+        }
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
