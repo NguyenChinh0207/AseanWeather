@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import { setConstantValue } from "typescript";
 
 const initialProduct: any = {
   id: 0,
@@ -24,7 +25,7 @@ const dateForrmat = (dateItem: any) => {
 };
 
 const Users: React.FC<IUserProps> = ({propsUser,getUsersRequest,getTotalUsersRequest}) => {
-  let stt:number=0;
+  
   let page:number=0
 
   const paging =  (page: number) => {
@@ -54,7 +55,6 @@ const Users: React.FC<IUserProps> = ({propsUser,getUsersRequest,getTotalUsersReq
               <table className="table table-user table-bordered">
                 <thead>
                   <tr>
-                    <th>STT</th>
                     <th>FacebookID</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -63,9 +63,8 @@ const Users: React.FC<IUserProps> = ({propsUser,getUsersRequest,getTotalUsersReq
                 </thead>
                 <tbody>
                   {propsUser.listUsers.map((item: any) => {
-                    return (
+                    return (                 
                     <tr key={item.id}>
-                        <td>{stt+1}</td>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.email}</td>
