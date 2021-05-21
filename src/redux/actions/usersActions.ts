@@ -1,11 +1,5 @@
 import { usersTypes } from "../actionTypes/usersTypes";
 
-export const getUsers = () => {
-    return {
-        type: usersTypes.GET_USERS,
-    }
-}
-
 export const getUsersSuccess = (payload: any) => {
     return {
         type: usersTypes.GET_USERS_SUCCESS,
@@ -19,15 +13,16 @@ export const getUsersFail = (payload: string) => {
         payload
     }
 }
-export const searchUsersSuccess = (payload: any) => {
+export const getTotalUsersSuccess = (payload: any) => {
     return {
-        type: usersTypes.SEARCH_USERS_SUCCESS,
+        type: usersTypes.GET_TOTAL_USERS_SUCCESS,
         payload
     }
 }
-export const searchUsersFail = (payload: string) => {
+
+export const getTotalUsersFail = (payload: string) => {
     return {
-        type: usersTypes.SEARCH_USERS_FAIL,
+        type: usersTypes.GET_TOTAL_USERS_FAIL,
         payload
     }
 }

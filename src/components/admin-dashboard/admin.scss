@@ -85,20 +85,17 @@
   }
   
   //user-table
-  .search-user{
-    font-family: "FontAwesome", "Source Sans Pro"; 
-    position: relative;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    padding: 4px 30px ;
+  .content-users{
+      margin: 80px 0;
+  }
+  .total-text{
     margin: 15px 0;
   }
   .table-user thead tr th:nth-child(1){
     width: 5%;
   }
   .table-user thead tr th:nth-child(5){
-    width: 15%;
+    width: 20%;
   }
   .table-user thead tr th{
     width: 25%;

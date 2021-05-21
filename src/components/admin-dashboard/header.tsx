@@ -6,7 +6,7 @@ const HeaderDashboard = () => {
   const [email,setEmail]=useState("");
   //lấy data từ localstorage
   useEffect(()=>{
-    let data=localStorage.getItem("admin");
+    let data=sessionStorage.getItem("admin");
     if (data) {
       setEmail(data);
     } else {  
