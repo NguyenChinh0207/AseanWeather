@@ -11,8 +11,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 // import { isBuffer } from "node:util";
-import {useCookies}  from "react-cookie"
-import { Agent } from "node:http";
+import {useCookies}  from "react-cookie";
 
 interface ISearch {
   propsData: any;
@@ -28,11 +27,10 @@ const SearchComponent: React.FC<ISearch> = ({
   const [text, setText] = useState("");
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
-  const [countVisitor, setCountVisitor]=useState(0);
   const [cookies, setCookie] = useCookies(['ipAddress']);
 
   //Config api tìm kiếm
-  const url = "https://vti-aca-april-team1-api.herokuapp.com/api/v1/cities";
+  const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
   const config = {
     url,
     headers: {
@@ -43,14 +41,12 @@ const SearchComponent: React.FC<ISearch> = ({
     }
   }
 
-  
-
   const getTotalView = ()=>{
     // if(!localStorage.getItem("ipAddress"))
     // {
     //   axios
     //     .get(
-    //       `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+    //       `https://api-weather-asean.herokuapp.com/api/v1/ip`
     //     ).then((res)=>{
     //       localStorage.setItem("ipAddress",res.data.data.ip)
     //       // console.log(res.data.data.ip);
@@ -58,25 +54,25 @@ const SearchComponent: React.FC<ISearch> = ({
       //     localStorage.setItem("count",res.data.data.count);
       //   })
       // }
-
-      
-        setCookie('ipAddress', "1" ,{maxAge : 9000});
+        // setCookie('ipAddress', "1" ,{maxAge : 9000});
         if(!cookies.ipAddress)
         {
-          axios
-            .get(
-              `https://vti-aca-april-team1-api.herokuapp.com/api/v1/ip`
+          axios.get(
+              `https://api-weather-asean.herokuapp.com/api/v1/ip`
             ).then((res)=>{
-              // localStorage.setItem("ipAddress",res.data.data.ip)
-              // console.log(res.data.data.ip);
-              // console.log(res.data.data.count);
               localStorage.setItem("count",res.data.data.count);
               setCookie('ipAddress', res.data.data.ip ,{maxAge : 900});
-              
             })
-          }
-
-  
+        }else{
+          axios.get(
+            `https://api-weather-asean.herokuapp.com/api/v1/count`
+          ).then((res)=>{
+            // localStorage.setItem("ipAddress",res.data.data.ip)
+            // console.log(res.data.data.ip);
+            console.log(res);
+            localStorage.setItem("count",res.data.data.count);
+          })
+        }
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
@@ -111,6 +107,11 @@ const SearchComponent: React.FC<ISearch> = ({
     setCityMatch([]);
   };
 
+  //click button search (click button map với api weather)
+  const onClickSearch=()=>{
+    getWeatherNowRequest(text);
+  }
+
   return (
     <div className="hero-container">
 
@@ -136,7 +137,7 @@ const SearchComponent: React.FC<ISearch> = ({
             }}
           />
           <Link to={`/now/${text}`} >
-            <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
+            <button className="btn-search" onClick={onClickSearch} style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
           </Link>

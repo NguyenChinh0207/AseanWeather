@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Location.scss";
-import { connect, RootStateOrAny, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
+import { RootStateOrAny, useSelector } from "react-redux";
+//import { bindActionCreators } from "redux";
 
 interface IFavourite {
 }

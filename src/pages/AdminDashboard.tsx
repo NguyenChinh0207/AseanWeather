@@ -9,7 +9,7 @@ const AdminDashboard = () => {
 	return (		
 		<>
 			<div className="dasboard-main d-flex ">
-			<Router>
+			
 				<Sidebar/>
 				<div className="main-dashboard-container">
 				<HeaderDashboard/>
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
 						<Route path="/dashboard/users/setting" exact component={Users} />
 				</Switch>
 				</div>
-			</Router>
+			
 			</div>
 		</>	
 	);

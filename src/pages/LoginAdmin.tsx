@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import {useState } from "react";
 import { Redirect } from "react-router-dom";
 import "../components/admin-dashboard/login.scss";
 import axios from 'axios';
@@ -37,11 +37,11 @@ const LoginAdmin = () => {
         //load api
         const loadAdmins = async () => {
             let payload = { email: email, password: password };
-            let res = await axios.post('https://vti-aca-april-team1-api.herokuapp.com/api/v1/admin/login', payload);      
-            localStorage.setItem("admin", res.data.data.email);
+            let res = await axios.post('https://api-weather-asean.herokuapp.com/api/v1/admin/login', payload);      
+            sessionStorage.setItem("admin", res.data.data.email);
+            sessionStorage.setItem("token", res.data.data.jwt);
             if(res.data.message=="Success"){
                 setLoading(true);
-                // <Redirect to='/dashboard' />
             }
             else{
                 setMessage("Email or Password is not match");

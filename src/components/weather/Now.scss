@@ -54,14 +54,12 @@
     width: 48% !important;
 }
 .astro-wrap .forecast-container:nth-of-type(1),.astro-wrap .forecast-container:nth-of-type(2){
-    flex-grow: 1;
-}
-.air-quality .forecast-container:nth-of-type(1){
-   width: 50%;
-}
-.air-quality .forecast-container:nth-of-type(2){
     width: 50%;
 }
+.air-quality .forecast-container:nth-of-type(1),.air-quality .forecast-container:nth-of-type(2){
+   width: 50%;
+}
+
 .aqi-text{
     padding: 0 !important; 
 }

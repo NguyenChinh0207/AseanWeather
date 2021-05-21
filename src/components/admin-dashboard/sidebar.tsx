@@ -1,19 +1,23 @@
-import { useState } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { NavLink, Redirect ,useHistory} from "react-router-dom";
 import "./admin.scss";
 const Sidebar = () => {
   const [loading, setLoading] = useState(false);
-
+  let history=useHistory();
   //xử lý khi click nút logout
   const clickLogout = () => {
-    alert("Bạn có chắc chắn muốn đăng xuất ?");
-    localStorage.removeItem("admin");
+    const cf = window.confirm('Ban co muon đăng xuất không ?');
+    if(cf){
+    sessionStorage.clear();
     setLoading(true);
-  };
-  //Xử lý chuyển hướng sau khi login
-  if (loading) {
-    return <Redirect to="/" />;
   }
+  };
+  //Xử lý chuyển hướng sau khi logout
+  useEffect(()=>{
+    if(loading){
+      history.push('/');
+    }
+  },[loading]);
 
   return (
     <>

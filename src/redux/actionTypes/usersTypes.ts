@@ -1,0 +1,8 @@
+export enum usersTypes {
+    GET_USERS = '[Users] GET_USERS',
+    GET_USERS_SUCCESS = '[Users] GET_USERS_SUCCESS',
+    GET_USERS_FAIL = '[Users] GET_USERS_FAIL',
+
+    GET_TOTAL_USERS_SUCCESS = '[Users] GET_TOTAL_USERS_SUCCESS',
+    GET_TOTAL_USERS_FAIL = '[Users] GET_TOTAL_USERS_FAIL',
+}
