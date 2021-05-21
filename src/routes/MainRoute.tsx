@@ -16,7 +16,7 @@ const MainRoute = () => {
 
     useEffect(() => {
         dispatch(getListcityRequest())
-        getWeatherFavoriteRequest(localStorage.getItem("userID"));
+        dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
     }, [propsData.action])
 
     return (

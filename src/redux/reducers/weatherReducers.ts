@@ -56,7 +56,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_NOW_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload
             }
         }
