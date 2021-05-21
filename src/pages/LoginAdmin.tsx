@@ -38,10 +38,10 @@ const LoginAdmin = () => {
         const loadAdmins = async () => {
             let payload = { email: email, password: password };
             let res = await axios.post('https://api-weather-asean.herokuapp.com/api/v1/admin/login', payload);      
-            localStorage.setItem("admin", res.data.data.email);
+            sessionStorage.setItem("admin", res.data.data.email);
+            sessionStorage.setItem("token", res.data.data.jwt);
             if(res.data.message=="Success"){
                 setLoading(true);
-                // <Redirect to='/dashboard' />
             }
             else{
                 setMessage("Email or Password is not match");

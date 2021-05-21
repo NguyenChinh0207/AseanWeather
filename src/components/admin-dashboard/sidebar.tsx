@@ -8,7 +8,7 @@ const Sidebar = () => {
   const clickLogout = () => {
     const cf = window.confirm('Ban co muon đăng xuất không ?');
     if(cf){
-    localStorage.clear();
+    sessionStorage.clear();
     setLoading(true);
   }
   };

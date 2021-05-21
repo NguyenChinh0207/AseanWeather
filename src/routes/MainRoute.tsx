@@ -15,8 +15,9 @@ const MainRoute = () => {
     const propsData = useSelector((state: RootStateOrAny) => state.weatherReducer)
 
     useEffect(() => {
-        dispatch(getListcityRequest())
-        getWeatherFavoriteRequest(localStorage.getItem("userID"));
+        dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
+        dispatch(getListcityRequest());
+        // getWeatherFavoriteRequest(localStorage.getItem("userID"));
     }, [propsData.action])
 
     return (
