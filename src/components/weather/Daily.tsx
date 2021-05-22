@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import CommonModal from "../modal/CommonModal";
 import "./daily.scss";
+import UVConvert from '../../config/UV';
+import weekConvert from '../../config/Week';
 import { getWeatherDailyRequest } from "../../redux/effects/weatherEffects";
 
 const initialDaily = {
@@ -10,6 +12,8 @@ const initialDaily = {
       icon: "",
       text:""
     },
+    mintemp_c:0,
+    maxtemp_c:0,
     avgtemp_c: 0,
     avgtemp_f: 0,
     maxwind_kph: 0,
@@ -56,6 +60,7 @@ const Daily: React.FC<IDaily> = () => {
     let d = new Date(dateItem);
     return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
   };
+  
 
   return (
     <>
@@ -73,6 +78,7 @@ const Daily: React.FC<IDaily> = () => {
             <div className="box-daily" key={item.date}>
               <div className="daily-card-nfl-header ">
                 <h2 className="date">
+                  <span className="sub" style={{textAlign:'center', color:"#ff793f"}}>{weekConvert(item.date)}</span>
                   <span className="sub">{dateForrmat(item.date)}</span>
                 </h2>
                 <div className="condition-daily-wrap">
@@ -83,11 +89,7 @@ const Daily: React.FC<IDaily> = () => {
                     src={item.day.condition.icon}
                   />
                   <div className="temp-daily temp">
-                    <span className="high">{item.day.mintemp_c}°</span>
-                    <span className="high">
-                      <i className="fas fa-long-arrow-alt-right"></i>{" "}
-                      {item.day.maxtemp_c}°
-                    </span>
+                     <p style={{fontSize:"45px",margin:"5px 0"}}>{item.day.avgtemp_c}°C</p>
                   </div>
                 </div>
 
@@ -116,7 +118,7 @@ const Daily: React.FC<IDaily> = () => {
       {/* Hiển thị phần detail của từng ngày được chọn trong 3 ngày đó */}
       <CommonModal
         className="modalDaily"
-        title={`Date: ${dateForrmat(daily.date)}`}
+        title={`Date: ${weekConvert(daily.date)} - ${dateForrmat(daily.date)}`}
         size="lg"
         show={isShow}
         setIsShow={() => setIsShow(false)}
@@ -132,12 +134,17 @@ const Daily: React.FC<IDaily> = () => {
                 height="80%"
               />
               <div className="temp-container">
+                <span className="">Biên độ nhiệt:</span>
                 <div className="temp" style={{ fontSize: "40px" }}>
-                  <p>{daily.day.avgtemp_c}°C</p>
+                    <span className="high">{daily.day.mintemp_c}°</span>
+                    <span className="high">
+                      <i className="fas fa-long-arrow-alt-right"></i>{" "}
+                      {daily.day.maxtemp_c}°
+                    </span>          
                 </div>
                 <span className="condition-text">{daily.day.condition.text}</span>
                 <div className="real-feel mt-2">
-                  Cảm thấy như {daily.day.avgtemp_f}°F
+                  Cảm thấy như {daily.day.avgtemp_c}°C
                 </div>
               </div>
             </div>
@@ -150,7 +157,7 @@ const Daily: React.FC<IDaily> = () => {
                       {"  "}
                       Tốc độ gió
                     </th>
-                    <td scope="col">{daily.day.maxwind_kph}km/h</td>
+                    <td scope="col">{daily.day.maxwind_kph}{" "}km/h</td>
                   </tr>
                   <tr>
                     <th scope="col">
@@ -158,7 +165,7 @@ const Daily: React.FC<IDaily> = () => {
                       {"  "}
                       Tầm nhìn xa
                     </th>
-                    <td scope="col">{daily.day.avgvis_km}km/h</td>
+                    <td scope="col">{daily.day.avgvis_km}{" "}km/h</td>
                   </tr>
                   <tr>
                     <th scope="col">
@@ -174,7 +181,7 @@ const Daily: React.FC<IDaily> = () => {
                       {"  "}
                       Chỉ số UV
                     </th>
-                    <td scope="col">{daily.day.uv}/10</td>
+                    <td scope="col">{daily.day.uv}{" "}{UVConvert(daily.day.uv)}</td>
                   </tr>
                 </thead>
               </table>

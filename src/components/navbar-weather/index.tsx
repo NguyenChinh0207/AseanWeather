@@ -64,7 +64,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         setClick(true)
       }
     } else {
-      alert("Bạn phải login trước !")
+      alert("Bạn muốn thêm địa phương này vào danh sách yêu thích? \nBạn phải login trước !")
     }
   }
 
@@ -76,8 +76,6 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     }
     return name;
   }
-
-
 
   return (
     <div className="container navbar-weather-wrap" >
@@ -136,7 +134,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             url={`https://aseanweather.herokuapp.com/now/${configCityShare(propsData.location.name)}`}
             subject="ASEAN WEATHER- Chia sẻ thời tiết, gắn kết yêu thương !"
             body={
-              `Xin Chào, Mời bạn xem thời tiết hôm nay của ${propsData.location.name}` + " trong đường link sau: "
+              `Xin Chào, Hãy cùng xem thời tiết hôm nay tại ${propsData.location.name}` + " cùng AseanWeather: "
             }
             className="shareEmail p-2 "
             title="Chia sẻ qua email"
@@ -147,7 +145,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           {/* Nút share cho facebook */}
           <FacebookShareButton
             url={`https://aseanweather.herokuapp.com/now/${propsData.location.name}`}
-            quote={" AseanWeather"}
+            quote={`Xem thời tiết tại ${propsData.location.name} cùng AseanWeather `}
             className="share"
             title="Chia sẻ lên Facebook"
           >
