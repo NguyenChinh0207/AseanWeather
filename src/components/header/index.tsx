@@ -82,6 +82,7 @@ const Header = () => {
   //xử lý log out
   const logoutClick = () => {
     localStorage.removeItem("userName");
+    localStorage.removeItem("userID");
     setShowSignIn(true);
     setShowUser(false);
   }

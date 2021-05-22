@@ -30,7 +30,7 @@ const Favourite = () => {
                   href="#"
                   className="btn btn-primary"
                   onClick={() =>
-                    remove(localStorage.getItem("userID"), listF.cityId)
+                    remove(localStorage.getItem("userID"), listCt.id)
                   }
                 >
                   Xóa

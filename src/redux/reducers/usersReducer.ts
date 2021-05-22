@@ -8,7 +8,8 @@ interface IState {
     success: boolean;
     loading: boolean;
     listUsers:[];
-    total:number;
+    totalUser:number;
+    totalPage:number;
 
 }
 
@@ -16,7 +17,8 @@ const initalState:IState = {
     success: false,
     loading: false,
     listUsers:[],
-    total:0
+    totalUser:0,
+    totalPage:0
 }
 
 export const usersReducer = (state = initalState, action:IAction) => {
@@ -25,30 +27,32 @@ export const usersReducer = (state = initalState, action:IAction) => {
             return {
                 ...state,
                 success: true,
-                listUsers: [...action.payload]
+                listUsers: [...action.payload.list],
+                totalUser:action.payload.totalUsers,
+                totalPage:action.payload.totalPages
             }
         }
         case usersTypes.GET_USERS_FAIL: {
             return {
                 ...state,
                 success: false,
-                error: action.payload
+                error: action.payload.list
             }
         }
-        case usersTypes.GET_TOTAL_USERS_SUCCESS: {
-            return {
-                ...state,
-                success: true,
-                total: action.payload
-            }
-        }
-        case usersTypes.GET_TOTAL_USERS_FAIL: {
-            return {
-                ...state,
-                success: false,
-                error: action.payload.data
-            }
-        }
+        // case usersTypes.GET_TOTAL_USERS_SUCCESS: {
+        //     return {
+        //         ...state,
+        //         success: true,
+        //         total: action.payload
+        //     }
+        // }
+        // case usersTypes.GET_TOTAL_USERS_FAIL: {
+        //     return {
+        //         ...state,
+        //         success: false,
+        //         error: action.payload.data
+        //     }
+        // }
         default: {
             return state;
         }
