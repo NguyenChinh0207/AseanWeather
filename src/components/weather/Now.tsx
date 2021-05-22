@@ -124,13 +124,13 @@ const Now = ({ propsData }: any) => {
               <table className="table">
                 <thead>
                   <tr>
-                    <h5 className="air-quality-title">
+                    <td className="air-quality-title">
                       <span className="aqi-text aqi-text-main"  style={{ color: "black", fontWeight: "bold" }}>
                         {config.aqiNumberToString(
                           Object.values(propsData.current.air_quality)[6]
                         )}
                       </span>
-                    </h5>
+                    </td>
                     <span className="aqi-text aqi-text-detail">
                       {config.aqiIndexDetail(
                         Object.values(propsData.current.air_quality)[6]

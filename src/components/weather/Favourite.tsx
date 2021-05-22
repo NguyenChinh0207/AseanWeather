@@ -4,36 +4,44 @@ import { Link } from "react-router-dom";
 import { removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
 
 const Favourite = () => {
-    const listFv = useSelector((state: RootStateOrAny) => state.weatherReducer)
-    const listCity = useSelector((state: RootStateOrAny) => state.cityReducer)
+  const listFv = useSelector((state: RootStateOrAny) => state.weatherReducer);
+  const listCity = useSelector((state: RootStateOrAny) => state.cityReducer);
 
-    const dispatch = useDispatch()
-    const remove = (userId: any, cityId: any) => {
-        dispatch(removeWeatherFavoriteRequest(userId, cityId))
-    }
+  const dispatch = useDispatch();
+  const remove = (userId: any, cityId: any) => {
+    dispatch(removeWeatherFavoriteRequest(userId, cityId));
+  };
 
-    if (!listFv.lo || !listCity.success) {
-        return <div>Bạn chưa có địa chỉ yêu thích nào</div>
-    }
+  if (!listFv.lo || !listCity.success) {
+    return <div>Bạn chưa có địa chỉ yêu thích nào</div>;
+  }
 
-    return (
-        <>
-            {listCity.listCity.map((listCt: any) => {
-                return listFv.favorite.map((listF: any) => {
-                    if (listCt.lable == listF.cityLable) {
-                        return (<div key={listCt.id}><Link to={`/now/${listCt.lable}`} className="card-body">
-                            <p className="card-title">{listCt.name}</p>
-                        </Link>
-                            <a href="#" className="btn btn-primary" onClick={() => remove(1213043705780314, listCt.id)}>Xóa</a>
-                            {/* <a href="#" className="btn btn-primary" onClick={() => remove(localStorage.getItem("userID"), listF.cityId)}>Xóa</a> */}
-                        </div>
-                        )
-                    }
-                })
-            })}
-        </>
-    )
-}
-
+  return (
+    <>
+      {listCity.listCity.map((listCt: any) => {
+        return listFv.favorite.map((listF: any) => {
+          if (listCt.lable == listF.cityLable) {
+            return (
+              <div key={listCt.id} className="d-flex justify-content-md-around">
+                <Link to={`/now/${listCt.lable}`} className="card-body">
+                  <p className="card-title">{listCt.name}</p>
+                </Link>
+                <a
+                  href="#"
+                  className="btn btn-primary"
+                  onClick={() =>
+                    remove(localStorage.getItem("userID"), listF.cityId)
+                  }
+                >
+                  Xóa
+                </a>
+              </div>
+            );
+          }
+        });
+      })}
+    </>
+  );
+};
 
 export default Favourite;

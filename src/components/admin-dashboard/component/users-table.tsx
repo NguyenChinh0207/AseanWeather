@@ -54,7 +54,6 @@ const Users: React.FC<IUserProps> = ({
     getUsersRequest(page, size);
     setPage(page + 1);
   };
-  //kiểm tra 
   if (!propsUser.success) {
     return <div>Loading ... </div>;
   }
