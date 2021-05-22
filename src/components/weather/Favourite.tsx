@@ -20,11 +20,12 @@ const Favourite = () => {
         <>
             {listCity.listCity.map((listCt: any) => {
                 return listFv.favorite.map((listF: any) => {
-                    if (listCt.id == listF.cityId) {
+                    if (listCt.lable == listF.cityLable) {
                         return (<div key={listCt.id}><Link to={`/now/${listCt.lable}`} className="card-body">
                             <p className="card-title">{listCt.name}</p>
                         </Link>
-                            <a href="#" className="btn btn-primary" onClick={() => remove(localStorage.getItem("userID"), listF.cityId)}>Xóa</a>
+                            <a href="#" className="btn btn-primary" onClick={() => remove(1213043705780314, listCt.id)}>Xóa</a>
+                            {/* <a href="#" className="btn btn-primary" onClick={() => remove(localStorage.getItem("userID"), listF.cityId)}>Xóa</a> */}
                         </div>
                         )
                     }
