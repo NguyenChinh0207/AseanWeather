@@ -1,5 +1,18 @@
 import axios from 'axios';
-import { searchWeatherSuccess, searchWeatherFail, getWeatherHourlyFail, getWeatherHourlySuccess, getWeatherNowFail, getWeatherNowSuccess, getWeatherDailySuccess, getWeatherDailyFail, getWeatherFavoriteSuccess, getWeatherFavoriteFail, getWeatherNow, removeWeather, addWeather } from '../actions/weatherActions';
+import {
+    searchWeatherSuccess,
+    searchWeatherFail,
+    getWeatherHourlyFail,
+    getWeatherHourlySuccess,
+    getWeatherNowFail,
+    getWeatherNowSuccess,
+    getWeatherDailySuccess,
+    getWeatherDailyFail,
+    getWeatherFavoriteSuccess,
+    getWeatherFavoriteFail,
+    removeWeather,
+    addWeather
+} from '../actions/weatherActions';
 
 
 export const getWeatherNowRequest = (city: any) => {
@@ -27,7 +40,7 @@ export const getWeatherDailyRequest = (city: any) => {
 }
 
 
-export const getWeatherSearchRequest = (searchKey: string) => {
+export const getWeatherSearchRequest = (searchKey: any) => {
     return (dispatch: any) => {
         axios(`https://api-weather-asean.herokuapp.com/api/v1/cities?search=${searchKey}`).then((res) => {
             return dispatch(searchWeatherSuccess(res.data))
@@ -46,7 +59,7 @@ export const getWeatherFavoriteRequest = (userId: any) => {
 export const addWeatherFavoriteRequest = (data: any) => {
     return (dispatch: any) => {
         dispatch(addWeather(true));
-        axios.post(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities`, data).then(res=>{
+        axios.post(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities`, data).then(res => {
             dispatch(addWeather(false));
         });
     }

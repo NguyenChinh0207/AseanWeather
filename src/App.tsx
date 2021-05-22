@@ -13,8 +13,8 @@ class App extends Component<IProps, IState> {
 		return (
 			<Router>
 				<Switch>
-					{/* <Route path='/sign-in' exact component={LoginAdmin} /> 
-					<Route path="/dashboard" render={() => <AdminDashboard />} /> */}
+					<Route path='/sign-in' exact component={LoginAdmin} /> 
+					<Route path="/dashboard" render={() => <AdminDashboard />} />
 					<Route path="/" render={() => <MainRoute />} />
 				</Switch>
 			</Router>
