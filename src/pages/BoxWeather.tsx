@@ -5,7 +5,7 @@ import Now from "../components/weather/Now";
 import Hourly from "../components/weather/Hourly";
 import Daily from "../components/weather/Daily";
 import { connect } from 'react-redux';
-import { getWeatherNowRequest, getWeatherHourlyRequest, getWeatherDailyRequest, getWeatherFavoriteRequest } from "../redux/effects/weatherEffects"
+import { getWeatherNowRequest, getWeatherHourlyRequest, getWeatherDailyRequest, getWeatherFavoriteRequest, getWeatherSearchRequest } from "../redux/effects/weatherEffects"
 import { getListcityRequest } from "../redux/effects/cityEffects"
 import { bindActionCreators } from 'redux';
 
@@ -15,16 +15,18 @@ interface IBoxWeather {
   getWeatherNowRequest: (city: any) => void;
   getWeatherFavoriteRequest: (userId: any) => void;
   getListcityRequest: () => void;
+  getWeatherSearchRequest: (city:any) => void;
   match: any;
 }
 
-const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowRequest, match }) => {
+const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowRequest, match, getWeatherSearchRequest }) => {
 
   // lấy param từ Link truyền vào
   const { city } = match.params;
 
   // Sau khi Component được sinh ra thì chạy hàm getWeatherNowRequest() có param là city để lấy ra danh sách thời tiết hiện tại
   useEffect(() => {
+    getWeatherSearchRequest(city);
     getWeatherNowRequest(city);
   }, []);
 
@@ -37,7 +39,6 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
 
   return (
     <div className="main-container">
-      {console.log("alo",propsData)}
       <div className="main-container-innner-wrap">
           <NavbarWeather propsData={propsData.weather} city={cityData} favorite={propsData.favorite} userID={localStorage.getItem("userID")} />
           <Switch>
@@ -71,6 +72,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators(
     getWeatherDailyRequest,
     getListcityRequest,
     getWeatherFavoriteRequest,
+    getWeatherSearchRequest,
   }
   , dispatch);
 

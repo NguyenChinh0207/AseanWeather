@@ -35,7 +35,6 @@ const Users: React.FC<IUserProps> = ({propsUser,getUsersRequest,getTotalUsersReq
     getTotalUsersRequest();
     getUsersRequest(page);
   },[]);
-  console.log("total",propsUser.total);
   
   if (!propsUser.success) {
     return (

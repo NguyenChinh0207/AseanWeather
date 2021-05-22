@@ -24,8 +24,7 @@ const Favourite = () => {
                         return (<div key={listCt.id}><Link to={`/now/${listCt.lable}`} className="card-body">
                             <p className="card-title">{listCt.name}</p>
                         </Link>
-                            <a href="#" className="btn btn-primary" onClick={() => remove(1213043705780314, listCt.id)}>Xóa</a>
-                            {/* <a href="#" className="btn btn-primary" onClick={() => remove(localStorage.getItem("userID"), listF.cityId)}>Xóa</a> */}
+                            <a href="#" className="btn btn-primary" onClick={() => remove(localStorage.getItem("userID"), listF.cityId)}>Xóa</a>
                         </div>
                         )
                     }

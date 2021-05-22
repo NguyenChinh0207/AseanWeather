@@ -6,6 +6,7 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from "react-share";
+import { getWeatherNow } from '../../redux/actions/weatherActions';
 import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
 
 
@@ -27,7 +28,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   const setFv = () => {
     city.listCity.map((list: any) => {
       favorite.map((item: any) => {
-        if (list.id == item.cityId) {
+        if (list.lable == item.cityLable) {
           if (propsData.location.name.toUpperCase() == list.lable.toUpperCase()) {
             setClick(false);
           }
@@ -41,17 +42,24 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         setData({
-          // userId: userID,
-          userId: "1213043705780314",
+          userId: userID,
           cityId: list.id,
         });
       }
     })
   }
 
+  const setDefault = () =>{
+    dispatch(getWeatherNow());
+  } 
+
   useEffect(() => {
     setFv();
     setDt();
+
+    return () => {
+      setDefault();
+    }
   }, [])
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
@@ -63,7 +71,6 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         setClick(false)
       } else {
         dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
-        dispatch(removeWeatherFavoriteRequest(1213043705780314, data.cityId))
         setClick(true)
       }
     } else {

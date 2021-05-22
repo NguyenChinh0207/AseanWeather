@@ -107,9 +107,9 @@ const SearchComponent: React.FC<ISearch> = ({
     setCityMatch([]);
   };
 
-  //click button search (click button map với api weather)
-  // const onClickSearch=()=>{
-  //   getWeatherNowRequest(text);
+  // click button search (click button map với api weather)
+  // const onClickSearch=(value:any)=>{
+  //   getWeatherSearchRequest(value);
   // }
 
   return (
