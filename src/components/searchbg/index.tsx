@@ -108,9 +108,9 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   //click button search (click button map với api weather)
-  const onClickSearch=()=>{
-    getWeatherNowRequest(text);
-  }
+  // const onClickSearch=()=>{
+  //   getWeatherNowRequest(text);
+  // }
 
   return (
     <div className="hero-container">
@@ -137,7 +137,7 @@ const SearchComponent: React.FC<ISearch> = ({
             }}
           />
           <Link to={`/now/${text}`} >
-            <button className="btn-search" onClick={onClickSearch} style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
+            <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
           </Link>

@@ -41,7 +41,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         setData({
-          userId: userID,
+          // userId: userID,
+          userId: "1213043705780314",
           cityId: list.id,
         });
       }
@@ -55,12 +56,14 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
-    if (localStorage.getItem("userName")) {
+    if(true){
+    // if (localStorage.getItem("userName")) {
       if (click) {
         dispatch(addWeatherFavoriteRequest(data))
         setClick(false)
       } else {
         dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
+        dispatch(removeWeatherFavoriteRequest(1213043705780314, data.cityId))
         setClick(true)
       }
     } else {

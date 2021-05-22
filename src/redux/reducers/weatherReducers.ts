@@ -39,6 +39,7 @@ const initalState:IState = {
 }
 
 export const weatherReducer = (state = initalState, action:IAction) => {
+    console.log(action);   
     switch(action.type){
         case WeatherActionTypes.GET_WEATHER_NOW: {
             return {
@@ -49,14 +50,14 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_NOW_SUCCESS: {
             return {
                 ...state,
-                success: false,
+                success: true,
                 weather: action.payload
             }
         }
         case WeatherActionTypes.GET_WEATHER_NOW_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload
             }
         }

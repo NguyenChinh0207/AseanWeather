@@ -8,18 +8,21 @@ import BoxWeather from '../pages/BoxWeather';
 import Favourite from '../components/weather/Favourite';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { getListcityRequest } from '../redux/effects/cityEffects';
-import { getWeatherFavoriteRequest } from '../redux/effects/weatherEffects';
+import { getWeatherFavoriteRequest, getWeatherNowRequest } from '../redux/effects/weatherEffects';
 
 const MainRoute = () => {
     const dispatch = useDispatch();
     const propsData = useSelector((state: RootStateOrAny) => state.weatherReducer)
 
     useEffect(() => {
-        dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
-        dispatch(getListcityRequest());
-        // getWeatherFavoriteRequest(localStorage.getItem("userID"));
+        dispatch(getListcityRequest())
+        // dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
+        // dispatch(getWeatherNowRequest("ha noi"));
+        dispatch(getWeatherFavoriteRequest(1213043705780314));
     }, [propsData.action])
 
+    console.log('main router');
+    
     return (
         <>
             {/* Component chứa các router */}
@@ -31,7 +34,6 @@ const MainRoute = () => {
                 <Route path='/daily/:city' component={BoxWeather} />
                 <Route path='/favourites' component={Favourite} />
                 <Route component={Notfound} />
-                
             </Switch>
             <Footer />
         </>
