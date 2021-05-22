@@ -1,6 +1,8 @@
 import "./Now.scss";
 import config from "../../config/AirQuality";
 import winDirConvert from "../../config/WindDir";
+import UVConvert from '../../config/UV';
+
 const Now = ({ propsData }: any) => {
   return (
     // Hiển thị thông tin của ngày hiện tại lấy từ redux
@@ -67,7 +69,7 @@ const Now = ({ propsData }: any) => {
                       {"  "}
                       Chỉ số UV
                     </th>
-                    <td scope="col">{propsData.current.uv}/10</td>
+                    <td scope="col">{propsData.current.uv}{" "}{UVConvert(propsData.current.uv)}</td>
                   </tr>
                 </thead>
               </table>

@@ -10,6 +10,7 @@ import {
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { getWeatherHourlyRequest } from "../../redux/effects/weatherEffects";
 import winDirConvert from "../../config/WindDir";
+import UVConvert from '../../config/UV';
 
 interface IContextAwareToggle {
   children?: any;
@@ -144,7 +145,7 @@ const Hourly:React.FC<IHourly> = () => {
                               <img src="/assets/icons/UV.png" alt="" />
                               {"  "}
                                 Chỉ số UV</th>
-                              <td scope="col">{item.uv}/10</td>
+                              <td scope="col">{item.uv}{" "}{UVConvert(item.uv)}</td>
                             </tr>
                           </thead>
                         </table>

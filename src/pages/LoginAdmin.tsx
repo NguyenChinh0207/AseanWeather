@@ -51,7 +51,7 @@ const LoginAdmin = () => {
     }
 
     if(loading){
-        return <Redirect to='/dashboard' />
+        return <Redirect to='/dashboard/users/setting' />
     }
 
 	return (		
@@ -60,7 +60,7 @@ const LoginAdmin = () => {
                 <div className="container-admin container">
                     <div className="row">
                     <div className="col-md-4 login-sec">
-                        <h2 className="text-center">Login Now</h2>
+                        <h2 className="text-center">Login Admin</h2>
                         <div className="login-form-admin">
                             <div className="form-group-admin ">
                                 <label htmlFor="exampleInputEmail1" id="">Email:</label>
