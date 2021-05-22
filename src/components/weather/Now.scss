@@ -56,24 +56,30 @@
 .astro-wrap .forecast-container:nth-of-type(1),.astro-wrap .forecast-container:nth-of-type(2){
     width: 50%;
 }
-.air-quality .forecast-container:nth-of-type(1),.air-quality .forecast-container:nth-of-type(2){
-   width: 50%;
+.air-quality .forecast-container:nth-of-type(2){
+   width: 40%;
+}
+.air-quality .forecast-container:nth-of-type(1){
+    width: 60%;
 }
 
 .aqi-text{
     padding: 0 !important; 
+    text-align: start;
 }
 .aqi-text-detail{
     font-size: 18px;
 }
 .aqi-text-main{
     font-size: 30px;
+    margin-bottom: 10px;
 }
 
 .air-quality-title{
-    padding: 18px 0;
     font-weight: bold;
-    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .astro-wrap,.air-quality{

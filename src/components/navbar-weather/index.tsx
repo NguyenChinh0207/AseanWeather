@@ -64,8 +64,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
-    if(true){
-    // if (localStorage.getItem("userName")) {
+    if (localStorage.getItem("userName")) {
       if (click) {
         dispatch(addWeatherFavoriteRequest(data))
         setClick(false)
