@@ -57,7 +57,7 @@ const SearchComponent: React.FC<ISearch> = ({
         // setCookie('ipAddress', "1" ,{maxAge : 9000});
         if(!cookies.ipAddress)
         {
-          axios.get(
+          axios.put(
               `https://api-weather-asean.herokuapp.com/api/v1/ip`
             ).then((res)=>{
               localStorage.setItem("count",res.data.data.count);
