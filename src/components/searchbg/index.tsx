@@ -86,9 +86,9 @@ const SearchComponent: React.FC<ISearch> = ({
   };
   
   //Click item filter
-  const onCityHandler = (item: any) => {
+  const onCityHandler = async(item: any) => {
+    await getWeatherNowRequest(item.lable);
     setText(item.name);
-    getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
 

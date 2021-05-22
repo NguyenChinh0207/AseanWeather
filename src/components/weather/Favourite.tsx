@@ -23,7 +23,7 @@ const Favourite = () => {
           if (listCt.lable == listF.cityLable) {
             return (
               <div key={listCt.id} className="d-flex justify-content-md-around">
-                <Link to={`/now/${listCt.lable}`} className="card-body">
+                <Link to={`/now/${listCt.lable}`} className="card-body" style={{padding:0, marginBottom:"10px"}}>
                   <p className="card-title">{listCt.name}</p>
                 </Link>
                 <a
