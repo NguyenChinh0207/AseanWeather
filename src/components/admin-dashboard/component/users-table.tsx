@@ -13,6 +13,7 @@ interface IUserProps {
   getTotalUsersRequest: () => void;
   getUsersRequest: (page: number, size: number) => void;
 }
+//Hàm format Date 
 const dateForrmat = (dateItem: any) => {
   let d = new Date(dateItem);
   return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
@@ -23,31 +24,37 @@ const Users: React.FC<IUserProps> = ({
   getUsersRequest,
   getTotalUsersRequest,
 }) => {
+  //Khai báo biến để sử dụng
   const [page, setPage] = useState(0);
   let arr:number[]=[];
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState(arr);
-
+  //page Size
   let size = 10;
-
+  //thêm số page vào arr
   const convertArr = (n: any) => {
     for (let i = 1; i <= n; i++) {
       (arrOfCurrButtons as number[]).push(i);
     }
   };
-
+  //userEffect
   useEffect(() => {
-      setTimeout(()=>{
-        getTotalUsersRequest();   
-      },12000) ; 
+    //hàm gọi tổng số users
+    getTotalUsersRequest();
+    
+    if(propsUser.success){
       convertArr(Math.ceil(propsUser.total.data.total / size))
-      getUsersRequest(page, size);  
-  }, []);
+    }
+    //Hàm gọi list users      
+    getUsersRequest(page, size);  
 
+  }, [propsUser.success]);
+
+  //Hàm xử lý khi click vào page
   const paging = (page: number) => {
     getUsersRequest(page, size);
     setPage(page + 1);
   };
-
+  //kiểm tra 
   if (!propsUser.success) {
     return <div>Loading ... </div>;
   }

@@ -118,7 +118,7 @@ const Daily: React.FC<IDaily> = () => {
       {/* Hiển thị phần detail của từng ngày được chọn trong 3 ngày đó */}
       <CommonModal
         className="modalDaily"
-        title={`Date: ${weekConvert(daily.date)} - ${dateForrmat(daily.date)}`}
+        title={`${weekConvert(daily.date)} - ${dateForrmat(daily.date)}`}
         size="lg"
         show={isShow}
         setIsShow={() => setIsShow(false)}

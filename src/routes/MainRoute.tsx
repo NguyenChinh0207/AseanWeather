@@ -20,8 +20,6 @@ const MainRoute = () => {
         // dispatch(getWeatherNowRequest("ha noi"));
         dispatch(getWeatherFavoriteRequest(1213043705780314));
     }, [propsData.action])
-
-    console.log('main router');
     
     return (
         <>

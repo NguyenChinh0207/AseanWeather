@@ -31,7 +31,7 @@ export const usersReducer = (state = initalState, action:IAction) => {
         case usersTypes.GET_USERS_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload
             }
         }
@@ -45,7 +45,7 @@ export const usersReducer = (state = initalState, action:IAction) => {
         case usersTypes.GET_TOTAL_USERS_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload.data
             }
         }
