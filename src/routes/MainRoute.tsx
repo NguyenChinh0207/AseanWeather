@@ -18,7 +18,6 @@ const MainRoute = () => {
         dispatch(getListcityRequest())
         dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
     }, [propsData.action])
-
     return (
         <>
             {/* Component chứa các router */}
