@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { NavLink, Redirect ,useHistory} from "react-router-dom";
+import { NavLink ,useHistory} from "react-router-dom";
 import "./admin.scss";
 const Sidebar = () => {
   const [loading, setLoading] = useState(false);
