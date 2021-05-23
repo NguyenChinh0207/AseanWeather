@@ -8,7 +8,7 @@ import {
 import FavouriteLocation from "../favourite-location";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 // import { isBuffer } from "node:util";
 import {useCookies}  from "react-cookie";
@@ -28,6 +28,7 @@ const SearchComponent: React.FC<ISearch> = ({
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
   const [cookies, setCookie] = useCookies(['ipAddress']);
+  let history=useHistory();
 
   //Config api tìm kiếm
   const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
@@ -93,9 +94,14 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   // click button search (click button map với api weather)
-  // const onClickSearch=(value:any)=>{
-  //   getWeatherSearchRequest(value);
-  // }
+   const btnSearch=(value:string)=>{
+    history.push(`/now/${value}`)
+   }
+
+  const clickFilterItem=(item:string)=>{
+    history.push(`/now/${item}`)
+  }
+
 
   return (
     <div className="hero-container">
@@ -111,7 +117,7 @@ const SearchComponent: React.FC<ISearch> = ({
           <input
             type="text"
             className="form-control input_search"
-            placeholder="&#xF002; Search Location..."
+            placeholder="&#xF002; Search location..."
             onChange={(e) => handleSearch(e.target.value)}
             value={text}
             onBlur={() => {
@@ -121,7 +127,7 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to={`/now/${text}`} >
+          <Link to="#" onClick={()=>btnSearch(text)} >
             <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
@@ -136,7 +142,7 @@ const SearchComponent: React.FC<ISearch> = ({
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to={`/now/${item.lable}`} key={index}>
+              <Link to="#" key={index} onClick={()=>clickFilterItem(item.lable)}>
                 <div
                   className="suggest"
                   onClick={() => onCityHandler(item)}
