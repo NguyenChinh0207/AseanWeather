@@ -14,7 +14,7 @@ import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   
-  const [click, setClick] = useState(true);
+  const [click, setClick] = useState(false);
   const [data, setData] = useState(
     {
       userId: "",
@@ -54,12 +54,14 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   } 
 
   useEffect(() => {
-    setFv();
-    setDt();
-    return () => {
-      setDefault();
+    if(propsData.success){
+      setFv();
+      setDt();
+      return () => {
+        setDefault();
+      }
     }
-  }, [])
+  }, [propsData.success])
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
@@ -132,7 +134,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           <button onClick={handleClick}>
             <i
               className="fas fa-heart heart"
-              style={{ color: click ? "#a4b0be" : "red" }}
+              style={{ color: click ? "red" : "#a4b0be" }}
               title="Thêm vào yêu thích"
             ></i>
           </button>
