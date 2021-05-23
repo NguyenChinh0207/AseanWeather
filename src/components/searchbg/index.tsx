@@ -70,7 +70,7 @@ const SearchComponent: React.FC<ISearch> = ({
   }, [])
 
   //Match input with list city
-  const handleSearch = (text: string) => {
+  const handleSearch = async(text: string) => {
     if (!text) {
       setCityMatch([]);
       setShow(false);
@@ -82,13 +82,13 @@ const SearchComponent: React.FC<ISearch> = ({
       });
       setCityMatch(matches);
     }
-    setText(text);
+     await setText(text);
   };
   
   //Click item filter
   const onCityHandler = async(item: any) => {
-    await getWeatherNowRequest(item.lable);
     setText(item.name);
+    await getWeatherNowRequest(item.lable);
     setCityMatch([]);
   };
 

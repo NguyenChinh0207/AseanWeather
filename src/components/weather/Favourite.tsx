@@ -22,8 +22,8 @@ const Favourite = () => {
         return listFv.favorite.map((listF: any) => {
           if (listCt.lable == listF.cityLable) {
             return (
-              <div key={listCt.id} className="d-flex justify-content-md-around">
-                <Link to={`/now/${listCt.lable}`} className="card-body" style={{padding:0, marginBottom:"10px"}}>
+              <div key={listCt.id} className="d-flex justify-content-md-around" style={{marginBottom:"10px"}}>
+                <Link to={`/now/${listCt.lable}`} className="card-body" style={{padding:0}}>
                   <p className="card-title">{listCt.name}</p>
                 </Link>
                 <a

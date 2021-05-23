@@ -39,20 +39,7 @@ export const usersReducer = (state = initalState, action:IAction) => {
                 error: action.payload.list
             }
         }
-        // case usersTypes.GET_TOTAL_USERS_SUCCESS: {
-        //     return {
-        //         ...state,
-        //         success: true,
-        //         total: action.payload
-        //     }
-        // }
-        // case usersTypes.GET_TOTAL_USERS_FAIL: {
-        //     return {
-        //         ...state,
-        //         success: false,
-        //         error: action.payload.data
-        //     }
-        // }
+   
         default: {
             return state;
         }
