@@ -8,7 +8,7 @@ import {
 import FavouriteLocation from "../favourite-location";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 // import { isBuffer } from "node:util";
 import {useCookies}  from "react-cookie";
@@ -28,7 +28,6 @@ const SearchComponent: React.FC<ISearch> = ({
   const [show, setShow] = useState(false);
   const [listCities, setlistCities] = useState([]);
   const [cookies, setCookie] = useCookies(['ipAddress']);
-  let history=useHistory();
 
   //Config api tìm kiếm
   const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
@@ -94,14 +93,9 @@ const SearchComponent: React.FC<ISearch> = ({
   };
 
   // click button search (click button map với api weather)
-   const btnSearch=(value:string)=>{
-    history.push(`/now/${value}`)
-   }
-
-  const clickFilterItem=(item:string)=>{
-    history.push(`/now/${item}`)
-  }
-
+  // const onClickSearch=(value:any)=>{
+  //   getWeatherSearchRequest(value);
+  // }
 
   return (
     <div className="hero-container">
@@ -127,7 +121,7 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to="#" onClick={()=>btnSearch(text)} >
+          <Link to={`/now/${text}`} >
             <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
@@ -142,7 +136,7 @@ const SearchComponent: React.FC<ISearch> = ({
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
-              <Link to="#" key={index} onClick={()=>clickFilterItem(item.lable)}>
+              <Link to={`/now/${item.lable}`} key={index}>
                 <div
                   className="suggest"
                   onClick={() => onCityHandler(item)}

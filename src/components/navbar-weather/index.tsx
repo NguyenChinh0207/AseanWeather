@@ -56,7 +56,6 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   useEffect(() => {
     setFv();
     setDt();
-
     return () => {
       setDefault();
     }
@@ -84,6 +83,10 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       name = name.replace(" ", "%20");
     }
     return name;
+  }
+
+  if (!propsData.success) {
+    return <div>Loading ... </div>;
   }
 
   return (
