@@ -28,7 +28,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
   useEffect(() => {
     getWeatherSearchRequest(city);
     getWeatherNowRequest(city);
-  }, []);
+  }, [city]);
 
   // điều kiện nếu danh sách thời tiết chưa load xong
   if (!propsData.success) {
