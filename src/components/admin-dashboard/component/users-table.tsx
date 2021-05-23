@@ -26,7 +26,7 @@ const Users: React.FC<IUserProps> = ({
   let arr:number[]=[];
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState(arr);
   //page Size
-  let size = 2;
+  let size = 10;
   //thêm số page vào arr
   const convertArr = (n: any) => {
     for (let i = 1; i <= n; i++) {
