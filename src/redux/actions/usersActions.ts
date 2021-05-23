@@ -13,16 +13,3 @@ export const getUsersFail = (payload: string) => {
         payload
     }
 }
-// export const getTotalUsersSuccess = (payload: any) => {
-//     return {
-//         type: usersTypes.GET_TOTAL_USERS_SUCCESS,
-//         payload
-//     }
-// }
-
-// export const getTotalUsersFail = (payload: string) => {
-//     return {
-//         type: usersTypes.GET_TOTAL_USERS_FAIL,
-//         payload
-//     }
-// }

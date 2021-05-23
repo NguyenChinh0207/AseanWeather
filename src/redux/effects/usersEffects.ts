@@ -16,12 +16,3 @@ export const getUsersRequest = (page:number,size:number) => {
     }
 }
 
-// export const getTotalUsersRequest = () => {
-//     return (dispatch: any) => {
-//         axios(`https://api-weather-asean.herokuapp.com/api/v1/users/total`,config).then((res) => {
-//             return dispatch(getTotalUsersSuccess(res.data))
-//         }).catch(err => dispatch(getTotalUsersFail('Something wrong !')))
-
-//     }
-// }
-

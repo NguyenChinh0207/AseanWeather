@@ -9,7 +9,6 @@ import "../admin.scss";
 
 interface IUserProps {
   propsUser: any;
-  // getTotalUsersRequest: () => void;
   getUsersRequest: (page: number, size: number) => void;
 }
 //Hàm format Date 
@@ -21,7 +20,6 @@ const dateForrmat = (dateItem: any) => {
 const Users: React.FC<IUserProps> = ({
   propsUser,
   getUsersRequest,
-  // getTotalUsersRequest,
 }) => {
   //Khai báo biến để sử dụng
   const [page, setPage] = useState(0);
@@ -37,13 +35,13 @@ const Users: React.FC<IUserProps> = ({
   };
   //userEffect
   useEffect(() => {
-    // //hàm gọi tổng số users
-    // getTotalUsersRequest();
-
-     //Hàm gọi list users      
-    getUsersRequest(page, size);  
-    if(propsUser.success){
-        convertArr(propsUser.totalPage)
+     //Hàm gọi list users
+     const fetchData=async()=>{
+      await getUsersRequest(page, size);  
+     }
+     fetchData();
+     if(propsUser.success){  
+      convertArr(propsUser.totalPage)
     }
   }, [propsUser.success]);
   
@@ -110,32 +108,6 @@ const Users: React.FC<IUserProps> = ({
                 </li>
               );
             })}
-{/* 
-            <li className="page-item">
-              <Link className="page-link" to="#" onClick={()=>paging(0)}>
-                1
-              </Link>
-            </li>
-            <li className="page-item">
-              <Link className="page-link" to="#" onClick={()=>paging(1)}>
-                2
-              </Link>
-            </li> 
-            <li className="page-item">
-              <Link className="page-link" to="#" onClick={()=>paging(2)}>
-                3
-              </Link>
-            </li>
-            <li className="page-item">
-              <Link className="page-link" to="#" onClick={()=>paging(3)}>
-                4
-              </Link>
-            </li>
-            <li className="page-item">
-              <Link className="page-link" to="#" onClick={()=>paging(4)}>
-                5
-              </Link>
-            </li> */}
             
           </ul>
         </nav>
@@ -152,7 +124,6 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       getUsersRequest,
-      // getTotalUsersRequest,
     },
     dispatch
   );
