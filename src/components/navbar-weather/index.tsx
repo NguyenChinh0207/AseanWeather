@@ -85,10 +85,6 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     return name;
   }
 
-  if (!propsData.success) {
-    return <div>Loading ... </div>;
-  }
-
   return (
     <div className="container navbar-weather-wrap" >
 
