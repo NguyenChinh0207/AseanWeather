@@ -244,12 +244,37 @@ video {
 }
 
 
-  // @media only screen and (max-width: 600px) {
-  //   .search {
-  //       padding: 20px 15%;
-  //   }
-  
-  //   .city {
-  //       padding: 40px 20%;
-  //   }
-  // }
+  @media only screen and (max-width: 420px) {
+    .wrap-input-response{
+      width: 130%;
+      margin-left: -25px;
+    }
+    .suggest-wrap{
+      width: 65%;
+      margin-left: -25px;
+    }
+    .suggest{
+      font-size: 14px;
+    }
+    .text-home-title-response{
+      font-size: 26px;
+    }
+    .text-home-detail-response{
+      font-size: 14px;
+    }
+    .input_search{
+      font-size: 18px;
+    }
+    .view-fixed-panel{
+      padding: 0;
+      width: 90px;
+    }
+    .view-fixed-panel span{
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .text-home-title-response{
+      font-size: 34px !important;
+    }
+  }

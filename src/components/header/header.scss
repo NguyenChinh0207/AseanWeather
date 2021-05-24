@@ -115,11 +115,19 @@
   //   color: red;
   //   margin-top: 8px;
   // }
+  @media screen and (max-width: 420px) {
+    .navbar-logo div span{
+      font-size: 20px;
+    }
+    .navbar-logo{
+      margin-left: -50px;
+    }
+  }
   @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;
     }
-  
+    
     .nav-menu {
       display: flex;
       flex-direction: column;

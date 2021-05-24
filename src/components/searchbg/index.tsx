@@ -104,12 +104,12 @@ const SearchComponent: React.FC<ISearch> = ({
 
       {/* Giao diện của trang search */}
       <video src="/assets/videos/video-1.mp4" autoPlay loop muted />
-      <h3>Asean Weather</h3>
-      <h5>Today , What is the weather like in your place ? </h5>
+      <h3 className="text-home-title-response">Asean Weather</h3>
+      <h5 className="text-home-detail-response">Today , What is the weather like in your place ? </h5>
 
       {/* Thanh search */}
       <div className="hero-btns">
-        <div className="d-flex ">
+        <div className="d-flex wrap-input-response">
           <input
             type="text"
             className="form-control input_search"
