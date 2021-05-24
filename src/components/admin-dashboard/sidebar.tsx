@@ -6,7 +6,7 @@ const Sidebar = () => {
   let history=useHistory();
   //xử lý khi click nút logout
   const clickLogout = () => {
-    const cf = window.confirm('Ban co muon đăng xuất không ?');
+    const cf = window.confirm('Ban có muốn đăng xuất không ?');
     if(cf){
     sessionStorage.clear();
     setLoading(true);
