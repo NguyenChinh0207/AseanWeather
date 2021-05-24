@@ -20,7 +20,7 @@ interface ISearch {
 }
 
 const SearchComponent: React.FC<ISearch> = ({
-  getWeatherNowRequest,
+  getWeatherNowRequest,propsData
 }) => {
   //Khai báo state để sử dụng
   const [cityMatch, setCityMatch] = useState([]);
@@ -67,6 +67,7 @@ const SearchComponent: React.FC<ISearch> = ({
     };
     getTotalView(); 
     loadCities();
+    
   }, [])
 
   //Match input with list city
@@ -86,9 +87,11 @@ const SearchComponent: React.FC<ISearch> = ({
   };
   
   //Click item filter
-  const onCityHandler = async(item: any) => {
+  const onCityHandler = (item: any) => {
     setText(item.name);
-    await getWeatherNowRequest(item.lable);
+    if(propsData.nowloading){
+      getWeatherNowRequest(item.lable);
+    }
     setCityMatch([]);
   };
 

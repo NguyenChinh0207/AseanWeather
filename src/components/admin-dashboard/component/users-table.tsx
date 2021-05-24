@@ -14,7 +14,7 @@ interface IUserProps {
 //Hàm format Date 
 const dateForrmat = (dateItem: any) => {
   let d = new Date(dateItem);
-  return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+  return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear()+" "+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 };
 
 const Users: React.FC<IUserProps> = ({
@@ -41,8 +41,9 @@ const Users: React.FC<IUserProps> = ({
      }
      fetchData();
      if(propsUser.success){  
-      convertArr(propsUser.totalPage)
-    }
+      convertArr(propsUser.totalPage);
+      }
+     
   }, [propsUser.success]);
   
   //Hàm xử lý khi click vào page
@@ -50,9 +51,9 @@ const Users: React.FC<IUserProps> = ({
     getUsersRequest(page, size);
     setPage(page + 1);
   };
-  if (!propsUser.success) {
-    return <div>Loading ... </div>;
-  }
+  // if (!propsUser.success) {
+  //   return <div>Loading ... </div>;
+  // }
 
   return (
     <div className="container-fluid content-users">

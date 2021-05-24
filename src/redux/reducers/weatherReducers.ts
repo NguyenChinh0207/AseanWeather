@@ -5,6 +5,7 @@ interface IAction {
 }
 
 interface IState {
+    nowloading:boolean;
     success: boolean;
     loading: boolean;
     loaded: boolean;
@@ -22,6 +23,7 @@ interface IState {
 }
 
 const initalState:IState = {
+    nowloading:false,
     success: false,
     loading: false,
     loaded: false,
@@ -43,20 +45,20 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_NOW: {
             return {
                 ...state,
-                success: false,
+                success: true,
             }
         }
         case WeatherActionTypes.GET_WEATHER_NOW_SUCCESS: {
             return {
                 ...state,
-                success: true,
+                nowloading: true,
                 weather: action.payload
             }
         }
         case WeatherActionTypes.GET_WEATHER_NOW_FAIL: {
             return {
                 ...state,
-                success: false,
+                nowloading: false,
                 error: action.payload
             }
         }
@@ -70,7 +72,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_HOURLY_FAIL: {
             return {
                 ...state,
-                loading: true,
+                loading: false,
                 error: action.payload
             }
         }
@@ -84,7 +86,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_DAILY_FAIL: {
             return {
                 ...state,
-                loaded: true,
+                loaded: false,
                 error: action.payload
             }
         }
@@ -99,7 +101,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.SEARCH_WEATHER_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload
             }
         }
@@ -113,7 +115,7 @@ export const weatherReducer = (state = initalState, action:IAction) => {
         case WeatherActionTypes.GET_WEATHER_FAVOURITE_FAIL: {
             return {
                 ...state,
-                lo: true,
+                lo: false,
                 error: action.payload
             }
         }
