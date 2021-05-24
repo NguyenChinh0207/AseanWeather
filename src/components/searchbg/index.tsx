@@ -54,7 +54,6 @@ const SearchComponent: React.FC<ISearch> = ({
           axios.get(
             `https://api-weather-asean.herokuapp.com/api/v1/count`
           ).then((res)=>{
-            console.log(res);
             localStorage.setItem("count",res.data.data.count);
           })
         }
@@ -135,7 +134,7 @@ const SearchComponent: React.FC<ISearch> = ({
           style={{ display: show ? "block" : "none" }}
         >
           {
-            cityMatch.length == 0 && (<div className="suggest">Không tìm thấy kết quả nào .</div>)
+            cityMatch.length === 0 && (<div className="suggest">Không tìm thấy kết quả nào .</div>)
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (

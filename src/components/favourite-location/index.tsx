@@ -17,7 +17,7 @@ const FavouriteLocation: React.FC<IFavourite> = () => {
     <div className="d-flex favourite-wrap">
       {listCity.listCity.map((listCt: any) => {
         return listFv.favorite.map((listF: any, index: any) => {
-          if (listCt.lable == listF.cityLable && index < 3) {
+          if (listCt.lable === listF.cityLable && index < 3) {
             return (
               <div key={listCt.id} className="favourite-item">
                 <Link to={`/now/${listCt.lable}`}>
