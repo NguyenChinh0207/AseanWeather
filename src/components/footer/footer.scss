@@ -78,12 +78,26 @@
       width: 100%;
     }
   
-   
     .social-media-wrap {
       flex-direction: column;
     }
+    .logApiWeather{
+      width: 60px;
+      height: 30px;
+    }
+    .website-rights{
+      font-size: 12px;
+    }
+   
+    .social-logo div span{
+        font-size: 16px;
+    }
+    .social-logo img{
+      width: 25px;
+    }
   }
   
-  @media screen and (max-width: 768px) {
+  @media only screen and (max-width: 420px) {
+
   }
   
