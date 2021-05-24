@@ -36,14 +36,17 @@ const Users: React.FC<IUserProps> = ({
   //userEffect
   useEffect(() => {
      //Hàm gọi list users
-     const fetchData=async()=>{
-      await getUsersRequest(page, size);  
-     }
-     fetchData();
-     if(propsUser.success){  
+    //  const fetchData=async()=>{
+    //   await getUsersRequest(page, size);  
+    //  }
+    //  fetchData();
+    const fetchData=async()=>{
+      await getUsersRequest(page, size);
+     if(propsUser.success==1){   
       convertArr(propsUser.totalPage);
       }
-     
+    }
+    fetchData();
   }, [propsUser.success]);
   
   //Hàm xử lý khi click vào page
@@ -51,9 +54,9 @@ const Users: React.FC<IUserProps> = ({
     getUsersRequest(page, size);
     setPage(page + 1);
   };
-  // if (!propsUser.success) {
-  //   return <div>Loading ... </div>;
-  // }
+  if (!propsUser.success) {
+    return <div>Loading ... </div>;
+  }
 
   return (
     <div className="container-fluid content-users">

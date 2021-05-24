@@ -5,7 +5,7 @@ import CommonModal from "../modal/CommonModal";
 import { Dropdown } from "react-bootstrap";
 import axios from "axios";
 import FacebookLogin from "react-facebook-login";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import Favourite from "../weather/Favourite";
 // import useMetaTags from "react-metatags-hook"
 
@@ -18,7 +18,7 @@ const Header = () => {
   const [showUser, setShowUser] = useState(false);
   const [isShowFv, setIsShowFv] = useState(false);
   // const [user, setUser] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -107,17 +107,23 @@ const Header = () => {
             <li className="nav-item">
               <Link
                 to="/search"
-                className="nav-links"
+                className="nav-links "
                 onClick={closeMobileMenu}
               >
                 <i className="fas fa-search"></i>
               </Link>
             </li>
-            <li className="nav-links"
+            <li className="nav-links  nav-favourite"
               onClick={() => setIsShowFv(true)}
               style={{ cursor: "pointer" }}
             >
-              Favourite
+               <Link
+                to="#"
+                className="nav-links "
+                onClick={closeMobileMenu}
+              >
+                Favourite
+              </Link>
             </li>
             <li
               className="nav-item"
@@ -125,8 +131,8 @@ const Header = () => {
             >
               <Link
                 to="#"
-                className="nav-links"
-                onClick={() => setIsShow(true)}
+                className="nav-links "
+                onClick={() => {setIsShow(true)}}
               >
                 Sign In
               </Link>

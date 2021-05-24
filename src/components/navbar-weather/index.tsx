@@ -26,8 +26,8 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   const setFv = () => {
     city.listCity.map((list: any) => {
       favorite.map((item: any) => {
-        if (list.lable == item.cityLable) {
-          if (propsData.location.name.toUpperCase() == list.lable.toUpperCase()) {
+        if (list.lable === item.cityLable) {
+          if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
             setClick(false);
           }
         }
