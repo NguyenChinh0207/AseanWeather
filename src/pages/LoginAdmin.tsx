@@ -38,9 +38,9 @@ const LoginAdmin = () => {
         const loadAdmins = async () => {
             let payload = { email: email, password: password };
             let res = await axios.post('https://api-weather-asean.herokuapp.com/api/v1/admin/login', payload);      
-            sessionStorage.setItem("admin", res.data.data.email);
-            sessionStorage.setItem("token", res.data.data.jwt);
             if(res.data.message=="Success"){
+                sessionStorage.setItem("admin", res.data.data.email);
+                sessionStorage.setItem("token", res.data.data.jwt);
                 setLoading(true);
             }
             else{

@@ -31,12 +31,13 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
   }, [city]);
 
   // điều kiện nếu danh sách thời tiết chưa load xong
-  if (!propsData.success) {
+  if (!propsData.nowloading) {
     return (
       <div className="loading" >Loading ... </div>
     );
   }
-
+  
+  
   return (
     <div className="main-container">
       <div className="main-container-innner-wrap">

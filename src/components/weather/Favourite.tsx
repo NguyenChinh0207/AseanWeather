@@ -29,9 +29,13 @@ const Favourite = () => {
                 <a
                   href="#"
                   className="btn btn-primary"
-                  onClick={() =>
-                    remove(localStorage.getItem("userID"), listCt.id)
+                  onClick={() =>{
+                      const cf = window.confirm('Bạn muốn xóa yêu thích địa phương này?');
+                      if(cf){
+                        remove(localStorage.getItem("userID"), listCt.id)
+                    }
                   }
+                }
                 >
                   Xóa
                 </a>

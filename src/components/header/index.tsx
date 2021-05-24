@@ -70,7 +70,7 @@ const Header = () => {
           localStorage.setItem("userName", res.data.data.data.name);
           setShowSignIn(false);
           alert(
-            "xin chào, " +
+            "Xin chào, " +
             res.data.data.data.name +
             "\nchúc bạn xem thông tin thời tiết vui vẻ!"
           );

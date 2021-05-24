@@ -26,7 +26,7 @@ export const cityReducer = (state = initalState, action:IAction) => {
         case cityTypes.GET_LIST_CITY_FAIL: {
             return {
                 ...state,
-                success: true,
+                success: false,
                 error: action.payload
             }
         }

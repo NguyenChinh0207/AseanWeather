@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
   EmailShareButton,
@@ -8,12 +8,10 @@ import {
 } from "react-share";
 import { getWeatherNow } from '../../redux/actions/weatherActions';
 import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
-
-
 import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
-  
+ 
   const [click, setClick] = useState(true);
   const [data, setData] = useState(
     {
@@ -60,6 +58,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         setDefault();
       }
   }, [])
+ 
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
@@ -67,11 +66,11 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       if (click) {
         const cf = window.confirm('Ban có muốn thêm vào yêu thích không ?');
         if(cf){
-          dispatch(addWeatherFavoriteRequest(data))
-          setClick(false)
+          await dispatch(addWeatherFavoriteRequest(data))
+          setClick(false);
         }
       } else {
-        const cf = window.confirm('Ban muốn xóa yêu thích địa phương này?');
+        const cf = window.confirm('Bạn muốn xóa yêu thích địa phương này?');
         if(cf){
           dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
           setClick(true)
