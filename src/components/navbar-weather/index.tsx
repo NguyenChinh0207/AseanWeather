@@ -14,7 +14,7 @@ import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
   const [data, setData] = useState(
     {
       userId: "",
@@ -53,25 +53,29 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
     dispatch(getWeatherNow());
   } 
 
-  useEffect(() => {
-    if(propsData.success){
+  useEffect(() => { 
       setFv();
       setDt();
       return () => {
         setDefault();
       }
-    }
-  }, [propsData.success])
+  }, [])
 
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick = async () => {
     if (localStorage.getItem("userName")) {
       if (click) {
-        dispatch(addWeatherFavoriteRequest(data))
-        setClick(false)
+        const cf = window.confirm('Ban có muốn thêm vào yêu thích không ?');
+        if(cf){
+          dispatch(addWeatherFavoriteRequest(data))
+          setClick(false)
+        }
       } else {
-        dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
-        setClick(true)
+        const cf = window.confirm('Ban muốn xóa yêu thích địa phương này?');
+        if(cf){
+          dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId))
+          setClick(true)
+        }
       }
     } else {
       alert("Bạn muốn thêm địa phương này vào danh sách yêu thích? \nBạn phải login trước !")
@@ -130,11 +134,10 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         <div className="favourite-wrap">
 
           {/* Hiển thị xem đó có phải là địa phương yêu thích k */}
-          {/* Nếu đỏ là địa phương yêu thích, click vào thì bỏ yêu thích và ngược lại */}
           <button onClick={handleClick}>
             <i
               className="fas fa-heart heart"
-              style={{ color: click ? "red" : "#a4b0be" }}
+              style={{ color: click ? "#a4b0be" : "red" }}
               title="Thêm vào yêu thích"
             ></i>
           </button>

@@ -51,7 +51,7 @@ const Header = () => {
       setShowSignIn(true);
       setShowUser(false);
     }
-  });
+  },);
 
   //Xử lý response facebook
   const responseFacebook = (response: any) => {
