@@ -37,9 +37,11 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
 
   // Lấy dữ liệu của địa phương như Id người dùng và id city
   const setDt = () => {
+ 
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         setData({
+          // userId:'1403943429941869',
           userId: userID,
           cityId: list.id,
         });
@@ -52,21 +54,22 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   } 
 
   useEffect(() => { 
+    
       setFv();
       setDt();
+      setClick(true);   
       return () => {
         setDefault();
       }
-  }, [])
+  }, [propsData.location.name])
  
-
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
-  const handleClick = async () => {
-    if (localStorage.getItem("userName")) {
+  const handleClick =  () => {
+    if (localStorage.getItem("userName")) {  
       if (click) {
         const cf = window.confirm('Ban có muốn thêm vào yêu thích không ?');
         if(cf){
-          await dispatch(addWeatherFavoriteRequest(data))
+           dispatch(addWeatherFavoriteRequest(data))
           setClick(false);
         }
       } else {

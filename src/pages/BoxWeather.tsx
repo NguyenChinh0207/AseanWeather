@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavbarWeather from "../components/navbar-weather";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
 import Now from "../components/weather/Now";
 import Hourly from "../components/weather/Hourly";
 import Daily from "../components/weather/Daily";
@@ -20,20 +20,22 @@ interface IBoxWeather {
 }
 
 const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowRequest, match, getWeatherSearchRequest }) => {
-
+  
   // lấy param từ Link truyền vào
   const { city } = match.params;
-
   // Sau khi Component được sinh ra thì chạy hàm getWeatherNowRequest() có param là city để lấy ra danh sách thời tiết hiện tại
   useEffect(() => {
     getWeatherSearchRequest(city);
     getWeatherNowRequest(city);
   }, [city]);
 
-  // điều kiện nếu danh sách thời tiết chưa load xong
+  // Nếu ds thời tiết chưa load xong hoặc trả về lỗi
   if (!propsData.nowloading) {
     return (
-      <div className="loading" >Loading ... </div>
+       <div className="loading d-flex" style={{flexDirection:"column"}} >
+         <span>Không có địa phương này! Bạn nên nhập "tên thành phố, tên nước"</span>
+          <Link to="/" className="btn btn-warning">Quay lại</Link>
+       </div>
     );
   }
   
@@ -43,7 +45,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
       <div className="main-container-innner-wrap">
           <NavbarWeather propsData={propsData.weather} city={cityData} favorite={propsData.favorite} userID={localStorage.getItem("userID")} />
           <Switch>
-            <Route path="/now/:city">
+            <Route path="/now/:city" >
               <Now propsData={propsData.weather} />
             </Route>
             <Route path="/search/now">

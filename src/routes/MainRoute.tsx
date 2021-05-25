@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Footer from '../components/footer';
 import Header from '../components/header';
@@ -18,7 +18,7 @@ const MainRoute = () => {
         dispatch(getListcityRequest())
         dispatch(getWeatherFavoriteRequest(localStorage.getItem("userID")));
     }, [propsData.action, localStorage.getItem("userID")])
-
+    
     return (
         <>
             {/* Component chứa các router */}
