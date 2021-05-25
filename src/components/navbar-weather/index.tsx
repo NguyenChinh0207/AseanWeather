@@ -161,7 +161,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
             className="share"
             title="Chia sẻ lên Facebook"
           >
-            <FacebookIcon size={30} round={true} />
+            <FacebookIcon className="facebook" size={30} round={true} />
           </FacebookShareButton>
         </div>
       </div>

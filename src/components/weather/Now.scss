@@ -132,3 +132,46 @@ table td{
 .condition-text-now{
     width: 100%;
 }
+@media screen and (max-width: 768px){
+    .main-now-wrap{
+        flex-direction: column;
+    }
+    .forecast-container{
+        margin-right:0 !important;
+    }
+    .cur-con-weather-card .forecast-container .temp{
+        font-size: 60px;
+    }
+    .cur-con-weather-card .forecast-container:nth-of-type(2),.cur-con-weather-card .forecast-container:nth-of-type(3){
+        width: 100%;
+    }
+    .air-quality, .astro-wrap{
+         width: 100%;
+    }
+    
+    .air-quality .forecast-container:nth-of-type(1) {
+        width: 100%;
+    }
+    .air-quality .forecast-container:nth-of-type(1)  tr{
+        flex-direction: column;
+    }
+    .aqi-text-detail{
+        font-size: 14px;
+        margin-left: 0 !important;
+    }
+    .weather-container{
+        padding: 4px;
+    }
+    .air-quality .forecast-container:nth-of-type(2){
+        width: 30%;
+     }
+     .air-quality .forecast-container:nth-of-type(1){
+         width: 70%;
+     }
+     .cur-con-weather-card .forecast-container:nth-of-type(2), .cur-con-weather-card .forecast-container:nth-of-type(3){
+         width: 100% !important;
+     }
+     .astro-wrap .forecast-container:nth-of-type(1),.astro-wrap .forecast-container:nth-of-type(2){
+        width: 98%;
+    }
+}
