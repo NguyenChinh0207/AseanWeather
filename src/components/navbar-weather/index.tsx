@@ -14,6 +14,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
  
   let history=useHistory();
   const [click, setClick] = useState(true);
+  const [test, setTest]=useState(false);
   const [data, setData] = useState(
     {
       userId: "",
@@ -41,12 +42,17 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
  
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
+        console.log("propsData.location.name",propsData.location.name);
+        console.log("city label",list.lable); 
         setData({
           // userId:'1403943429941869',
           userId: userID,
           cityId: list.id,
         });
+         setTest(true);
+        console.log("test succ",test);
       }
+      
     })
   }
 
@@ -55,24 +61,36 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   } 
 
   useEffect(() => { 
-    
       setFv();
       setDt();
       setClick(true);   
+      console.log("test useeff",test);
       return () => {
         setDefault();
       }
+      
   }, [propsData.location.name])
- 
+  console.log("test outside",test);
   // Người dùng phải đăng nhập mới được dùng chức năng này, nếu đăng nhập rồi thì có thể thêm hoặc xóa địa phương yêu thích
   const handleClick =  () => {
     if (localStorage.getItem("userName")) {  
       if (click) {
-        const cf = window.confirm('Ban có muốn thêm vào yêu thích không ?');
-        if(cf){
-           dispatch(addWeatherFavoriteRequest(data))
-          setClick(false);
+        console.log("test click",test);
+        if(test==false){
+          const cf = window.confirm('Địa phương này không nằm trong danh sách quản lý\n Vui lòng chọn địa phương trong khung tìm kiếm!');
+          if(cf){
+            history.push("/");
+          }
+            }
+        
+        else if(test==true){
+          const confim = window.confirm('Bạn có muốn thêm vào yêu thích không ?');
+          if(confim){
+            dispatch(addWeatherFavoriteRequest(data))
+            setClick(false);
+          }
         }
+        
       } else {
         const cf = window.confirm('Bạn muốn xóa yêu thích địa phương này?');
         if(cf){
