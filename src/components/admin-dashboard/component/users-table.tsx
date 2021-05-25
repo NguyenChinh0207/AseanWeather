@@ -35,18 +35,10 @@ const Users: React.FC<IUserProps> = ({
   };
   //userEffect
   useEffect(() => {
-     //Hàm gọi list users
-    //  const fetchData=async()=>{
-    //   await getUsersRequest(page, size);  
-    //  }
-    //  fetchData();
-    const fetchData=async()=>{
-      await getUsersRequest(page, size);
-     if(propsUser.success==1){   
+      getUsersRequest(page, size);
+     if(propsUser.success){   
       convertArr(propsUser.totalPage);
       }
-    }
-    fetchData();
   }, [propsUser.success]);
   
   //Hàm xử lý khi click vào page
