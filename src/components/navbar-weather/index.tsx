@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -12,6 +12,7 @@ import "./navbar.scss";
 
 const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
  
+  let history=useHistory();
   const [click, setClick] = useState(true);
   const [data, setData] = useState(
     {
@@ -80,7 +81,10 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         }
       }
     } else {
-      alert("Bạn muốn thêm địa phương này vào danh sách yêu thích? \nBạn phải login trước !")
+      const cf = window.confirm('Bạn muốn thêm địa phương này vào danh sách yêu thích? \nBạn phải login trước !');
+        if(cf){
+           history.push("/");
+        }
     }
   }
 
