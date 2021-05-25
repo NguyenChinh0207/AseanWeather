@@ -39,7 +39,6 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
 
   // Lấy dữ liệu của địa phương như Id người dùng và id city
   const setDt = () => {
- 
     city.listCity.map((list: any) => {
       if (propsData.location.name.toUpperCase() === list.lable.toUpperCase()) {
         console.log("propsData.location.name",propsData.location.name);
@@ -49,7 +48,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           userId: userID,
           cityId: list.id,
         });
-         setTest(true);
+        setTest(true);
         console.log("test succ",test);
       }
       
@@ -75,21 +74,21 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
   const handleClick =  () => {
     if (localStorage.getItem("userName")) {  
       if (click) {
-        console.log("test click",test);
-        if(test==false){
-          const cf = window.confirm('Địa phương này không nằm trong danh sách quản lý\n Vui lòng chọn địa phương trong khung tìm kiếm!');
-          if(cf){
-            history.push("/");
-          }
-            }
+        // console.log("test click",test);
+        // if(test==false){
+        //   const cf = window.confirm('Địa phương này không nằm trong danh sách quản lý\n Vui lòng chọn địa phương trong khung tìm kiếm!');
+        //   if(cf){
+        //     history.push("/");
+        //   }
+        //     }
         
-        else if(test==true){
+        // else if(test==true){
           const confim = window.confirm('Bạn có muốn thêm vào yêu thích không ?');
           if(confim){
             dispatch(addWeatherFavoriteRequest(data))
             setClick(false);
           }
-        }
+        
         
       } else {
         const cf = window.confirm('Bạn muốn xóa yêu thích địa phương này?');
