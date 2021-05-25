@@ -111,9 +111,15 @@ const SearchComponent: React.FC<ISearch> = ({
     setCityMatch([]);
   };
 
+  
   // click button search (click button map với api weather)
-  // const onClickSearch=(value:any)=>{
-  //   getWeatherSearchRequest(value);
+  // const clickSearch=async (value:any)=>{
+    
+  //    await getWeatherNowRequest(xoa_dau(value));
+    
+  //   if(propsData.nowloading){
+  //    alert("Không tìm thấy địa phương này")
+  //   }
   // }
 
   return (
@@ -140,18 +146,18 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to={`/now/${xoa_dau(text)}`} >
-            <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }}>
+          <Link to={`now/${xoa_dau(text)}`} >
+            <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }} >
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
           </Link>
         </div>
         <div
-          className="suggest-wrap"
+          className="suggest-wrap" 
           style={{ display: show ? "block" : "none" }}
         >
           {
-            cityMatch.length === 0 && (<div className="suggest">Không tìm thấy kết quả nào .</div>)
+            cityMatch.length === 0 && (<div className="suggest text-danger" id="suggest">Không tìm thấy kết quả nào .</div>)
           }
           {cityMatch &&
             cityMatch.map((item: any, index: any) => (
