@@ -88,7 +88,7 @@ const Users: React.FC<IUserProps> = ({
         {/* page */}
         <nav aria-label="Page navigation example " className="paging">
           <div className="m-3">
-            Page {page+1} of {propsUser.totalPage}
+            Page {page} of {propsUser.totalPage}
           </div>
           <ul className="pagination" style={{ margin: 0 }}>
             {arrOfCurrButtons.map((item, index) => {
