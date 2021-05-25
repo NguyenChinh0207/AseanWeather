@@ -98,3 +98,10 @@ h5,h6,h2{
     transform: rotate(360deg);
   }
 }
+@media screen and (max-width: 768px){
+  .main-container-innner-wrap{
+    width: 95%;
+    margin: auto;
+  }
+
+}

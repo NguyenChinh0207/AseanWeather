@@ -113,7 +113,7 @@ const Header = () => {
                 <i className="fas fa-search"></i>
               </Link>
             </li>
-            <li className="nav-links  nav-favourite"
+            <li className="nav-item "
               onClick={() => setIsShowFv(true)}
               style={{ cursor: "pointer" }}
             >

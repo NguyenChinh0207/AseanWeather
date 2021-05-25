@@ -63,3 +63,19 @@
     color: #DE6262 ;
     font-size: 30px;
 }
+@media screen and (max-width: 768px){
+    .btn-navbar{
+        padding:4px 6px;
+        font-size: 14px;
+    }
+    .location-title{
+        font-size: 16px;
+    }
+    .heart, .gmail{
+        font-size: 25px;
+    }
+    .facebook{
+        width: 25px;
+    }
+    
+}
