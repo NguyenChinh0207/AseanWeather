@@ -19,7 +19,8 @@ interface IState {
     location:[],
     favorite:[],
     lo:boolean,
-    action:boolean
+    action:boolean,
+    loadFavor:boolean
 }
 
 const initalState:IState = {
@@ -38,6 +39,7 @@ const initalState:IState = {
     location:[],
     favorite:[],
     action:false,
+    loadFavor:false,
 }
 
 export const weatherReducer = (state = initalState, action:IAction) => {
@@ -123,12 +125,29 @@ export const weatherReducer = (state = initalState, action:IAction) => {
             return {
                 ...state,
                 action: action.payload,
+                loadFavor:true
             }
         }
         case WeatherActionTypes.ADD_WEATHER: {
             return {
                 ...state,
                 action: action.payload,
+                loadFavor:true
+            }
+        }
+        ///
+        case WeatherActionTypes.ADD_WEATHER_FAIL: {
+            return {
+                ...state,
+                error: action.payload,
+                loadFavor:false
+            }
+        }
+        case WeatherActionTypes.ADD_WEATHER_FAIL: {
+            return {
+                ...state,
+                error: action.payload,
+                loadFavor:false
             }
         }
         default: {

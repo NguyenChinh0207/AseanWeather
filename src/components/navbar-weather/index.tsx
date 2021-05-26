@@ -11,7 +11,7 @@ import { addWeatherFavoriteRequest, removeWeatherFavoriteRequest } from "../../r
 import "./navbar.scss";
 import  {listCity} from "../../data/ListCity";
 
-const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
+const NavbarWeather = ({ propsData, city, favorite, userID, loadFavor }: any) => {
  
   let history=useHistory();
   const [click, setClick] = useState(true);
@@ -78,7 +78,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
         setDefault();
       }
       
-  }, [propsData.location.name,test,click,labelFavorite])
+  }, [propsData.location.name,test,click,labelFavorite,loadFavor])
 
   useEffect(()=>{   
     setLabelFavorite(propsData.location.name);
@@ -93,13 +93,20 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
           const confim = window.confirm(`Bạn có muốn thêm ${labelFavorite} vào yêu thích không ?`);
           setTest(true);
           setLabelFavorite(null);
-          setClick(false);
+          // setClick(false);
           
           if(confim){
             dispatch(addWeatherFavoriteRequest(data))
-            setClick(false);
-            setTest(true);
-            setLabelFavorite(null);
+            if(loadFavor===false){
+              alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
+              setClick(true);
+            }
+            else{
+              setClick(false);
+              setTest(true);
+              setLabelFavorite(null);
+            }
+          
           }
           
         }
@@ -114,8 +121,15 @@ const NavbarWeather = ({ propsData, city, favorite, userID }: any) => {
       } else {
         const cf = window.confirm(`Bạn muốn xóa yêu thích ${labelFavorite}?`);
         if(cf){
-          setClick(true);
           dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId));
+          // dispatch(removeWeatherFavoriteRequest("1403943429941869", data.cityId));
+          if(loadFavor===false){
+            alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
+            setClick(false);
+          }
+          else{
+            setClick(true);
+          }
         }
       }
     } else {

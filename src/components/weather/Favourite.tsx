@@ -10,6 +10,10 @@ const Favourite = () => {
   const dispatch = useDispatch();
   const remove = (userId: any, cityId: any) => {
     dispatch(removeWeatherFavoriteRequest(userId, cityId));
+    console.log("listFv",listFv);
+    if(!listFv.loadFavor){
+      alert("Xin lỗi bạn server đang bị nghẽn !")
+    }
   };
 
   if (!listFv.lo || !listCity.success) {
