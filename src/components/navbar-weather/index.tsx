@@ -78,7 +78,7 @@ const NavbarWeather = ({ propsData, city, favorite, userID, loadFavor }: any) =>
         setDefault();
       }
       
-  }, [propsData.location.name,test,click,labelFavorite,loadFavor])
+  }, [propsData.location.name,test,click,labelFavorite])
 
   useEffect(()=>{   
     setLabelFavorite(propsData.location.name);
@@ -97,15 +97,14 @@ const NavbarWeather = ({ propsData, city, favorite, userID, loadFavor }: any) =>
           
           if(confim){
             dispatch(addWeatherFavoriteRequest(data))
-            if(loadFavor===false){
-              alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
-              setClick(true);
-            }
-            else{
-              setClick(false);
-              setTest(true);
-              setLabelFavorite(null);
-            }
+            // if(loadFavor===false){
+            //   alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
+            //   setClick(true);
+            // }          
+            setClick(false);
+            setTest(true);
+            setLabelFavorite(null);
+            
           
           }
           
@@ -123,13 +122,11 @@ const NavbarWeather = ({ propsData, city, favorite, userID, loadFavor }: any) =>
         if(cf){
           dispatch(removeWeatherFavoriteRequest(localStorage.getItem("userID"), data.cityId));
           // dispatch(removeWeatherFavoriteRequest("1403943429941869", data.cityId));
-          if(loadFavor===false){
-            alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
-            setClick(false);
-          }
-          else{
-            setClick(true);
-          }
+          // if(loadFavor===false){
+          //   alert("Server đang bị nghẽn, xin lỗi bạn vì sự bất tiện này!");
+          //   setClick(false);
+          // }
+          setClick(true);
         }
       }
     } else {
