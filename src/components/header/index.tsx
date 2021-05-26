@@ -75,7 +75,7 @@ const Header = () => {
             "\nchúc bạn xem thông tin thời tiết vui vẻ!"
           );
         })
-        .catch((error) => console.log(error));
+        .catch((error) => alert("Server hiện đang bị nghẽn, xin lỗi bạn vì sự bất tiện này !!"));
     }
   };
 
