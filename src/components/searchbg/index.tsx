@@ -146,7 +146,7 @@ const SearchComponent: React.FC<ISearch> = ({
               }, 200);
             }}
           />
-          <Link to="#" >
+          <Link to={`now/${xoa_dau(text)}`} >
             <button className="btn-search" style={{ backgroundColor: show ? "white" : "#1e90ff" }} >
               <i className="fas fa-search icon-search" style={{ color: show ? "#747d8c" : "#dcdde1" }}></i>
             </button>
