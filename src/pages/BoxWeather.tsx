@@ -33,7 +33,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
   if (!propsData.nowloading) {
     return (
        <div className="loading d-flex" style={{flexDirection:"column"}} >
-         <span>Không có địa phương này! Bạn nên nhập "tên thành phố, tên nước"</span>
+         <span>Không tìm thấy địa phương này! Bạn nên nhập "tên thành phố, tên nước"</span>
           <Link to="/" className="btn btn-warning">Quay lại</Link>
        </div>
     );
@@ -43,7 +43,7 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
   return (
     <div className="main-container">
       <div className="main-container-innner-wrap">
-          <NavbarWeather propsData={propsData.weather} city={cityData} favorite={propsData.favorite} userID={localStorage.getItem("userID")} />
+          <NavbarWeather propsData={propsData.weather} city={cityData} loadFavor={propsData.loadFavor} favorite={propsData.favorite} userID={localStorage.getItem("userID")} />
           <Switch>
             <Route path="/now/:city" >
               <Now propsData={propsData.weather} />

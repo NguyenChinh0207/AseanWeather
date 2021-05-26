@@ -11,7 +11,9 @@ import {
     getWeatherFavoriteSuccess,
     getWeatherFavoriteFail,
     removeWeather,
-    addWeather
+    addWeather,
+    addWeatherFail,
+    removeWeatherFail
 } from '../actions/weatherActions';
 
 
@@ -61,7 +63,7 @@ export const addWeatherFavoriteRequest = (data: any) => {
         dispatch(addWeather(true));
         axios.post(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities`, data).then(res => {
             dispatch(addWeather(false));
-        });
+        }).catch(err => dispatch(addWeatherFail('Something wrong !')));
     }
 }
 
@@ -70,6 +72,6 @@ export const removeWeatherFavoriteRequest = (userId: any, cityId: any) => {
         dispatch(removeWeather(true));
         axios.delete(`https://api-weather-asean.herokuapp.com/api/v1/favoriteCities/delete/idUser=${userId},idCity=${cityId}`).then(res => {
             return dispatch(removeWeather(false));
-        });
+        }).catch(err => dispatch(removeWeatherFail('Something wrong !')));
     }
 }
