@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavbarWeather from "../components/navbar-weather";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import Now from "../components/weather/Now";
 import Hourly from "../components/weather/Hourly";
 import Daily from "../components/weather/Daily";
@@ -15,17 +15,17 @@ interface IBoxWeather {
   getWeatherNowRequest: (city: any) => void;
   getWeatherFavoriteRequest: (userId: any) => void;
   getListcityRequest: () => void;
-  getWeatherSearchRequest: (city:any) => void;
+  // getWeatherSearchRequest: (city:any) => void;
   match: any;
 }
 
-const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowRequest, match, getWeatherSearchRequest }) => {
+const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowRequest, match }) => {
   
   // lấy param từ Link truyền vào
   const { city } = match.params;
   // Sau khi Component được sinh ra thì chạy hàm getWeatherNowRequest() có param là city để lấy ra danh sách thời tiết hiện tại
   useEffect(() => {
-    getWeatherSearchRequest(city);
+    // getWeatherSearchRequest(city);
     getWeatherNowRequest(city);
   }, [city]);
 
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch: any) => bindActionCreators(
     getWeatherDailyRequest,
     getListcityRequest,
     getWeatherFavoriteRequest,
-    getWeatherSearchRequest,
+    // getWeatherSearchRequest,
   }
   , dispatch);
 

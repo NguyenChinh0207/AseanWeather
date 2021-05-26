@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./searchbg.scss";
 import "../../App.scss";
 import {
-  getWeatherSearchRequest,
   getWeatherNowRequest,
 } from "../../redux/effects/weatherEffects";
 import FavouriteLocation from "../favourite-location";
@@ -12,10 +11,11 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 // import { isBuffer } from "node:util";
 import {useCookies}  from "react-cookie";
+import {listCity} from '../../data/ListCity';
 
 interface ISearch {
   propsData: any;
-  getWeatherSearchRequest: (searchKey: string) => void;
+  // getWeatherSearchRequest: (searchKey: string) => void;
   getWeatherNowRequest: (city?: string) => void;
 }
 const  xoa_dau=(str:string)=> {
@@ -40,23 +40,23 @@ const SearchComponent: React.FC<ISearch> = ({
   getWeatherNowRequest,propsData
 }) => {
   //Khai báo state để sử dụng
-  const [cityMatch, setCityMatch] = useState([]);
+  const [cityMatch, setCityMatch]:any[] = useState([]);
   const [text, setText] = useState("");
   const [show, setShow] = useState(false);
-  const [listCities, setlistCities] = useState([]);
+  const [listCities, setlistCities] = useState(listCity);
   const [cookies, setCookie] = useCookies(['ipAddress']);
 
   //Config api tìm kiếm
-  const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
-  const config = {
-    url,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Headers': 'Content-Type'
-    }
-  }
+  // const url = "https://api-weather-asean.herokuapp.com/api/v1/cities";
+  // const config = {
+  //   url,
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  //     'Access-Control-Allow-Credentials': true,
+  //     'Access-Control-Allow-Headers': 'Content-Type'
+  //   }
+  // }
 
   const getTotalView = ()=>{
         if(!cookies.ipAddress)
@@ -77,12 +77,12 @@ const SearchComponent: React.FC<ISearch> = ({
   }
   //Load api tìm kiếm địa phương
   useEffect(() => {
-    const loadCities = async () => {
-      const response = await axios(config);
-      setlistCities(response.data);
-    };
+    // const loadCities = async () => {
+    //   const response = await axios(config);
+    //   setlistCities(response.data);
+    // };
     getTotalView(); 
-    loadCities();
+    // loadCities();
     
   }, [])
 
@@ -111,16 +111,6 @@ const SearchComponent: React.FC<ISearch> = ({
     setCityMatch([]);
   };
 
-  
-  // click button search (click button map với api weather)
-  // const clickSearch=async (value:any)=>{
-    
-  //    await getWeatherNowRequest(xoa_dau(value));
-    
-  //   if(propsData.nowloading){
-  //    alert("Không tìm thấy địa phương này")
-  //   }
-  // }
 
   return (
     <div className="hero-container">
@@ -196,7 +186,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      getWeatherSearchRequest,
+      // getWeatherSearchRequest,
       getWeatherNowRequest,
     },
     dispatch
