@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeWeatherFavoriteRequest } from "../../redux/effects/weatherEffects";
+import {listCity} from '../../data/ListCity';
 
 const Favourite = () => {
+  const [list,setList]:any[]=useState(listCity);
   const listFv = useSelector((state: RootStateOrAny) => state.weatherReducer);
-  const listCity = useSelector((state: RootStateOrAny) => state.cityReducer);
+  // const listCity = useSelector((state: RootStateOrAny) => state.cityReducer);
 
   const dispatch = useDispatch();
   const remove = (userId: any, cityId: any) => {
@@ -15,13 +17,13 @@ const Favourite = () => {
     // }
   };
 
-  if (!listFv.lo || !listCity.success) {
+  if (!listFv.lo) {
     return <div>Bạn chưa có địa chỉ yêu thích nào</div>;
   }
 
   return (
     <>
-      {listCity.listCity.map((listCt: any) => {
+      {list.map((listCt: any) => {
         return listFv.favorite.map((listF: any) => {
           if (listCt.lable == listF.cityLable) {
             return (

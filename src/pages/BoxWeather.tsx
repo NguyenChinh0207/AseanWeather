@@ -32,9 +32,10 @@ const BoxWeather: React.FC<IBoxWeather> = ({ propsData, cityData, getWeatherNowR
   // Nếu ds thời tiết chưa load xong hoặc trả về lỗi
   if (!propsData.nowloading) {
     return (
-       <div className="loading d-flex" style={{flexDirection:"column"}} >
-         <span>Không tìm thấy địa phương này! Bạn nên nhập "tên thành phố, tên nước"</span>
-          <Link to="/" className="btn btn-warning">Quay lại</Link>
+       <div className="loading" >
+         {/* <span>Không tìm thấy địa phương này! Bạn nên nhập "tên thành phố, tên nước"</span>
+          <Link to="/" className="btn btn-warning">Quay lại</Link> */}
+          loading
        </div>
     );
   }
