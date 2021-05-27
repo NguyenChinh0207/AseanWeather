@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+- [GIỚI THIỆU SẢN PHẨM]
+- Đường link web: https://aseanweather.herokuapp.com/
+- Trong thời tiết nắng mưa thất thường như hiện nay, một ứng dụng dự báo thời tiết là rất cần thiết với mọi người. Nhận thấy sự thiết yếu này, Asean Weather đã ra đời
+- Asean Weather là một trang web xem dự báo thời tiết khu vực Đông Nam Á, cùng với những tiện ích như sau:
+1. Xem thời tiết hiện tại theo địa phương tra cứu.
+2. Dự báo thời tiết theo từng giờ, từ giờ hiện tại cho đến cuối ngày.
+3. Dự báo thời tiết 3 ngày.
+4. Chia sẻ dự báo thời tiết địa phương bạn đang xem lên facebook.
+5. Chia sẻ thời tiết địa phương đến người bạn quan tâm qua địa chỉ email.
+6. Chức năng đăng nhập bằng tài khoản facebook để quản lý địa phương yêu thích, mang đến sự tiện lợi khi theo dõi địa phương mong muốn.
+- Công nghệ sử dụng: Java Spring Boot, Reactjs, MySQL, Heroku.
+=>XIN LƯU Ý: 
++ Web hiện chưa hỗ trợ trên smartphone, nên sử dụng máy tính cá nhân để có sự trải nghiệm tốt nhất.
++ Do sử dụng công nghệ miễn phí nên sẽ có những lúc web hoạt động chậm, thậm chí có thể có lỗi, mong mọi người thông cảm cho sự bất tiện này.
+- Mọi đóng góp ý kiến, vui lòng gửi thư qua email: nchinh407@gmail.com
+- Dưới đây là 1 số hình ảnh web:
++ Trước khi đăng nhập:
+![home1](https://user-images.githubusercontent.com/59313538/119751424-0118dd80-be50-11eb-9fe6-2749b7347c0a.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
++ Xem thông tin thời tiết hiện tại:
+![current](https://user-images.githubusercontent.com/59313538/119750979-34a73800-be4f-11eb-9914-2401d1f975fa.png)
 
-In the project directory, you can run:
++ Xem  thông tin thười tiết hàng giờ:
+![hourly](https://user-images.githubusercontent.com/59313538/119751077-5accd800-be4f-11eb-821c-80317cf85a37.png)
 
-### `yarn start`
++ Xem thông tin thời tiết 3 ngày:
+![daily](https://user-images.githubusercontent.com/59313538/119751120-6d471180-be4f-11eb-939d-f0bfee454919.png)
+![daily_detail](https://user-images.githubusercontent.com/59313538/119751130-71732f00-be4f-11eb-8ac0-170a1c4b0ff6.PNG)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
++ Modal login facebook cho khách vãng lai:
+![modalLogin](https://user-images.githubusercontent.com/59313538/119751182-864fc280-be4f-11eb-9479-094f8a772b08.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
++ Màn hình sau khi login facebook và thêm yêu thích địa phương
+![home](https://user-images.githubusercontent.com/59313538/119751221-9bc4ec80-be4f-11eb-9f9e-3381725951c5.jpg)
 
-### `yarn test`
++ Xem và xóa địa phương yêu thích, chức năng này chỉ dùng khi đã đăng nhập facebook
+![list_favorite](https://user-images.githubusercontent.com/59313538/119751296-b7c88e00-be4f-11eb-9a15-d7caa3c9d03e.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
++ Màn hình login cho admin:
+![login_ad](https://user-images.githubusercontent.com/59313538/119751326-c747d700-be4f-11eb-8eff-1a99622872db.png)
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
++ Màn hình user list đã đăng nhập bằng facebook:
+![users](https://user-images.githubusercontent.com/59313538/119751348-d6c72000-be4f-11eb-9769-29440c6d92af.png)
